@@ -30,6 +30,7 @@
   --shadow:0 24px 60px -20px rgba(0,0,0,.72), 0 8px 24px -12px rgba(0,0,0,.5);
   --r:22px; --r-sm:14px; --r-pill:999px;
   --aurora-1:#1d6e54; --aurora-2:#1f7a6e; --aurora-3:#2c5f63; --aurora-4:#14463a;
+  --ease-out:cubic-bezier(0.23,1,0.32,1); --ease-in-out:cubic-bezier(0.77,0,0.175,1); --ease-ui:cubic-bezier(0.23,1,0.32,1);
   --mono:"SF Mono",ui-monospace,"JetBrains Mono",Menlo,monospace;
   --ui:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter",system-ui,sans-serif;
 }
@@ -44,106 +45,15 @@ html[data-theme="light"]{
 
 /* ═══════════════ ATELIER LOOK — warm paper, deep navy, teal & apricot, serif display numbers ═══════════════ */
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap');
-html[data-look="atelier"]{
-  --ui:'DM Sans',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
-  --mono:'DM Sans',-apple-system,system-ui,sans-serif;
-  --display:'Fraunces',Georgia,'Times New Roman',serif;
-  --r:16px; --r-sm:14px;
-  --teal:#4d9a8c; --blue:#3b7aa3; --violet:#7c6db0; --amber:#e3a15c; --rose:#c94f43; --emerald:#4d9a8c; --pink:#c06a8d; --orange:#e3a15c;
-  --pos:#4d9a8c; --neg:#c94f43; --accent:#356b62; --accent-2:#e3a15c;
-  /* dark atelier */
-  --bg-0:hsl(211 30% 12%); --bg-1:hsl(211 28% 16%); --bg-2:hsl(211 28% 19%);
-  --ink:hsl(42 34% 94%); --ink-dim:hsl(209 12% 72%); --ink-faint:hsl(209 12% 56%);
-  --glass:hsl(211 28% 16%); --glass-2:hsl(210 18% 21%); --glass-hi:hsl(209 20% 26%);
-  --line:hsl(209 19% 26%); --line-2:hsl(209 19% 22%);
-  --shadow:0 14px 34px rgba(0,0,0,.35);
-  --side:hsl(211 32% 9%); --side-ink:hsl(207 25% 88%); --side-line:hsl(208 22% 20%); --side-acc:hsl(208 23% 17%); --side-pri:hsl(31 70% 63%); --side-pri-ink:hsl(211 30% 12%);
-  --pri:hsl(169 38% 56%); --pri-ink:hsl(211 30% 12%); --card:hsl(211 28% 16%); --card-line:hsl(209 19% 26%);
-}
-html[data-look="atelier"][data-theme="light"]{
-  --bg-0:hsl(42 34% 94%); --bg-1:hsl(43 38% 97%); --bg-2:hsl(42 30% 96%);
-  --ink:hsl(211 31% 18%); --ink-dim:hsl(210 14% 45%); --ink-faint:hsl(210 12% 58%);
-  --glass:hsl(43 38% 97%); --glass-2:hsl(42 24% 92%); --glass-hi:#fff;
-  --line:hsl(36 22% 84%); --line-2:hsl(36 25% 88%);
-  --shadow:0 14px 34px rgba(36,54,66,.09);
-  --side:hsl(208 38% 18%); --side-ink:hsl(207 25% 88%); --side-line:hsl(208 28% 28%); --side-acc:hsl(208 30% 25%); --side-pri:hsl(31 70% 67%); --side-pri-ink:hsl(211 31% 18%);
-  --pri:hsl(169 33% 31%); --pri-ink:hsl(42 34% 96%); --card:hsl(43 38% 97%); --card-line:hsl(36 25% 87%);
-}
-html[data-look="atelier"] body{letter-spacing:0;font-family:var(--ui)}
-html[data-look="atelier"] .num{font-family:var(--ui);font-variant-numeric:tabular-nums;letter-spacing:0}
-html[data-look="atelier"] #bg{background:var(--bg-0)}
-html[data-look="atelier"] #bg .blob{display:none}
-html[data-look="atelier"] body::after{content:'';pointer-events:none;position:fixed;inset:0;opacity:.032;z-index:50;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
-html[data-look="atelier"] .glass{background:var(--card);backdrop-filter:none;-webkit-backdrop-filter:none;border:1px solid var(--card-line);box-shadow:0 2px 10px rgba(36,54,66,.06)}
-html[data-look="atelier"] .panel{border-radius:16px}
 /* rail = the navy sidebar */
-html[data-look="atelier"] .rail{background:var(--side);color:var(--side-ink);border-right:none;padding:22px 18px}
-html[data-look="atelier"] .rail .brand b{color:#fff;font-family:var(--display);font-weight:600;font-size:17px}
-html[data-look="atelier"] .rail .brand small{color:hsl(207 25% 88% / .5)}
-html[data-look="atelier"] .rail .brand .mark{background:var(--side-pri);border-radius:12px}
-html[data-look="atelier"] .rail .brand .mark::after{display:none}
-html[data-look="atelier"] .navbtn{color:hsl(207 25% 88% / .68);border-radius:12px;font-weight:500}
-html[data-look="atelier"] .navbtn:hover{background:var(--side-acc);color:var(--side-ink)}
-html[data-look="atelier"] .navbtn.on{background:var(--side-pri);color:var(--side-pri-ink);box-shadow:0 2px 10px rgba(0,0,0,.18)}
-html[data-look="atelier"] .grph{background:transparent;border:none;box-shadow:none;color:hsl(207 25% 88% / .4);padding:10px 12px 4px;margin-top:14px}
-html[data-look="atelier"] .grph .chev::after{color:hsl(207 25% 88% / .4)}
-html[data-look="atelier"] .rail .sub,html[data-look="atelier"] .rail .navsub,html[data-look="atelier"] .rail .navsubs button{color:hsl(207 25% 88% / .62)}
-html[data-look="atelier"] .rail .badge{background:var(--side-pri);color:var(--side-pri-ink)}
-html[data-look="atelier"] .rail .foot,html[data-look="atelier"] .railtools,html[data-look="atelier"] .railtools button{color:hsl(207 25% 88% / .4)}
-html[data-look="atelier"] .rail #vchip{color:hsl(207 25% 88% / .4)}
-html[data-look="atelier"] .undopill{background:var(--card);color:var(--ink);border-color:var(--card-line)}
+
 /* top bar + section heads */
-html[data-look="atelier"] .topbar{border-bottom:none;padding:18px 26px 6px}
-html[data-look="atelier"] .gsearch{background:var(--card);border:1px solid var(--card-line);border-radius:12px}
-html[data-look="atelier"] .iconbtn{background:var(--card);border:1px solid var(--card-line);border-radius:12px;color:var(--ink-dim)}
-html[data-look="atelier"] .iconbtn.on{border-color:var(--pri);color:var(--pri)}
-html[data-look="atelier"] .sec .eye{color:var(--pri);font-weight:700;letter-spacing:.2em;font-size:11px}
-html[data-look="atelier"] .sec h2{font-family:var(--display);font-weight:500;font-size:28px;letter-spacing:-.03em}
-html[data-look="atelier"] .sec .ln{display:none}
-html[data-look="atelier"] .ph h3{font-family:var(--display);font-weight:500;font-size:17px;letter-spacing:-.01em}
-html[data-look="atelier"] .msec h4{color:var(--pri);letter-spacing:.16em}
 /* stat cards: the hero becomes the navy block with the rings */
-html[data-look="atelier"] .stat{background:var(--card);border:1px solid var(--card-line);border-radius:16px;box-shadow:0 2px 10px rgba(36,54,66,.06)}
-html[data-look="atelier"] .stat .k{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--ink-faint)}
-html[data-look="atelier"] .stat .v{font-family:var(--display);font-weight:500;font-size:30px;letter-spacing:-.03em}
-html[data-look="atelier"] .stat.hero{position:relative;overflow:hidden;background:var(--side);color:var(--side-ink);border:none;box-shadow:var(--shadow);padding:24px 26px}
-html[data-look="atelier"] .stat.hero .k{color:hsl(207 25% 88% / .55)}
-html[data-look="atelier"] .stat.hero .v{font-size:52px;font-weight:500;letter-spacing:-.04em;color:#fff}
-html[data-look="atelier"] .stat.hero .s{color:hsl(207 25% 88% / .5)}
-html[data-look="atelier"] .stat.hero::before,html[data-look="atelier"] .stat.hero::after{content:'';position:absolute;border-radius:50%;border:1px solid hsl(31 70% 67% / .15);pointer-events:none}
-html[data-look="atelier"] .stat.hero::before{width:256px;height:256px;right:-64px;top:-80px}
-html[data-look="atelier"] .stat.hero::after{width:176px;height:176px;right:-20px;top:-36px;border-color:hsl(31 70% 67% / .1)}
-html[data-look="atelier"] .stat.hero .cchip,html[data-look="atelier"] .stat.hero small{color:var(--side-pri);border-color:hsl(31 70% 67% / .25);background:hsl(31 70% 67% / .1)}
 /* controls */
-html[data-look="atelier"] .btn{border-radius:12px;font-weight:600}
-html[data-look="atelier"] .btn.pri{background:var(--pri);color:var(--pri-ink);box-shadow:0 2px 10px rgba(36,54,66,.1);transition:transform .18s}
-html[data-look="atelier"] .btn.pri:hover{transform:translateY(-2px)}
-html[data-look="atelier"] .btn.gho,html[data-look="atelier"] .mbtn{background:var(--card);border:1px solid var(--card-line);border-radius:12px}
-html[data-look="atelier"] .inp{background:var(--bg-1);border:1px solid var(--line);border-radius:12px}
-html[data-look="atelier"] .inp:focus{border-color:var(--pri);box-shadow:0 0 0 3px hsl(169 33% 39% / .15)}
-html[data-look="atelier"] .seg button.on{background:var(--pri);color:var(--pri-ink)}
-html[data-look="atelier"] .tag{border-radius:999px}
-html[data-look="atelier"] .nudge{background:hsl(31 70% 67% / .18);border-color:hsl(31 70% 67% / .45)}
-html[data-look="atelier"] .warnbox{background:hsl(31 70% 67% / .14);border-color:hsl(31 70% 67% / .4)}
-html[data-look="atelier"] #attnBadge,html[data-look="atelier"] #attnBadgeM,html[data-look="atelier"] #menuBadge{background:var(--neg)!important;color:#fff!important}
+
 /* mobile tab bar */
-html[data-look="atelier"] .mobtab{background:var(--side);border-top:1px solid var(--side-line)}
-html[data-look="atelier"] .mobtab button{color:hsl(207 25% 88% / .55)}
-html[data-look="atelier"] .mobtab button.on{color:var(--side-pri)}
 /* the lock screen — the piece Omar liked most */
-html[data-look="atelier"] .lockwrap{background:var(--bg-0);backdrop-filter:none}
-html[data-look="atelier"] .lockbox{width:min(440px,92vw);text-align:left;padding:32px;border-radius:24px;background:var(--card);border:1px solid var(--card-line);box-shadow:var(--shadow)}
-html[data-look="atelier"] .lockmark{width:48px;height:48px;border-radius:16px;margin:0;background:hsl(169 33% 39% / .12);color:var(--pri);font-size:22px}
-html[data-look="atelier"] .lockbox .eyebrow{margin-top:24px;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pri)}
-html[data-look="atelier"] .lockbox h2{font-family:var(--display);font-weight:500;font-size:36px;letter-spacing:-.03em;margin:8px 0 0;line-height:1.1}
-html[data-look="atelier"] .lockbox p{margin:12px 0 0;font-size:13.5px;line-height:1.6;color:var(--ink-dim)}
-html[data-look="atelier"] .lockbox input{text-align:left;letter-spacing:.02em;font-family:var(--ui);font-size:14px;height:44px;padding:0 12px;border-radius:12px}
-html[data-look="atelier"] .lockbox .lockbtn{width:100%;padding:14px;border-radius:12px;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--card-line);background:var(--bg-1);color:var(--ink);cursor:pointer;font-family:inherit}
-html[data-look="atelier"] .lockbox .lockbtn.pri{background:var(--pri);color:var(--pri-ink);border-color:transparent;box-shadow:0 2px 10px rgba(36,54,66,.1);transition:transform .18s}
-html[data-look="atelier"] .lockbox .lockbtn.pri:hover{transform:translateY(-2px)}
-html[data-look="atelier"] .lockbox .divider{display:flex;align-items:center;gap:12px;margin:22px 0;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
-html[data-look="atelier"] .lockbox .divider::before,html[data-look="atelier"] .lockbox .divider::after{content:'';flex:1;height:1px;background:var(--line)}
-html[data-look="atelier"] .lockbox .foot{margin-top:20px;text-align:center;font-size:11.5px;color:var(--ink-faint)}
+
 /* glass look keeps its own lock layout; make the new structure behave there too */
 .lockbox .eyebrow{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-top:14px}
 .lockbox .lockbtn{width:100%;padding:12px;border-radius:12px;font-weight:600;border:1px solid var(--line);background:var(--glass-2);color:var(--ink);cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:8px}
@@ -153,6 +63,54 @@ html[data-look="atelier"] .lockbox .foot{margin-top:20px;text-align:center;font-
 .lockbox .divider::before,.lockbox .divider::after{content:'';flex:1;height:1px;background:var(--line)}
 .lockbox .foot{margin-top:14px;font-size:10.5px;color:var(--ink-faint)}
 .lockbox form{margin:0}
+/* ── v2.6: menu + settings share one list language; headers stop clipping ── */
+.setitem .lbl{display:flex;flex-direction:column;gap:1px;min-width:0;text-align:left}
+.setitem .lbl b{font-weight:600}
+.setitem .lbl small{font-size:10.5px;color:var(--ink-faint)}
+.setitem.dang .lbl b{color:var(--neg)}
+.setgrp{border-radius:12px}
+.setgrp.open{border:1px solid var(--accent);background:var(--glass-2)}
+.setgrp.open>.setitem{border:none;background:none}
+.setbody{padding:0 12px 12px}
+.setbody .msec{margin-top:0;padding-top:0;border-top:none}
+.setbody .msec h4{margin-top:0}
+.sec .act{display:flex;align-items:center;gap:8px;flex:none;max-width:100%;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px}
+.sec .act::-webkit-scrollbar{display:none}
+.sec .act>*{flex:none}
+@media(max-width:820px){
+  .sec{flex-wrap:wrap;row-gap:8px}
+  .sec h2{flex:1 1 100%;order:2}
+  .sec .eye{order:1}
+  .sec .ln{display:none}
+  .sec .act{order:3;flex:1 1 100%;justify-content:flex-start}}
+/* ── v2.5: iPhone web-app insets, settings navigation, manual sheet, tier bands ── */
+html,body{background:var(--bg-0)}
+.app{height:100dvh;min-height:-webkit-fill-available}
+.topbar{padding-top:calc(16px + env(safe-area-inset-top,0px))}
+@media(max-width:820px){
+  .topbar{padding-top:calc(10px + env(safe-area-inset-top,0px))}
+  .mobtab{padding-bottom:calc(6px + env(safe-area-inset-bottom,0px));bottom:0}
+  .scroll{padding-bottom:calc(92px + env(safe-area-inset-bottom,0px))}
+  .lockwrap{padding-top:env(safe-area-inset-top,0px)}}
+.setlist{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.setitem{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--glass-2);color:var(--ink);font-size:13px;font-family:inherit;cursor:pointer;text-align:left}
+
+.setitem .ie{font-size:16px;width:22px;text-align:center}.setitem .chev{margin-left:auto;color:var(--ink-faint)}
+.setnav{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.mu-prog{display:flex;align-items:center;gap:8px;font-size:12px;margin:8px 0 10px;padding:8px 10px;border-radius:10px;background:var(--glass-2)}
+.mu-list{max-height:52vh;overflow:auto;padding-right:4px}
+.mu-cat{border-left:3px solid var(--line);padding:2px 0 6px 12px;margin:0 0 14px}
+.mu-cath{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin:0 0 6px}
+.mu-cath small{opacity:.6;margin-left:6px;letter-spacing:0}
+.mu-row{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--line-2)}
+.mu-name{flex:1;min-width:0;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mu-name small{display:block;font-size:10.5px;color:var(--ink-faint);font-family:var(--mono)}
+.mu-row .mu{width:170px;flex:none;font-size:15px;padding:10px 12px;text-align:right}
+.mu-cur{width:34px;font-size:10.5px;color:var(--ink-faint);font-family:var(--mono)}
+kbd{font-family:var(--mono);font-size:10px;padding:1px 5px;border:1px solid var(--line);border-radius:5px;background:var(--glass-2)}
+.tierhead{margin:44px -6px 16px;padding:12px 16px;border-radius:14px;background:var(--glass-2);border:1px solid var(--line);border-bottom:1px solid var(--line)}
+.tierhead:first-child{margin-top:8px}
+#asWork .panel{margin-bottom:26px}
 /* ── v2.4: compact rail, tiered assets, filters, alternating panels, stat grid that never orphans a card ── */
 .app{grid-template-columns:212px 1fr}
 .rail{padding:16px 12px;gap:3px}
@@ -168,9 +126,59 @@ html[data-look="atelier"] .lockbox .foot{margin-top:20px;text-align:center;font-
 #asStats .stat .v{font-size:22px}
 #asStats .stat.hero .v{font-size:38px}
 #asWork .panel{margin-bottom:22px}
-#asWork .panel:nth-of-type(even){background:var(--glass-2)}
-html[data-look="atelier"] #asWork .panel:nth-of-type(even){background:var(--bg-2)}
-.tierhead{display:flex;align-items:center;gap:10px;margin:26px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+
+/* ── v2.9: a tier reads as ONE card; its categories are sections inside it ── */
+.tiergrp{border:1px solid var(--line);border-radius:20px;background:var(--glass);margin:30px 0;overflow:hidden}
+.tiergrp .tierhead{margin:0;border:none;border-radius:0;background:transparent;padding:16px 20px 14px;border-bottom:1px solid var(--line)}
+.tiergrp .tierbody{padding:14px}
+.tiergrp .catcard{margin:0 0 12px;border-radius:14px;box-shadow:none;border:1px solid var(--line-2);background:var(--glass-2)}
+.tiergrp .catcard.alt{background:var(--glass-hi)}
+.tiergrp .catcard:last-child{margin-bottom:0}
+html[data-look="ledger"] .tiergrp{background:var(--bg-1)}
+html[data-look="ledger"] .tiergrp .catcard{background:var(--bg-0)}
+html[data-look="ledger"] .tiergrp .catcard.alt{background:var(--bg-2)}
+@media(max-width:820px){.tiergrp{border-radius:16px;margin:20px 0}.tiergrp .tierbody{padding:10px}}
+
+/* ── v2.2.10: readable tier alternation, totals row, ledger-style numbers ── */
+.tiergrp .catcard{background:rgba(255,255,255,.022)}
+.tiergrp .catcard.alt{background:rgba(255,255,255,.075)}
+html[data-theme="light"] .tiergrp .catcard{background:rgba(15,23,32,.02)}
+html[data-theme="light"] .tiergrp .catcard.alt{background:rgba(15,23,32,.065)}
+html[data-look="ledger"] .tiergrp .catcard{background:var(--bg-0)}
+html[data-look="ledger"] .tiergrp .catcard.alt{background:var(--bg-2)}
+.tiergrp .catcard+.catcard{border-top-width:1px}
+tr.totrow td{border-top:2px solid var(--line)!important;padding-top:10px;font-size:13px}
+tr.totrow{background:var(--glass-2)}
+.tbl td.num,.tbl th{font-variant-numeric:tabular-nums}
+
+/* ── v2.2.11: zebra rows, one tier treatment everywhere, clickable rail tiers ── */
+.tbl tbody tr{transition:background .12s}
+.tbl tbody tr:nth-child(even){background:rgba(255,255,255,.030)}
+.tbl tbody tr:hover{background:rgba(255,255,255,.055)}
+.tbl tbody tr.totrow:nth-child(even),.tbl tbody tr.totrow{background:var(--glass-2)}
+html[data-theme="light"] .tbl tbody tr:nth-child(even){background:rgba(15,23,32,.035)}
+html[data-theme="light"] .tbl tbody tr:hover{background:rgba(15,23,32,.06)}
+html[data-look="ledger"] .tbl tbody tr:nth-child(even){background:rgba(120,110,90,.07)}
+html[data-look="ledger"] .tbl tbody tr:hover{background:rgba(120,110,90,.12)}
+.tbl tbody tr.mat-red:nth-child(even),.tbl tbody tr.mat-amber:nth-child(even){background:inherit}
+.tbl td:first-child,.tbl th:first-child{padding-left:12px}
+.tbl td:last-child,.tbl th:last-child{padding-right:12px}
+.subhead{display:flex;align-items:center;gap:7px;width:100%;border:none;background:none;font-family:inherit;cursor:pointer;text-align:left;border-radius:8px}
+.subhead:hover{color:var(--ink);background:var(--glass-2)}
+.subhead .go{margin-left:auto;opacity:0;transition:opacity .15s}
+.subhead:hover .go{opacity:.6}
+@media(max-width:820px){.tbl tbody tr:nth-child(even){background:transparent}
+  .tbl tr:nth-of-type(even){background:rgba(255,255,255,.030)}}
+
+/* ── v2.2.12: the stripe has to survive a translucent panel, so it is a real step ── */
+.tbl tbody tr:nth-child(even){background:rgba(255,255,255,.055)}
+.tbl tbody tr:hover{background:rgba(255,255,255,.085)}
+html[data-theme="light"] .tbl tbody tr:nth-child(even){background:rgba(15,23,32,.05)}
+html[data-look="ledger"] .tbl tbody tr:nth-child(even){background:rgba(120,110,90,.10)}
+.tiergrp{background:var(--glass-2);box-shadow:0 8px 26px rgba(0,0,0,.22)}
+.tiergrp .tierhead{background:rgba(255,255,255,.035)}
+html[data-theme="light"] .tiergrp .tierhead{background:rgba(15,23,32,.035)}
+/*V29*/.tierhead{display:flex;align-items:center;gap:10px;margin:26px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
 .tierhead:first-child{margin-top:4px}
 .tierhead h3{font-size:14px;font-weight:700;letter-spacing:.02em}
 .tierhead .tsub{font-size:11px;color:var(--ink-faint)}
@@ -179,31 +187,66 @@ html[data-look="atelier"] #asWork .panel:nth-of-type(even){background:var(--bg-2
 .chips .lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);align-self:center;margin-right:4px}
 .chip{padding:5px 11px;border-radius:999px;border:1px solid var(--line);background:var(--glass-2);color:var(--ink-dim);font-size:11.5px;cursor:pointer;font-family:inherit}
 .chip.on{background:var(--accent);color:#fff;border-color:var(--accent)}
-html[data-look="atelier"] .chip.on{background:var(--pri);color:var(--pri-ink);border-color:transparent}
 .lockbox .hint{margin-top:10px;padding:9px 11px;border-radius:10px;background:var(--glass-2);border:1px dashed var(--line);font-size:12px;color:var(--ink-dim)}
 /* ── v3.2: Atelier light — calmer paper, stronger ink; the rail wins over the generic light rule ── */
-html[data-look="atelier"][data-theme="light"]{
-  --bg-0:hsl(40 28% 90%); --bg-1:hsl(42 30% 95%); --bg-2:hsl(41 26% 93%);
-  --ink:hsl(211 34% 15%); --ink-dim:hsl(210 16% 36%); --ink-faint:hsl(210 12% 48%);
-  --glass:hsl(42 30% 95%); --glass-2:hsl(41 24% 90%);
-  --line:hsl(36 20% 78%); --line-2:hsl(36 22% 84%);
-  --card:hsl(42 30% 95%); --card-line:hsl(36 22% 82%);
-}
-html[data-look="atelier"][data-theme="light"] .rail{background:var(--side);color:var(--side-ink)}
-html[data-look="atelier"][data-theme="light"] .glass{background:var(--card);border-color:var(--card-line)}
-html[data-look="atelier"][data-theme="light"] .navbtn{color:hsl(207 25% 88% / .74)}
-html[data-look="atelier"][data-theme="light"] .navbtn.on{background:var(--side-pri);color:var(--side-pri-ink)}
-html[data-look="atelier"][data-theme="light"] .stat.hero{background:var(--side);color:var(--side-ink)}
-html[data-look="atelier"][data-theme="light"] .stat .k{color:hsl(210 14% 40%)}
-html[data-look="atelier"][data-theme="light"] .stat.hero .k{color:hsl(207 25% 88% / .6)}
-html[data-look="atelier"][data-theme="light"] .muted,html[data-look="atelier"][data-theme="light"] .udate,html[data-look="atelier"][data-theme="light"] .hint{color:hsl(210 14% 42%)}
-html[data-look="atelier"][data-theme="light"] .sec .eye{color:hsl(169 33% 28%)}
-html[data-look="atelier"][data-theme="light"] .btn.pri{background:hsl(169 33% 29%)}
-html[data-look="atelier"][data-theme="light"] .lockbox{background:var(--card)}
-html[data-look="atelier"] .rail .sub button,html[data-look="atelier"] .rail .navsubs button,html[data-look="atelier"] .rail .navsub{color:hsl(207 25% 88% / .7)}
-html[data-look="atelier"] .grph,html[data-look="atelier"] .grph .chev::after{color:hsl(207 25% 88% / .5)}
 .lockbox .linkbtn{background:none;border:none;color:var(--ink-faint);font-size:11.5px;text-decoration:underline;cursor:pointer;font-family:inherit;padding:0}
 .reckey{font-family:var(--mono,ui-monospace);font-size:15px;letter-spacing:.06em;line-height:1.7;word-break:break-all;padding:12px 14px;border-radius:12px;background:var(--glass-2);border:1px dashed var(--line);-webkit-user-select:all;user-select:all;text-align:center}
+
+
+/* ═══════════════ LEDGER LOOK — matte ink, hairline rules, flat ledger-book precision ═══════════════
+   Token manifest (what any look must supply — reference values are Glass's):
+     colour:  --bg-0 --bg-1 --bg-2  --ink --ink-dim --ink-faint  --glass --glass-2 --glass-hi
+              --line --line-2  --teal --blue --violet --amber --rose --emerald --cyan --pink --orange
+              --pos --neg  --accent --accent-2  --aurora-1..4 (only meaningful if the look keeps #bg .blob)
+     shape:   --r --r-sm --r-pill  --shadow
+     type:    --mono --ui  (a look may add its own, e.g. Atelier's --display — components must fall back
+              gracefully when a look-specific token like --side-pri/--pri/--card is absent)
+   Ledger deliberately reuses Glass's --glass/--line/--accent vocabulary (no --side/--card dialect) and
+   skips the drift-aurora signature in favour of visible rule lines as its own ambient identity. */
+html[data-look="ledger"]{
+  --r:9px; --r-sm:8px;
+  --teal:#3f6a52; --blue:#4a5f7a; --violet:#5c5470; --amber:#8a6a2e; --rose:#8a3f36; --emerald:#3f6a52; --pink:#6a4a5a; --orange:#8a5a2e;
+  --pos:#3f7a56; --neg:#a44339; --accent:#3f6a52; --accent-2:#8a6a2e;
+  --bg-0:#15140f; --bg-1:#1b1a14; --bg-2:#201f18;
+  --ink:#eae6da; --ink-dim:#a8a08c; --ink-faint:#726c5c;
+  --glass:#1b1a14; --glass-2:#232219; --glass-hi:#2b291e;
+  --line:#3a3728; --line-2:#2a281c;
+  --shadow:0 10px 26px rgba(0,0,0,.4);
+}
+html[data-look="ledger"][data-theme="light"]{
+  --bg-0:#efeadd; --bg-1:#f5f1e6; --bg-2:#eae4d3;
+  --ink:#241f14; --ink-dim:#5c5540; --ink-faint:#847c62;
+  --glass:#f5f1e6; --glass-2:#eae4d3; --glass-hi:#fff;
+  --line:#c9bf9e; --line-2:#d9d0b4;
+  --shadow:0 8px 20px rgba(60,50,20,.12);
+  --pos:#3f7a56; --neg:#a44339; --accent:#3f6a52; --accent-2:#8a6a2e;
+}
+/* flat everywhere: no blur, a real border instead of a glow */
+html[data-look="ledger"] .glass{background:var(--glass);backdrop-filter:none;-webkit-backdrop-filter:none;border:1px solid var(--line);box-shadow:none}
+html[data-look="ledger"] .glass::before{display:none}
+html[data-look="ledger"] #bg{background:var(--bg-0)}
+html[data-look="ledger"] #bg .blob,html[data-look="ledger"] #bg .grain{display:none}
+/* ledger books have ruled lines, not glow — table rows and panels get a visible hairline */
+html[data-look="ledger"] .tbl td{border-bottom:1px solid var(--line-2)}
+html[data-look="ledger"] .tbl th{border-bottom:1px solid var(--line)}
+html[data-look="ledger"] .panel{border:1px solid var(--line)}
+html[data-look="ledger"] .rail{background:var(--bg-1);border-right:1px solid var(--line);backdrop-filter:none}
+html[data-look="ledger"] .brand .mark{background:var(--accent);box-shadow:none}
+html[data-look="ledger"] .brand .mark::after{background:var(--bg-1)}
+html[data-look="ledger"] .navbtn.on{background:var(--glass-2);box-shadow:inset 0 0 0 1px var(--line)}
+html[data-look="ledger"] .navbtn.on::before{background:var(--accent)}
+html[data-look="ledger"] .stat{box-shadow:none}
+html[data-look="ledger"] .stat.hero{background:var(--glass-2);border:1px solid var(--line)}
+html[data-look="ledger"] .btn.pri{background:var(--accent);border-color:transparent;box-shadow:none}
+html[data-look="ledger"] .btn.pri:hover{filter:brightness(1.12)}
+html[data-look="ledger"] .send{background:var(--accent);box-shadow:none}
+html[data-look="ledger"] .msg.user{background:var(--accent);box-shadow:none}
+html[data-look="ledger"] .lockwrap{backdrop-filter:none;background:var(--bg-0)}
+html[data-look="ledger"] .lockbox{background:var(--glass-2);box-shadow:none;border:1px solid var(--line)}
+html[data-look="ledger"] .lockmark{background:var(--accent);border-radius:var(--r-sm)}
+html[data-look="ledger"] .scrim{backdrop-filter:none;background:rgba(0,0,0,.5)}
+html[data-look="ledger"] .mobtab{background:var(--bg-1);backdrop-filter:none;border-top:1px solid var(--line)}
+html[data-look="ledger"] .gsdrop{box-shadow:none;border:1px solid var(--line)}
 
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%}
@@ -251,9 +294,9 @@ html[data-theme="light"] .rail{background:linear-gradient(180deg,rgba(255,255,25
 .brand b{font-size:15.5px;font-weight:650;letter-spacing:-.02em}
 .brand small{display:block;font-size:10.5px;color:var(--ink-faint);font-weight:500;letter-spacing:.02em;margin-top:1px}
 .navbtn{display:flex;align-items:center;gap:12px;padding:11px 13px;border:none;background:transparent;border-radius:13px;
-  color:var(--ink-dim);font-size:13.5px;font-weight:530;cursor:pointer;text-align:left;width:100%;transition:.2s;position:relative}
+  color:var(--ink-dim);font-size:13.5px;font-weight:530;cursor:pointer;text-align:left;width:100%;transition:background-color .2s var(--ease-ui),color .2s var(--ease-ui);position:relative}
 .navbtn .ic{font-size:16px;width:20px;text-align:center;flex:none}
-.navbtn:hover{background:var(--line-2);color:var(--ink)}
+
 .navbtn.on{color:var(--ink);background:var(--glass-2);box-shadow:inset 0 0 0 1px var(--line)}
 .navbtn.on::before{content:"";position:absolute;left:-16px;top:50%;transform:translateY(-50%);width:3px;height:18px;border-radius:3px;background:linear-gradient(var(--teal),var(--blue))}
 .navbtn .badge{margin-left:auto;font-size:10.5px;font-weight:600;padding:1px 7px;border-radius:999px;background:var(--line);color:var(--ink-dim)}
@@ -266,7 +309,7 @@ html[data-theme="light"] .rail{background:linear-gradient(180deg,rgba(255,255,25
 .topbar .sub{font-size:11.5px;color:var(--ink-faint);font-weight:500}
 .topbar .tb-r{margin-left:auto;display:flex;align-items:center;gap:9px}
 .iconbtn{width:38px;height:38px;border-radius:12px;border:1px solid var(--line);background:var(--glass);cursor:pointer;font-size:15px;
-  display:grid;place-items:center;transition:.2s;color:var(--ink)}
+  display:grid;place-items:center;transition:background-color .2s var(--ease-ui),transform .2s var(--ease-ui),border-color .2s var(--ease-ui);color:var(--ink)}
 .iconbtn.on{border-color:var(--teal);color:var(--teal);box-shadow:0 0 0 2px rgba(94,234,212,.15)}
 .iconbtn svg{width:17px;height:17px}
 .navbtn .ic svg{width:17px;height:17px;display:block}
@@ -304,7 +347,7 @@ body.privacy .tbl select:focus{color:inherit}
 /* ── B1.5: note chip + detail drawer ── */
 .notechip{display:inline-flex;align-items:center;gap:3px;font-size:10px;padding:1px 6px;border-radius:999px;border:1px solid var(--line);
   background:var(--glass-2);color:var(--ink-dim);cursor:pointer;max-width:132px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;vertical-align:1px}
-.notechip:hover{border-color:var(--accent);color:var(--ink)}
+
 .notechip.empty{opacity:.45}
 .rowbtns{display:inline-flex;gap:2px;align-items:center}
 .hbadge{font-size:9.5px;color:var(--ink-faint);font-family:var(--mono)}
@@ -328,7 +371,7 @@ tr.mat-amber{background:rgba(251,191,36,.06)}
   padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
   color:var(--ink);font-size:12.5px;font-weight:600;font-family:inherit;cursor:pointer;box-shadow:0 10px 28px rgba(0,0,0,.4)}
 .undopill.on{display:flex}
-.undopill:hover{border-color:var(--accent)}
+
 .undopill small{color:var(--ink-faint);font-weight:500}
 /* ── B3: backup nudge ── */
 .nudge{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;padding:10px 13px;border-radius:12px;
@@ -344,7 +387,7 @@ tr.mat-amber{background:rgba(251,191,36,.06)}
 .mgrid .wide{grid-column:1/-1}
 .mbtn{display:flex;align-items:center;gap:9px;width:100%;text-align:left;padding:11px 13px;border-radius:12px;border:1px solid var(--line);
   background:var(--glass-2);color:var(--ink);font-size:12.5px;font-family:inherit;cursor:pointer}
-.mbtn:hover{border-color:var(--accent)}
+
 .mbtn.dang{color:var(--neg);border-color:rgba(251,113,133,.4)}
 .mbtn .ie{font-size:15px;flex:none}
 .mbtn small{display:block;color:var(--ink-faint);font-size:10.5px;margin-top:1px}
@@ -366,7 +409,7 @@ body.locked .app{filter:blur(22px);pointer-events:none}
 .navgrp.closed .chev::after{content:'expand'}
 .railtools{display:flex;gap:8px;align-items:center;padding:2px 13px 6px;font-size:10px;color:var(--ink-faint)}
 .railtools button{border:none;background:none;color:var(--ink-dim);font-size:10px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;padding:2px 0}
-.railtools button:hover{color:var(--ink)}
+
 #attnBadge,#attnBadgeM,#menuBadge{background:var(--neg)!important;color:#fff!important}
 .notechip{padding:0 10px;height:30px;box-sizing:border-box;font-size:10.5px;line-height:28px;border-radius:9px;max-width:170px;min-width:86px;justify-content:center;gap:4px}
 .notechip.empty{opacity:.55;border-style:dashed}
@@ -403,13 +446,13 @@ body.locked .app{filter:blur(22px);pointer-events:none}
 }
 /* ── A2: grouped rail ── */
 .grph{display:flex;align-items:center;gap:8px;width:100%;padding:8px 11px;border:1px solid var(--line-2);background:rgba(255,255,255,.035);border-radius:9px;margin:10px 0 3px;box-shadow:0 1px 2px rgba(0,0,0,.22);cursor:pointer;color:var(--ink-dim);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-family:inherit}
-.grph:hover{color:var(--ink-dim)}
+
 .grph .chev{margin-left:auto;font-size:10px;transition:transform .2s;display:inline-block}
 .navgrp.closed .chev{transform:rotate(-90deg)}
 .navgrp.closed .grpb{display:none}
 .subwrap{display:flex;flex-direction:column;margin:1px 0 3px}
 .subitem{display:flex;align-items:center;gap:7px;width:100%;text-align:left;border:none;background:none;cursor:pointer;padding:5px 10px 5px 42px;border-radius:9px;color:var(--ink-dim);font-size:11.5px;font-family:inherit;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.subitem:hover{background:var(--line-2);color:var(--ink)}
+
 .sdot{width:7px;height:7px;border-radius:50%;flex:none;display:inline-block}
 .railhl{box-shadow:inset 0 0 0 1px var(--accent)!important}
 /* ── A2: jump flash (2× accent pulse, 1.6s) ── */
@@ -432,9 +475,9 @@ body.locked .app{filter:blur(22px);pointer-events:none}
 .gsl{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .gss{margin-left:auto;color:var(--ink-faint);font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:45%}
 .gsempty{padding:12px;color:var(--ink-faint);font-size:11.5px;text-align:center}
-.iconbtn:hover{background:var(--glass-2);transform:translateY(-1px)}
-.syncpill{display:flex;align-items:center;gap:8px;padding:8px 13px;border-radius:999px;border:1px solid var(--line);background:var(--glass);font-size:12px;font-weight:540;cursor:pointer;transition:.2s}
-.syncpill:hover{background:var(--glass-2)}
+
+.syncpill{display:flex;align-items:center;gap:8px;padding:8px 13px;border-radius:999px;border:1px solid var(--line);background:var(--glass);font-size:12px;font-weight:540;cursor:pointer;transition:background-color .2s var(--ease-ui)}
+
 .dot{width:8px;height:8px;border-radius:50%;background:var(--ink-faint);box-shadow:0 0 0 0 transparent;transition:.3s}
 .dot.ok{background:var(--emerald);box-shadow:0 0 10px var(--emerald)}
 .dot.busy{background:var(--amber);animation:pulse 1s infinite}
@@ -457,12 +500,12 @@ body.locked .app{filter:blur(22px);pointer-events:none}
 
 /* ── cards grid ── */
 .cards{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
-.stat{padding:18px 19px;border-radius:var(--r-sm);transition:transform .2s,box-shadow .2s}
-.stat:hover{transform:translateY(-2px)}
-.gochev{float:right;color:var(--ink-faint);font-size:17px;line-height:1;transition:.2s}
+.stat{padding:18px 19px;border-radius:var(--r-sm);transition:transform .2s var(--ease-ui),box-shadow .2s var(--ease-ui)}
+
+.gochev{float:right;color:var(--ink-faint);font-size:17px;line-height:1;transition:color .2s var(--ease-ui),transform .2s var(--ease-ui)}
 .stat:hover .gochev{color:var(--ink);transform:translateX(3px)}
-.ph h3.link{cursor:pointer;transition:.2s}
-.ph h3.link:hover{color:var(--accent)}
+.ph h3.link{cursor:pointer;transition:color .2s var(--ease-ui)}
+
 .ph h3.link::after{content:" ›";color:var(--ink-faint)}
 .stat .k{font-size:11.5px;color:var(--ink-dim);font-weight:540;display:flex;align-items:center;gap:7px}
 .stat .k .ico{font-size:13px}
@@ -483,7 +526,7 @@ body.locked .app{filter:blur(22px);pointer-events:none}
 .tbl th{text-align:right;font-size:10.5px;font-weight:620;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap;cursor:default}
 .tbl th.l,.tbl td.l{text-align:left}
 .tbl th.sortable{cursor:pointer;user-select:none}
-.tbl th.sortable:hover{color:var(--ink)}
+
 .tbl td{padding:9px 10px;border-bottom:1px solid var(--line-2);text-align:right;white-space:nowrap}
 .tbl tr:last-child td{border-bottom:none}
 .tbl tr:hover td{background:var(--line-2)}
@@ -492,35 +535,35 @@ body.locked .app{filter:blur(22px);pointer-events:none}
 .tbl input,.tbl select{width:100%;background:var(--bg-1);border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:12.5px;text-align:right}
 .tbl input.l{text-align:left}
 .cell-ed{cursor:text;border-bottom:1px dashed var(--line)!important}
-.cell-ed:hover{background:rgba(96,165,250,.1)}
+
 .muted{color:var(--ink-faint)}
 .pos{color:var(--pos)} .neg{color:var(--neg)}
 .empty{padding:34px 20px;text-align:center;color:var(--ink-faint);font-size:13px}
 .empty .big{font-size:30px;display:block;margin-bottom:8px;opacity:.7}
 
 /* ── buttons / inputs ── */
-.btn{padding:9px 15px;border-radius:11px;border:1px solid var(--line);background:var(--glass);color:var(--ink);font-size:12.5px;font-weight:560;cursor:pointer;transition:.18s;display:inline-flex;align-items:center;gap:7px}
-.btn:hover{background:var(--glass-2);transform:translateY(-1px)}
+.btn{padding:9px 15px;border-radius:11px;border:1px solid var(--line);background:var(--glass);color:var(--ink);font-size:12.5px;font-weight:560;cursor:pointer;transition:background-color .18s var(--ease-ui),transform .18s var(--ease-ui);display:inline-flex;align-items:center;gap:7px}
+
 .btn.pri{background:linear-gradient(135deg,var(--blue),var(--violet));border-color:transparent;color:#fff;box-shadow:0 8px 20px -8px var(--blue)}
-.btn.pri:hover{filter:brightness(1.07)}
+
 .btn.sm{padding:6px 11px;font-size:11.5px;border-radius:9px}
 .btn.gho{background:transparent}
 .btn.dang{color:var(--rose);border-color:rgba(251,113,133,.3)}
-.btn.dang:hover{background:rgba(251,113,133,.12)}
-.x{background:transparent;border:none;color:var(--ink-faint);cursor:pointer;font-size:15px;padding:3px 6px;border-radius:8px;transition:.15s}
-.x:hover{color:var(--rose);background:rgba(251,113,133,.12)}
+
+.x{background:transparent;border:none;color:var(--ink-faint);cursor:pointer;font-size:15px;padding:3px 6px;border-radius:8px;transition:color .15s var(--ease-ui),background-color .15s var(--ease-ui)}
+
 .field{display:flex;flex-direction:column;gap:5px}
 .field label{font-size:11px;color:var(--ink-dim);font-weight:540}
-.inp{background:var(--bg-1);border:1px solid var(--line);border-radius:11px;padding:10px 12px;font-size:13px;transition:.18s;width:100%}
+.inp{background:var(--bg-1);border:1px solid var(--line);border-radius:11px;padding:10px 12px;font-size:13px;transition:border-color .18s var(--ease-ui),box-shadow .18s var(--ease-ui);width:100%}
 .inp:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(96,165,250,.18)}
 .inp::placeholder{color:var(--ink-faint)}
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
 .chips{display:flex;gap:7px;flex-wrap:wrap}
-.chip{padding:5px 12px;border-radius:999px;border:1px solid var(--line);background:var(--glass);font-size:12px;font-weight:530;cursor:pointer;transition:.15s}
-.chip:hover{background:var(--glass-2)}
+.chip{padding:5px 12px;border-radius:999px;border:1px solid var(--line);background:var(--glass);font-size:12px;font-weight:530;cursor:pointer;transition:background-color .15s var(--ease-ui)}
+
 .chip.on{background:var(--ink);color:var(--bg-0);border-color:transparent}
 .collapse-h{cursor:pointer;user-select:none}
-.collapse-h .arr{transition:.25s;display:inline-block;color:var(--ink-faint)}
+.collapse-h .arr{transition:transform .25s var(--ease-ui);display:inline-block;color:var(--ink-faint)}
 .collapse.closed .body{display:none}
 .collapse.closed .arr{transform:rotate(-90deg)}
 
@@ -528,7 +571,7 @@ body.locked .app{filter:blur(22px);pointer-events:none}
 .seg{display:inline-flex;position:relative;background:var(--bg-1);border:1px solid var(--line);border-radius:11px;padding:3px}
 .seg button{position:relative;z-index:1;border:none;background:transparent;padding:7px 14px;font-size:12px;font-weight:550;color:var(--ink-dim);cursor:pointer;border-radius:8px;transition:color .2s}
 .seg button.on{color:var(--ink)}
-.seg .pill{position:absolute;top:3px;bottom:3px;border-radius:8px;background:var(--glass-2);box-shadow:0 2px 8px -3px rgba(0,0,0,.4);transition:.32s cubic-bezier(.3,.8,.3,1);z-index:0;border:1px solid var(--line)}
+.seg .pill{position:absolute;top:3px;bottom:3px;left:0;border-radius:8px;background:var(--glass-2);box-shadow:0 2px 8px -3px rgba(0,0,0,.4);transition:transform .32s var(--ease-in-out);z-index:0;border:1px solid var(--line)}
 
 /* ── charts ── */
 .chart-wrap{position:relative}
@@ -565,14 +608,16 @@ canvas{display:block;width:100%}
 .composer{padding:13px 15px;border-top:1px solid var(--line-2);display:flex;gap:10px;align-items:flex-end}
 .composer textarea{flex:1;background:var(--bg-1);border:1px solid var(--line);border-radius:14px;padding:11px 14px;font-size:13px;resize:none;max-height:120px;line-height:1.45}
 .composer textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(96,165,250,.18)}
-.send{width:42px;height:42px;border-radius:13px;border:none;background:linear-gradient(135deg,var(--blue),var(--violet));color:#fff;cursor:pointer;font-size:16px;flex:none;transition:.18s}
-.send:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.send{width:42px;height:42px;border-radius:13px;border:none;background:linear-gradient(135deg,var(--blue),var(--violet));color:#fff;cursor:pointer;font-size:16px;flex:none;transition:filter .18s var(--ease-ui),transform .18s var(--ease-ui)}
+
 .suggest{padding:0 15px 13px;display:flex;gap:7px;flex-wrap:wrap}
 
 /* ── modal ── */
-.scrim{position:fixed;inset:0;background:rgba(2,4,10,.55);backdrop-filter:blur(8px);z-index:100;display:none;align-items:center;justify-content:center;padding:20px;animation:fade .25s}
+.scrim{position:fixed;inset:0;background:rgba(2,4,10,.55);backdrop-filter:blur(8px);z-index:100;display:none;align-items:center;justify-content:center;padding:20px;animation:scrimFade .2s var(--ease-out)}
+@keyframes scrimFade{from{opacity:0}to{opacity:1}}
 .scrim.on{display:flex}
-.modal{width:min(480px,100%);max-height:86vh;overflow-y:auto;padding:24px;border-radius:24px}
+.modal{width:min(480px,100%);max-height:86vh;overflow-y:auto;padding:24px;border-radius:24px;transform-origin:center;animation:modalIn .22s var(--ease-out)}
+@keyframes modalIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
 .modal h3{font-size:17px;font-weight:640;margin-bottom:4px}
 .modal .desc{font-size:13px;color:var(--ink-dim);line-height:1.55;margin-bottom:18px}
 .modal .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -580,7 +625,7 @@ canvas{display:block;width:100%}
 .modal label.fl{display:block;font-size:11px;color:var(--ink-dim);font-weight:540;margin:13px 0 5px}
 
 /* ── toast ── */
-.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);z-index:200;padding:13px 20px;border-radius:14px;font-size:13px;font-weight:540;opacity:0;pointer-events:none;transition:.3s;box-shadow:var(--shadow);max-width:90vw}
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);z-index:200;padding:13px 20px;border-radius:14px;font-size:13px;font-weight:540;opacity:0;pointer-events:none;transition:opacity .3s var(--ease-out),transform .3s var(--ease-out);box-shadow:var(--shadow);max-width:90vw}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .toast.err{border-color:rgba(251,113,133,.4)}
 
@@ -588,7 +633,7 @@ canvas{display:block;width:100%}
 .tag{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:600;padding:2px 9px;border-radius:999px;background:var(--line);color:var(--ink-dim)}
 .swatch{width:11px;height:11px;border-radius:4px;flex:none}
 .bar-track{height:7px;border-radius:6px;background:var(--line);overflow:hidden}
-.bar-fill{height:100%;border-radius:6px;transition:width .6s cubic-bezier(.3,.8,.3,1)}
+.bar-fill{height:100%;width:100%;border-radius:6px;transform-origin:left;transition:transform .6s var(--ease-in-out)}
 .kpi-mini{display:flex;gap:18px;flex-wrap:wrap}
 .kpi-mini .m{font-size:12px;color:var(--ink-dim)}
 .kpi-mini .m b{display:block;font-size:18px;color:var(--ink);font-weight:600;margin-top:2px}
@@ -602,12 +647,12 @@ canvas{display:block;width:100%}
   .topbar{padding:13px 16px}
   .mobtab{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:50;padding:9px 8px calc(9px + env(safe-area-inset-bottom));
     background:var(--glass);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-top:1px solid var(--line);justify-content:space-around}
-  .mobtab button{background:none;border:none;color:var(--ink-faint);padding:5px 7px;cursor:pointer;border-radius:12px;position:relative;transition:.2s;display:flex;flex-direction:column;align-items:center;gap:2px}
+  .mobtab button{background:none;border:none;color:var(--ink-faint);padding:5px 7px;cursor:pointer;border-radius:12px;position:relative;transition:color .2s var(--ease-ui),background-color .2s var(--ease-ui);display:flex;flex-direction:column;align-items:center;gap:2px}
   .mobtab .mi{font-size:19px;line-height:1}
   .mobtab .ml{font-size:9px;font-weight:600;letter-spacing:.01em}
   .mobtab button.on{color:var(--ink);background:var(--line-2)}
   /* A2: auto-hiding chrome — transform only, NO re-render on scroll (standing lint) */
-  .topbar,.mobtab{transition:transform .28s ease}
+  .topbar,.mobtab{transition:transform .28s var(--ease-in-out)}
   body.chromehide .topbar{transform:translateY(-110%)}
   body.chromehide .mobtab{transform:translateY(120%)}
   /* A2: search collapses to icon on mobile; expands over the topbar */
@@ -627,7 +672,37 @@ canvas{display:block;width:100%}
   .stat.hero .v{font-size:32px}
   .modal .grid2{grid-template-columns:1fr}
 }
-@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}#bg .blob{animation:none}}
+
+/* ── B4: hover-only feedback — :hover no longer sticks after a tap on touch devices ── */
+@media(hover:hover) and (pointer:fine){
+.setitem:hover{border-color:var(--accent)}
+.navbtn:hover{background:var(--line-2);color:var(--ink)}
+.notechip:hover{border-color:var(--accent);color:var(--ink)}
+.undopill:hover{border-color:var(--accent)}
+.mbtn:hover{border-color:var(--accent)}
+.railtools button:hover{color:var(--ink)}
+.grph:hover{color:var(--ink-dim)}
+.subitem:hover{background:var(--line-2);color:var(--ink)}
+.iconbtn:hover{background:var(--glass-2);transform:translateY(-1px)}
+.syncpill:hover{background:var(--glass-2)}
+.stat:hover{transform:translateY(-2px)}
+.ph h3.link:hover{color:var(--accent)}
+.tbl th.sortable:hover{color:var(--ink)}
+.cell-ed:hover{background:rgba(96,165,250,.1)}
+.btn:hover{background:var(--glass-2);transform:translateY(-1px)}
+.btn.pri:hover{filter:brightness(1.07)}
+.btn.dang:hover{background:rgba(251,113,133,.12)}
+.x:hover{color:var(--rose);background:rgba(251,113,133,.12)}
+.chip:hover{background:var(--glass-2)}
+.send:hover{filter:brightness(1.1);transform:translateY(-1px)}
+}
+@media(prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto!important}
+  #bg .blob{animation:none}
+  .view,.msg,.scrim,.modal,.stat,.navbtn.on::before{animation-duration:.01ms!important}
+  .stat:hover,.btn:hover,.iconbtn:hover,.send:hover{transform:none!important}
+  *{transition-duration:120ms!important}
+}
 </style>
 </head>
 <body>
@@ -731,8 +806,6 @@ canvas{display:block;width:100%}
 <div class="scrim" id="scrim"><div class="modal glass" id="modal"></div></div>
 <div class="toast glass" id="toast"></div>
 
-<!-- scripts follow -->
-
 <script>
 /* ════════════ WEALTH OS — core (state · math · sync · charts) ════════════ */
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
@@ -743,12 +816,13 @@ const monthStr=d=>(d?new Date(d):new Date()).toISOString().slice(0,7);
 const PAL=['#5eead4','#60a5fa','#a78bfa','#fbbf24','#fb7185','#22d3ee','#f472b6','#34d399','#fb923c','#a3e635'];
 /* v3.1: chart palette follows the look — Atelier gets teal/apricot/navy tones, Glass keeps neon */
 const PAL_GLASS=PAL.slice(),PAL_ATELIER=['#4d9a8c','#e3a15c','#3b7aa3','#c06a8d','#7c6db0','#8fb8a8','#c94f43','#d9b26f'];
-function applyPalette(){const src=(DB.settings&&DB.settings.look==='atelier')?PAL_ATELIER:PAL_GLASS;PAL.splice(0,PAL.length,...src);}
+const PAL_LEDGER=['#3f6a52','#a8763f','#5d7a8c','#8c5a4a','#6f7a4a','#4a6a7a','#9a5f3f','#5a6a8c'];
+function applyPalette(){const LOOK_PAL={glass:PAL_GLASS,ledger:PAL_LEDGER};const src=LOOK_PAL[currentLook()]||PAL_GLASS;PAL.splice(0,PAL.length,...src);}
 const FLAGS={EGP:'🇪🇬',USD:'🇺🇸',EUR:'🇪🇺',AED:'🇦🇪'};
 const KEY='wealthos_v1';
 
 /* ── A1.5 build identity ── */
-const BUILD={v:'2.4.0',ts:'2026-09-08T19:21Z'};
+const BUILD={v:'2.2.12',ts:'2026-09-13T22:07Z'};
 /* forceUpdate lives in the B3 layer — the old ?v= version 404'd inside in-app browsers */
 
 /* ── A1.3 colour tokens: one colour = one meaning (currency dimension) ── */
@@ -800,7 +874,7 @@ function emptyDB(){
 function isEmptyDB(){
   const items=DB.assets.categories.reduce((s,c)=>s+Object.values(DB.assets.data[c.id]||{}).reduce((a,v)=>a+v.length,0),0);
   return items===0&&!DB.funds.names.length&&!DB.rental.records.length&&!DB.payments.plans.length;}
-function loadSample(){DB=migrate(defaultDB());save();renderActive();updateBadges();closeModal();toast('Sample data loaded');}
+async function loadSample(){if(!await guardOverwrite('Loading the sample data'))return;snapUndo('sample');DB=migrate(defaultDB());save();renderActive();updateBadges();closeModal();toast('Sample data loaded');}
 function welcomeCard(){
   return `<div class="panel glass" id="panel_welcome" style="border-left:3px solid var(--accent)">
     <div class="ph"><h3>👋 Nothing here yet — and that is the right starting point</h3></div>
@@ -962,7 +1036,7 @@ function load(){
 function migrate(d){const base=defaultDB();d.settings=Object.assign(base.settings,d.settings||{});
   d.rates=Object.assign(base.rates,d.rates||{});d.assets=d.assets||base.assets;d.funds=d.funds||base.funds;
   d.rental=d.rental||base.rental;d.payments=d.payments||base.payments;d.planner=Object.assign(base.planner,d.planner||{});
-  d.snapshots=d.snapshots||[];d.chat=d.chat||[];return migrateV5(migrateV4(migrateV3(migrateV2(d))));}
+  d.snapshots=d.snapshots||[];d.chat=d.chat||[];return migrateV6(migrateV5(migrateV4(migrateV3(migrateV2(d)))));}
 /* ── A1.1 schema v2: tags struct + category colours; records gain u on next edit (never back-dated) ── */
 function migrateV2(d){
   if((d.v||1)>=2)return d;
@@ -1008,6 +1082,13 @@ function migrateV5(d){
   d.flows=Array.isArray(d.flows)?d.flows:[];      /* money in/out of the whole portfolio: {id,date,amount,label} */
   d.funds=d.funds||{};d.funds.bind=d.funds.bind||{};  /* fund name → {src,symbol} */
   d.v=5;return d;}
+/* ── C2 schema v6: liabilities as real debt (not negative assets) + effective-dated monthly spending ── */
+function migrateV6(d){
+  if((d.v||1)>=6)return d;
+  d.liabilities=Array.isArray(d.liabilities)?d.liabilities:[];
+  d.planner=d.planner||{};
+  d.planner.spend=Array.isArray(d.planner.spend)?d.planner.spend:[];
+  d.v=6;return d;}
 /* one point per field per day, last write wins, only on change, capped */
 const HIST_CAP=400;
 function stampHist(rec,val){
@@ -1104,7 +1185,8 @@ function fundsValueEGP(){return holdingsArray().reduce((s,h)=>s+h.currentValue,0
 function portfolioStats(){const arr=holdingsArray();let value=0,cost=0,upl=0,rpl=0,apyW=0,wSum=0;
   arr.forEach(h=>{value+=h.currentValue;cost+=h.units*h.avgCost;upl+=h.unrealizedPL;rpl+=h.realizedPL;if(h.units>0.01&&isFinite(h.apy)){apyW+=h.apy*h.totalCost;wSum+=h.totalCost;}});
   return{arr,value,cost,upl,rpl,apy:wSum>0?apyW/wSum:0,fees:DB.funds.transactions.reduce((s,t)=>s+(t.fee||0),0)};}
-function netWorth(){const a=assetsTotals();const fv=fundsValueEGP();const egp=a.grand+fv;return{egp,usd:egp/rate('USD'),assetsEgp:a.grand,fundsEgp:fv,byCat:a.byCat,byCur:a.byCur};}
+function netWorth(){const a=assetsTotals();const fv=fundsValueEGP();const gross=a.grand+fv;const liab=liabTotalEGP();const egp=gross-liab;
+  return{egp,usd:egp/rate('USD'),gross,grossUsd:gross/rate('USD'),liab,assetsEgp:a.grand,fundsEgp:fv,byCat:a.byCat,byCur:a.byCur};}
 
 /* allocation across asset categories + funds-as-one-slice */
 function allocation(){const a=assetsTotals();const items=DB.assets.categories.map((c,i)=>({n:c.name,icon:c.icon,v:a.byCat[c.id]||0,color:c.color||PAL[i%PAL.length]})).filter(x=>x.v>0);
@@ -1133,7 +1215,7 @@ function upcomingPayments(days){const t=new Date(),lim=new Date(Date.now()+days*
 
 /* ════════════ snapshots ════════════ */
 function recordSnapshot(){const n=netWorth();const today=todayStr();const i=DB.snapshots.findIndex(s=>s.date===today);
-  const snap={date:today,egp:n.egp,usd:n.usd,fundsValue:n.fundsEgp};
+  const snap={date:today,egp:n.egp,usd:n.usd,fundsValue:n.fundsEgp,gross:n.gross,liab:n.liab};
   if(i>=0)DB.snapshots[i]=snap;else{DB.snapshots.push(snap);DB.snapshots.sort((a,b)=>a.date.localeCompare(b.date));}
   return i>=0;}
 
@@ -1187,7 +1269,7 @@ function closeModal(){$('#scrim').classList.remove('on');}
 $('#scrim').addEventListener('click',e=>{if(e.target===$('#scrim'))closeModal();});
 
 /* ════════════ THEME ════════════ */
-function applyTheme(){const lt=DB.settings.theme==='light';document.documentElement.dataset.theme=lt?'light':'dark';document.documentElement.dataset.look=(DB.settings.look==='atelier')?'atelier':'glass';if(typeof applyPalette==='function')applyPalette();
+function applyTheme(){const lt=DB.settings.theme==='light';document.documentElement.dataset.theme=lt?'light':'dark';document.documentElement.dataset.look=currentLook();if(typeof applyPalette==='function')applyPalette();
   $('#themeBtn').innerHTML=lt?ICO_SUN:ICO_MOON;}
 function toggleTheme(){DB.settings.theme=DB.settings.theme==='light'?'dark':'light';save();applyTheme();renderActive();}
 
@@ -1244,7 +1326,7 @@ function secHead(eye,title,acts){return `<div class="sec"><span class="eye">${ey
 function statCard(o){const sv=o.sub?`<div class="s ${o.scls||''}">${o.sub}</div>`:'';const go=o.goto?` onclick="switchTab('${o.goto}')" style="cursor:pointer"`:'';const chev=o.goto?'<span class="gochev">›</span>':'';
   return `<div class="stat glass${o.hero?' hero':''}"${go}><div class="k">${o.icon?`<span class="ico">${o.icon}</span>`:''}${o.k}${chev}</div><div class="v num">${o.v}</div>${sv}</div>`;}
 function allocBars(items,total){if(!items.length)return '<div class="empty">Nothing to allocate yet.</div>';
-  return items.map(it=>{const p=total>0?it.v/total*100:0;return `<div style="margin-bottom:11px"><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:5px"><span>${it.icon||''} ${esc(it.n)}</span><span class="muted num">${shortN(it.v)} · ${p.toFixed(1)}%</span></div><div class="bar-track"><div class="bar-fill" style="width:${p}%;background:${it.color}"></div></div></div>`;}).join('');}
+  return items.map(it=>{const p=total>0?it.v/total*100:0;return `<div style="margin-bottom:11px"><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:5px"><span>${it.icon||''} ${esc(it.n)}</span><span class="muted num">${shortN(it.v)} · ${p.toFixed(1)}%</span></div><div class="bar-track"><div class="bar-fill" style="transform:scaleX(${(p/100).toFixed(4)});background:${it.color}"></div></div></div>`;}).join('');}
 function collectFlags(){const per={assets:0,funds:0,rental:0,payments:0,planner:0};const perRed={},perWhy={},perEx={};let red=0,amber=0;
   const add=(f,tab,label)=>{if(!f)return;if(f.level==='red'){red++;perRed[tab]=(perRed[tab]||0)+1;}else amber++;per[tab]++;
     const w=perWhy[tab]=perWhy[tab]||{};const c=f.code||'other';w[c]=(w[c]||0)+1;
@@ -1275,7 +1357,9 @@ function renderAssets(){
   $('#asStats').innerHTML=
     secHead('Portfolio','Where your assets stand',`<button class="btn sm" onclick="recordSnap()">📸 Snapshot</button>`)+
     `<div class="cards">`+
-      statCard({k:'Total assets',v:fmt(t.grand)+' <small>EGP</small>',sub:`≈ ${fmt(t.grandUSD)} USD`,hero:true,icon:'💼'})+
+      statCard({k:'Total assets',v:fmt(t.grand)+' <small>EGP</small>',sub:`≈ ${fmt(t.grandUSD)} USD${liabTotalEGP()?' · gross, before debt':''}`,hero:true,icon:'💼'})+
+      (liabTotalEGP()?statCard({k:'Net after debt',v:shortN(netWorth().egp),sub:'less '+shortN(liabTotalEGP())+' owed',scls:'neg',icon:'🏦'}):'')+
+      (lockedCapitalEGP()?statCard({k:'Locked capital',v:shortN(lockedCapitalEGP()),sub:'in instruments not yet matured',icon:'🔒'}):'')+
       statCard({k:'Largest category',v:top?shortN(top.v):'—',sub:top?`${top.c.icon} ${top.c.name}`:'',icon:'🏆'})+
       curCards+
     `</div>`+
@@ -1287,25 +1371,26 @@ function renderAssets(){
   let work=`<div class="collapse" id="asColl">`+
     secHead('Workbench','Holdings & inputs',`<button class="btn sm ${REARR?'pri':'gho'}" onclick="toggleRearr()">${REARR?'✓ Done':'⇅ Rearrange'}</button> <button class="btn sm" onclick="openCatMgr()">＋ Category</button> <span class="collapse-h btn sm gho" onclick="toggleColl('asColl')"><span class="arr">▾</span> Collapse</span>`)+
     `<div class="body">`;
-  let curTier=null;const TT=tierTotals();
+  let curTier=null,tierIdx=0;const TT=tierTotals();
   DB.assets.categories.forEach(c=>{const cd=DB.assets.data[c.id]||{};let rows='';let sub=0;
     if(AS_FILTER.tier&&tierOf(c)!==AS_FILTER.tier)return;
     if(AS_FILTER.cur&&!Object.keys(cd).some(k=>k===AS_FILTER.cur&&(cd[k]||[]).length))return;
-    if(tierOf(c)!==curTier){curTier=tierOf(c);const T=TIERS.find(x=>x[0]===curTier)||TIERS[1];work+=`<div class="tierhead"><h3>${T[1]} ${T[2]}</h3><span class="tsub">${T[3]}</span><span class="num">${fmt(TT[curTier]||0)} EGP</span></div>`;}
+    if(tierOf(c)!==curTier){if(curTier)work+=`</div></section>`;curTier=tierOf(c);tierIdx=0;const T=TIERS.find(x=>x[0]===curTier)||TIERS[1];work+=`<section class="tiergrp tier-${curTier}" id="tier_${curTier}"><div class="tierhead"><h3>${T[1]} ${T[2]}</h3><span class="tsub">${T[3]}</span><span class="num">${fmt(TT[curTier]||0)} EGP</span></div><div class="tierbody">`;}
     Object.keys(cd).forEach(cur=>{if(AS_FILTER.cur&&cur!==AS_FILTER.cur)return;(cd[cur]||[]).forEach((it,idx)=>{const egp=(Number(it.amt)||0)*rate(cur);sub+=egp;const fl=flagFor(it,'asset');
       const rg=instRAG(it);
       rows+=`<tr class="${rg&&rg.level!=='green'?'mat-'+rg.level:''}"><td class="l" data-l="Item"><div class="cellf">${ragDot(it)}<input class="l" value="${esc(it.desc)}" onchange="assetEdit('${c.id}','${cur}',${idx},'desc',this.value)">${flagIcon(fl)}</div><div class="udate">${it.u||'—'}</div></td>
         <td data-l="Amount"><input class="num" value="${fmt(it.amt)}" onchange="assetEdit('${c.id}','${cur}',${idx},'amt',this.value)"></td>
         <td data-l="Currency"><select onchange="assetMove('${c.id}','${cur}',${idx},this.value)">${['EGP','USD','EUR','AED'].map(x=>`<option ${x===cur?'selected':''}>${x}</option>`).join('')}</select></td>
         <td class="num muted" data-l="≈ EGP">${fmt(egp)}</td><td class="l" data-l="Note">${noteChip(`asset:${c.id}:${cur}:${idx}`,it.n)}${histBadge(it)}</td><td><button class="x" onclick="assetDel('${c.id}','${cur}',${idx})">✕</button></td></tr>`;});});
-    work+=`<div class="panel glass" id="panel_cat_${c.id}" style="border-left:3px solid ${c.color||'var(--line)'}"><div class="ph"><h3>${c.icon} ${esc(c.name)}</h3><span class="sp"></span>${REARR?`<button class="x" onclick="moveCat('${c.id}',-1)" title="Move up">↑</button><button class="x" onclick="moveCat('${c.id}',1)" title="Move down">↓</button>`:''}<span class="muted num">${fmt(sub)} EGP</span>
+    work+=`<div class="panel glass catcard ${(tierIdx++%2)?'alt':''}" id="panel_cat_${c.id}" style="border-left:3px solid ${c.color||'var(--line)'}"><div class="ph"><h3>${c.icon} ${esc(c.name)}</h3><span class="sp"></span>${REARR?`<button class="x" onclick="moveCat('${c.id}',-1)" title="Move up">↑</button><button class="x" onclick="moveCat('${c.id}',1)" title="Move down">↓</button>`:''}<span class="muted num">${fmt(sub)} EGP</span>
       <button class="btn sm gho" onclick="renameCat('${c.id}')" title="Rename">✏️</button><button class="x" onclick="delCat('${c.id}')" title="Delete">🗑</button></div>
       <table class="tbl"><thead><tr><th class="l">Item</th><th>Amount</th><th>Cur</th><th>≈ EGP</th><th class="l">Note</th><th></th></tr></thead>
       <tbody>${rows||`<tr><td colspan="6" class="muted" style="text-align:center;padding:14px">No items yet</td></tr>`}</tbody></table>${sub<0?`<div class="liab-note">💳 Total ${esc(c.name.toLowerCase())}: <b class="num">${fmt(Math.abs(sub))} EGP</b> owed — these are debts, shown negative so they pull net worth down correctly.</div>`:''}
       <div class="row" style="margin-top:10px"><input class="inp" id="ad_${c.id}_d" placeholder="Description" style="flex:2"><input class="inp num" id="ad_${c.id}_a" placeholder="Amount" style="flex:1">
       <select class="inp" id="ad_${c.id}_c" style="max-width:90px">${['EGP','USD','EUR','AED'].map(x=>`<option>${x}</option>`).join('')}</select>
       <button class="btn sm" onclick="assetAdd('${c.id}')">＋ Add</button></div></div>`;});
-  $('#asWork').innerHTML=assetChips()+pieCard('as_pie','🥧 Category mix')+work+maturityPanel()+`</div></div>`;
+  if(curTier)work+=`</div></section>`;
+  $('#asWork').innerHTML=assetChips()+pieCard('as_pie','🥧 Category mix'+((AS_FILTER.tier||AS_FILTER.cur)?' — '+[AS_FILTER.tier?(TIERS.find(x=>x[0]===AS_FILTER.tier)||[])[2]:'',AS_FILTER.cur].filter(Boolean).join(' · '):''))+work+maturityPanel()+liabPanel()+`</div></div>`;
 }
 function setRate(c,v){DB.rates[c]=parseAmt(v)||DB.rates[c];DB.settings.ratesUpdated=todayStr();persist();}
 function assetEdit(cid,cur,idx,f,v){const it=DB.assets.data[cid][cur][idx];if(f==='amt'){it.amt=parseAmt(v);stampHist(it,it.amt);}else it[f]=v;it.u=todayStr();persist();}
@@ -1337,11 +1422,18 @@ function renderFunds(){
     `</div>`+
     `<div class="panel glass" style="margin-top:14px"><div class="ph"><h3>Allocation</h3></div>${allocBars(p.arr.filter(h=>h.currentValue>0).map((h,i)=>({n:h.fund,v:h.currentValue,color:PAL[i%PAL.length]})),p.value)}</div>`;
 
-  let hRows=p.arr.map((h,i)=>`<tr><td class="l">${esc(h.fund)}</td><td class="num">${fmt(h.units)}</td><td class="num muted">${fmt(h.avgCost)}</td>
-    <td><input class="num" value="${fmt(h.price)}" onchange="fundPrice(${i},this.value)" style="max-width:100px"></td>
-    <td class="num">${fmt(h.currentValue)}</td><td class="num ${h.unrealizedPL>=0?'pos':'neg'}">${signed(h.unrealizedPL)}</td>
-    <td class="num ${h.returnPct>=0?'pos':'neg'}" data-l="Return">${pct(h.returnPct)}</td><td class="num ${(fundXIRR(h.fund)||0)>=0?'pos':'neg'}" data-l="XIRR" title="Money-weighted return on the actual dates you bought and sold">${pctOrDash(fundXIRR(h.fund))}</td>
+  let hRows=p.arr.map((h,i)=>`<tr><td class="l" data-l="Fund">${esc(h.fund)}</td><td class="num" data-l="Units">${fmt(h.units)}</td><td class="num muted" data-l="Avg cost">${fmt(h.avgCost)}</td>
+    <td data-l="Price"><input class="num" value="${fmt(h.price)}" onchange="fundPrice(${i},this.value)" style="max-width:100px"></td>
+    <td class="num" data-l="Value">${fmt(h.currentValue)}</td><td class="num ${h.unrealizedPL>=0?'pos':'neg'}" data-l="Unrealized">${signed(h.unrealizedPL)}</td>
+    <td class="num ${h.returnPct>=0?'pos':'neg'}" data-l="Return">${pct(h.returnPct)}</td>
+    <td class="num ${(fundXIRR(h.fund)||0)>=0?'pos':'neg'}" data-l="XIRR" title="Money-weighted return on the actual dates you bought and sold">${pctOrDash(fundXIRR(h.fund))}</td>
+    <td class="num ${h.realizedPL>0?'pos':h.realizedPL<0?'neg':'muted'}" data-l="Realized">${h.realizedPL?signed(h.realizedPL):'—'}</td>
     <td><button class="x" onclick="delFund(${i})">✕</button></td></tr>`).join('');
+  if(p.arr.length)hRows+=`<tr class="totrow"><td class="l" data-l="Fund"><b>Totals</b></td><td class="num muted" data-l="Units">—</td><td class="num muted" data-l="Avg cost">—</td><td class="num muted" data-l="Price">—</td>
+    <td class="num" data-l="Value"><b>${fmt(p.value)}</b></td><td class="num ${p.upl>=0?'pos':'neg'}" data-l="Unrealized"><b>${signed(p.upl)}</b></td>
+    <td class="num ${p.upl>=0?'pos':'neg'}" data-l="Return"><b>${pct(p.cost>0?p.upl/p.cost*100:0)}</b></td>
+    <td class="num ${(portfolioXIRR()||0)>=0?'pos':'neg'}" data-l="XIRR"><b>${pctOrDash(portfolioXIRR())}</b></td>
+    <td class="num ${p.rpl>=0?'pos':'neg'}" data-l="Realized"><b>${p.rpl?signed(p.rpl):'—'}</b></td><td></td></tr>`;
   const txs=DB.funds.transactions.map((t,i)=>({t,i})).sort((a,b)=>{const c=fnSort.col;let A=a.t[c],B=b.t[c];if(c==='date'){A=new Date(A);B=new Date(B);}return(A<B?-1:A>B?1:0)*(fnSort.dir==='asc'?1:-1);});
   let tRows=txs.map(({t,i})=>{const fl=flagFor(t,'tx');return `<tr><td class="l"><span class="tag" style="background:${t.type==='BUY'?'rgba(52,211,153,.15)':'rgba(251,113,133,.15)'};color:${t.type==='BUY'?'var(--pos)':'var(--neg)'}">${t.type}</span>${flagIcon(fl)}<div class="udate">${t.u||'—'}</div></td>
     <td class="l">${esc(t.fund)}</td><td class="num">${fmtDate(t.date)}</td><td class="num">${fmt(t.units)}</td><td class="num">${fmt(t.price)}</td>
@@ -1352,7 +1444,7 @@ function renderFunds(){
   $('#fnWork').innerHTML=`<div class="collapse" id="fnColl">`+
     secHead('Workbench','Holdings, transactions & prices',`<span class="collapse-h btn sm gho" onclick="toggleColl('fnColl')"><span class="arr">▾</span> Collapse</span>`)+`<div class="body">`+pieCard('fn_pie','🥧 Holdings mix')+
     `<div class="panel glass" id="panel_funds_holdings"><div class="ph"><h3>Holdings</h3><span class="sp"></span><span class="muted" style="font-size:11px">Edit current price inline →</span></div>
-      <div style="overflow-x:auto"><table class="tbl"><thead><tr><th class="l">Fund</th><th>Units</th><th>Avg cost</th><th>Price</th><th>Value</th><th>Unreal. P/L</th><th>Return</th><th>XIRR</th><th></th></tr></thead><tbody>${hRows||'<tr><td colspan="9" class="muted" style="text-align:center;padding:14px">No funds yet</td></tr>'}</tbody></table></div></div>`+
+      <div style="overflow-x:auto"><table class="tbl"><thead><tr><th class="l">Fund</th><th>Units</th><th>Avg cost</th><th>Price</th><th>Value</th><th>Unreal. P/L</th><th>Return</th><th>XIRR</th><th>Realized</th><th></th></tr></thead><tbody>${hRows||'<tr><td colspan="10" class="muted" style="text-align:center;padding:14px">No funds yet</td></tr>'}</tbody></table></div></div>`+
     `<div class="panel glass" id="panel_funds_prices"><div class="ph"><h3>Price history</h3><span class="sp"></span><select class="inp" style="max-width:200px" onchange="fnChartFund=this.value;renderFunds()">${phSel}</select></div>
       <div class="chart-wrap"><canvas id="fnPriceChart"></canvas></div>
       <div class="row" style="margin-top:10px"><input class="inp num" id="pp_date" type="date" value="${todayStr()}" style="max-width:170px"><input class="inp num" id="pp_price" placeholder="Price" style="max-width:130px"><button class="btn sm" onclick="addPrice()">＋ Log price</button></div></div>`+
@@ -1414,7 +1506,7 @@ function renderRental(){
 
   const topts=DB.rental.tenants.map(t=>`<option value="${t.id}">${esc(t.name)}</option>`).join('');
   let tRows=DB.rental.tenants.map(t=>`<tr><td class="l"><span class="swatch" style="display:inline-block;background:${t.color};margin-right:6px"></span>${esc(t.name)}${flagIcon(flagFor(t,'tenant'))}<div class="udate">${t.u||'—'}</div></td>
-    <td class="l muted">${esc(t.property||'—')}</td><td class="num">${fmt(t.contractRent)}</td><td class="num muted">${t.contractStart?fmtDate(t.contractStart):'—'}</td>
+    <td class="l muted">${esc(t.property||'—')}</td><td class="num">${fmt(t.contractRent)}</td><td class="num muted">${t.contractStart?fmtDate(t.contractStart):'—'}${t.contractEnd?'<div class="udate">ends '+t.contractEnd+'</div>':'<div class="udate">ongoing</div>'}</td>
     <td class="l">${noteChip(`tenant:${t.id}`,t.n)}${histBadge(t)}</td><td><button class="x" onclick="editTenant('${t.id}')">✏️</button></td><td><button class="x" onclick="delTenant('${t.id}')">✕</button></td></tr>`).join('');
   let recRows=rows.map(r=>{const needNote=r.variance!==0&&!r.note;const fl=flagFor(r,'rental');
     return `<tr><td class="num" data-l="Month">${r.month}${flagIcon(fl)}<div class="udate">${r.u||'—'}</div></td>
@@ -1458,12 +1550,13 @@ function openTenant(t){t=t||{id:uid(),name:'',color:PAL[DB.rental.tenants.length
     <label class="fl">Property</label><input class="inp" id="t_prop" value="${esc(t.property||'')}" placeholder="e.g. Apartment Downtown">
     <div class="grid2"><div><label class="fl">Contract rent (EGP / month)</label><input class="inp num" id="t_rent" value="${fmt(t.contractRent)}"></div>
     <div><label class="fl">Contract start (fiscal anchor)</label><input class="inp" id="t_start" type="date" value="${t.contractStart||todayStr()}"></div></div>
+    <label class="fl">Contract end (leave blank if ongoing — a blank end date means this rent is projected forever)</label><input class="inp" id="t_end" type="date" value="${t.contractEnd||''}">
     <label class="fl">Colour</label><input class="inp" id="t_color" type="color" value="${t.color}" style="height:42px;padding:4px">
     <div class="mfoot"><button class="btn gho" onclick="closeModal()">Cancel</button><button class="btn pri" onclick="saveTenant('${t.id}')">Save tenant</button></div>`;
   $('#scrim').classList.add('on');}
 function editTenant(id){openTenant(DB.rental.tenants.find(t=>t.id===id));}
 function saveTenant(id){const name=$('#t_name').value.trim();if(!name){toast('Name required',true);return;}
-  const obj={id,name,property:$('#t_prop').value.trim(),contractRent:parseAmt($('#t_rent').value),contractStart:$('#t_start').value,color:$('#t_color').value,u:todayStr(),h:((DB.rental.tenants.find(x=>x.id===id)||{}).h)||[],n:((DB.rental.tenants.find(x=>x.id===id)||{}).n)||''};stampHist(obj,obj.contractRent);
+  const obj={id,name,property:$('#t_prop').value.trim(),contractRent:parseAmt($('#t_rent').value),contractStart:$('#t_start').value,contractEnd:($('#t_end')||{}).value||'',color:$('#t_color').value,u:todayStr(),h:((DB.rental.tenants.find(x=>x.id===id)||{}).h)||[],n:((DB.rental.tenants.find(x=>x.id===id)||{}).n)||''};stampHist(obj,obj.contractRent);
   const i=DB.rental.tenants.findIndex(t=>t.id===id);if(i>=0)DB.rental.tenants[i]=obj;else DB.rental.tenants.push(obj);closeModal();persist();toast('Tenant saved');}
 async function delTenant(id){if(!await confirmGlass('Delete tenant','Records keep their data but lose this tenant link. Continue?',true))return;snapUndo();
   DB.rental.tenants=DB.rental.tenants.filter(t=>t.id!==id);persist();toastUndo('Tenant removed');}
@@ -1502,7 +1595,7 @@ function renderPayments(){
       <div class="ph"><span class="swatch" style="background:${p.color}"></span><h3>${esc(p.title)}</h3>
         <span class="tag">${PAY_TYPES[p.type]||p.type}</span>${p.linked&&p.linked.kind?`<span class="tag">🔗 ${esc(String(p.linked.ref).split('|').pop())}${lv!=null?' · '+shortN(lv):''}</span>`:''}
         <span class="sp"></span><button class="btn sm gho" onclick="editPlan('${p.id}')">✏️</button><button class="x" onclick="delPlan('${p.id}')">🗑</button></div>
-      <div class="row" style="align-items:center;margin-bottom:10px"><div style="flex:1"><div class="bar-track"><div class="bar-fill" style="width:${pctPaid}%;background:${p.color}"></div></div></div>
+      <div class="row" style="align-items:center;margin-bottom:10px"><div style="flex:1"><div class="bar-track"><div class="bar-fill" style="transform:scaleX(${(pctPaid/100).toFixed(4)});background:${p.color}"></div></div></div>
         <span class="muted num" style="font-size:12px">${fmt(t.paid)} / ${fmt(t.total)} · ${fmt(t.remaining)} left</span></div>
       <table class="tbl"><thead><tr><th>Paid</th><th>Due</th><th>Amount</th><th class="l">What it's for</th><th class="l">Note & history</th><th></th></tr></thead><tbody>${insts||'<tr><td colspan="6" class="muted" style="text-align:center;padding:12px">No installments</td></tr>'}</tbody></table>
       <div class="row" style="margin-top:10px"><input class="inp num" id="pi_${p.id}_d" type="date" value="${todayStr()}" style="max-width:170px"><input class="inp num" id="pi_${p.id}_a" placeholder="Amount" style="flex:1"><input class="inp" id="pi_${p.id}_n" placeholder="Note" style="flex:1"><button class="btn sm" onclick="payAddInst('${p.id}')">＋ Installment</button><button class="btn sm gho" onclick="openInstGen('${p.id}')">⟳ Generate schedule</button></div></div>`;});
@@ -1536,19 +1629,39 @@ function savePlan(id){const title=$('#p_title').value.trim();if(!title){toast('T
 <script>
 /* ════════════ PLANNER (2-in-1 cashflow) ════════════ */
 function addMonths(d,n){const x=new Date(d);x.setMonth(x.getMonth()+n);return x;}
-function monthlyRentIn(){return DB.rental.tenants.reduce((s,t)=>s+(Number(t.contractRent)||0),0);}
+function monthlyRentIn(key){key=key||monthStr();
+  return DB.rental.tenants.reduce((s,t)=>{
+    if(t.contractStart&&key<String(t.contractStart).slice(0,7))return s;
+    if(t.contractEnd&&key>String(t.contractEnd).slice(0,7))return s;   /* a tenant who left stops paying */
+    return s+(Number(t.contractRent)||0);},0);}
 function monthlyMortgageOut(){const byT={};DB.rental.records.slice().sort((a,b)=>a.month.localeCompare(b.month)).forEach(r=>{byT[r.tenantId]=Number(r.mortgage)||0;});
   return Object.values(byT).reduce((s,v)=>s+v,0);}
-function startCash(){if(DB.planner.startCashOverride!=null)return DB.planner.startCashOverride;return assetsTotals().byCat['cash']||0;}
+function catIdByRole(role){
+  const cs=DB.assets.categories||[];
+  const byRole=cs.find(x=>x.role===role);if(byRole)return byRole.id;
+  const byId=cs.find(x=>x.id===role);if(byId)return byId.id;
+  const guess={cash:/cash|bank|wallet|current|saving|liquid/i,realestate:/estate|propert|apartment|flat|land|home|villa/i,personal:/personal|watch|car|jewel/i}[role];
+  const m=guess&&cs.find(x=>guess.test(x.name||''));
+  return m?m.id:null;}
+function catTotal(role){const id=catIdByRole(role);return id?(assetsTotals().byCat[id]||0):0;}
+function startCash(){if(DB.planner.startCashOverride!=null)return DB.planner.startCashOverride;return catTotal('cash');}
 function projectFlows(months){const rows=[];let bal=startCash();const base=new Date();base.setDate(1);
-  const rin=monthlyRentIn(),mout=monthlyMortgageOut();
+  const legacyMort=liabList().length?0:monthlyMortgageOut(); /* liabilities are the source of truth once any exist */
   for(let i=0;i<months;i++){const d=addMonths(base,i),key=monthStr(d);
     const inMan=DB.planner.incomings.filter(x=>monthStr(x.date)===key).reduce((s,x)=>s+(Number(x.amount)||0),0);
     const outMan=DB.planner.outgoings.filter(x=>monthStr(x.date)===key).reduce((s,x)=>s+(Number(x.amount)||0),0);
     const inst=allInstallments().filter(x=>!x.paid&&monthStr(x.date)===key).reduce((s,x)=>s+(Number(x.amount)||0),0);
     const rec=recurringFlowsFor(key);const rcost=rentalCostForMonth(key);
-    const tin=rin+inMan+rec.in,tout=mout+outMan+inst+rec.out+rcost,net=tin-tout;bal+=net;
-    rows.push({key,in:tin,out:tout,net,bal});}
+    /* month 0: if this month's rent is already logged it is already sitting in the cash balance */
+    const rent=(i===0&&DB.rental.records.some(r=>r.month===key))?0:monthlyRentIn(key);
+    const coupon=couponFor(key);          /* CD / deposit / bond interest actually lands as cash */
+    const matured=maturityPrincipalFor(key); /* principal comes back at maturity */
+    const debt=liabList().length?liabPaymentsFor(key):legacyMort;
+    const burn=spendFor(key);             /* household spending, effective-dated */
+    const tin=rent+inMan+rec.in+coupon+matured;
+    const tout=debt+outMan+inst+rec.out+rcost+burn;
+    const net=tin-tout;bal+=net;
+    rows.push({key,in:tin,out:tout,net,bal,coupon,matured,debt,burn,rent});}
   return rows;}
 function flowTable(rows){return `<div style="overflow-x:auto"><table class="tbl"><thead><tr><th>Month</th><th>In</th><th>Out</th><th>Net</th><th>Balance</th></tr></thead><tbody>`+
   rows.map(r=>`<tr><td class="num">${r.key}</td><td class="num pos">${fmt(r.in)}</td><td class="num neg">${fmt(r.out)}</td><td class="num ${r.net>=0?'pos':'neg'}">${signed(r.net)}</td><td class="num ${r.bal<0?'neg':''}">${fmt(r.bal)}</td></tr>`).join('')+
@@ -1564,8 +1677,12 @@ function renderPlanner(){
     secHead('Planner','Short & long-term cashflow',`<span class="muted" style="font-size:11px">Pulls rent, mortgage & scheduled payments automatically</span>`)+
     `<div class="panel glass"><div class="ph"><h3>Baseline (auto)</h3><span class="sp"></span><span class="muted" style="font-size:11px">live from your real data</span></div>
       <div class="row"><div class="field" style="flex:1"><label>Starting cash (EGP) — defaults to your Cash category</label><input class="inp num" value="${fmt(sc)}" onchange="plSetStart(this.value)"></div>
-      <div class="kpi-mini" style="flex:2"><div class="m">Recurring rent / mo<b class="num pos">${fmt(monthlyRentIn())}</b></div><div class="m">Mortgage / mo<b class="num neg">${fmt(monthlyMortgageOut())}</b></div><div class="m">Net worth<b class="num">${shortN(nw.egp)}</b></div></div></div></div>`+
-    goalPanel()+nwReturnPanel()+flowsPanel()+planRecPanel()+`<div class="panel glass" id="panel_whatif" style="border-left:3px solid var(--amber)"><div class="ph"><span class="swatch" style="background:var(--amber)"></span><h3>Scenario — what-if</h3><span class="tag">${DB.planner.incomings.length+DB.planner.outgoings.length} temp item${(DB.planner.incomings.length+DB.planner.outgoings.length)===1?'':'s'}</span><span class="sp"></span>${sandboxOn()?'':`<button class="btn sm" onclick="sandboxStart()">🧪 Sandbox</button>`}<button class="btn sm dang" onclick="plResetScenario()">⟲ Reset scenario</button></div>
+      <div class="kpi-mini" style="flex:2"><div class="m">Rent in / mo<b class="num pos">${fmt(monthlyRentIn())}</b></div>
+      <div class="m">Debt service / mo<b class="num neg">${fmt(liabList().length?liabPaymentsFor(monthStr()):monthlyMortgageOut())}</b></div>
+      <div class="m">Spending / mo<b class="num ${spendNow()?'neg':''}">${spendNow()?fmt(spendNow()):'not set'}</b></div>
+      <div class="m">Coupons / yr<b class="num pos">${annualCouponEGP()?fmt(annualCouponEGP()):'—'}</b></div>
+      <div class="m">Net worth<b class="num">${shortN(nw.egp)}</b></div></div></div></div>`+
+    spendPanel()+goalPanel()+nwReturnPanel()+flowsPanel()+planRecPanel()+`<div class="panel glass" id="panel_whatif" style="border-left:3px solid var(--amber)"><div class="ph"><span class="swatch" style="background:var(--amber)"></span><h3>Scenario — what-if</h3><span class="tag">${DB.planner.incomings.length+DB.planner.outgoings.length} temp item${(DB.planner.incomings.length+DB.planner.outgoings.length)===1?'':'s'}</span><span class="sp"></span>${sandboxOn()?'':`<button class="btn sm" onclick="sandboxStart()">🧪 Sandbox</button>`}<button class="btn sm dang" onclick="plResetScenario()">⟲ Reset scenario</button></div>
       <div class="muted" style="font-size:11.5px;margin-bottom:10px">Temporary rows layered on the baseline to test scenarios. They feed the projections below but stay out of your real records — clear them anytime with Reset.</div>
       <div class="row"><input class="inp" id="pl_l" placeholder="Label (e.g. bonus, car deposit)" style="flex:1.4"><input class="inp num" id="pl_a" placeholder="Amount" style="flex:1"><input class="inp num" id="pl_d" type="date" value="${todayStr()}" style="max-width:160px">
         <button class="btn sm" onclick="plAdd('in')">＋ Money in</button><button class="btn sm" onclick="plAdd('out')">＋ Money out</button></div>
@@ -1604,16 +1721,18 @@ function renderOverviewBody(){
   $('#ovBody').innerHTML=
     nudgeBanner()+secHead('Overview','Everything in one glance',`<button class="btn sm" onclick="recordSnap()">📸 Snapshot</button>`)+
     `<div class="cards">`+
-      statCard({k:'Net worth',v:fmt(nw.egp)+' <small>EGP</small>',sub:`≈ ${fmt(nw.usd)} USD${d30==null?'':' · 30d '+signed(d30)}`,hero:true,icon:'◎'})+
+      statCard({k:'Net worth',v:fmt(nw.egp)+' <small>EGP</small>',sub:`≈ ${fmt(nw.usd)} USD${nw.liab?' · gross '+shortN(nw.gross)+' − debt '+shortN(nw.liab):''}${d30==null?'':' · '+d30.days+'d '+signed(d30.egp)}`,hero:true,icon:'◎'})+
       statCard({k:'Liquid cash',v:shortN(assetsTotals().byCat['cash']||0),sub:'EGP equivalent',icon:'💵',goto:'assets'})+
       statCard({k:'Funds value',v:shortN(p.value),sub:signed(p.upl)+' unreal.',scls:p.upl>=0?'pos':'neg',icon:'📈',goto:'funds'})+
       statCard({k:'Real estate',v:shortN(assetsTotals().byCat['realestate']||0),sub:'EGP',icon:'🏠',goto:'assets'})+
       statCard({k:'Rental net (mo)',v:last?signed(last.net):'—',sub:last?last.month:'',scls:last&&last.net>=0?'pos':'neg',icon:'🏠',goto:'rental'})+
-      statCard({k:'Due in 30 days',v:up30.length?fmt(up30amt):'0',sub:up30.length+' payment'+(up30.length===1?'':'s'),scls:up30.length?'neg':'',icon:'📅',goto:'payments'})+
+      statCard({k:'Due in 30 days',v:up30.length?fmt(up30amt):'0',sub:up30.length+' payment'+(up30.length===1?'':'s')+(up30.filter(i=>i.over).length?' · incl. '+up30.filter(i=>i.over).length+' overdue':''),scls:up30.length?'neg':'',icon:'📅',goto:'payments'})+
       statCard({k:'6-mo low point',v:shortN(sLow),sub:sLow<0?'shortfall risk':'stays positive',scls:sLow<0?'neg':'pos',icon:'🧭',goto:'planner'})+
       statCard({k:'Investable NW',v:shortN(inv),sub:'excl. personal & primary residence',icon:'🎯',goto:'assets'})+
-      statCard({k:'Committed (unpaid)',v:shortN(commit),sub:commit?'net after: '+shortN(nw.egp-commit):'no open schedules',scls:commit?'neg':'',icon:'🧾',goto:'payments'})+
+      statCard({k:'Debt outstanding',v:nw.liab?shortN(nw.liab):'0',sub:nw.liab?fmt(liabPaymentsFor(monthStr()))+' / mo service':'nothing tracked',scls:nw.liab?'neg':'pos',icon:'🏦',goto:'assets'})+
+      statCard({k:'Committed (unpaid)',v:shortN(commit),sub:commit?'undiscounted · net after: '+shortN(nw.egp-commit):'no open schedules',scls:commit?'neg':'',icon:'🧾',goto:'payments'})+
     `</div>`+
+    fxPanel()+
     `<div class="two wide" style="margin-top:14px">
       <div class="panel glass"><div class="ph"><h3>Net worth over time</h3></div><div class="chart-wrap"><canvas id="ovSnap"></canvas></div></div>
       <div class="panel glass"><div class="ph"><h3>Allocation</h3><span class="sp"></span><span class="muted" style="font-size:11px">tap a slice · tap a label to hide</span></div><div class="chart-wrap" style="max-width:250px;margin:0 auto"><canvas id="ovDonut"></canvas></div>
@@ -1628,7 +1747,7 @@ function renderOverviewBody(){
 }
 
 /* ════════════ SETTINGS / SYNC / BACKUP ════════════ */
-function openSettings(){$('#modal').innerHTML=`<h3>⚙️ Settings</h3>
+function settingsHTML(){return `<h3>⚙️ Settings</h3>
   <div class="desc">Everything that shapes how WealthOS behaves, grouped so nothing hides.</div>
 
   <div class="msec"><h4>🎨 Appearance</h4>
@@ -1692,7 +1811,30 @@ function openSettings(){$('#modal').innerHTML=`<h3>⚙️ Settings</h3>
     <p class="hint">Single file, no tracking, no server unless you turn sync on. Your data never leaves this device unencrypted.</p>
   </div>
 
-  <div class="mfoot"><button class="btn pri" onclick="closeModal()">Done</button></div>`;$('#scrim').classList.add('on');}
+  <div class="mfoot"><button class="btn pri" onclick="closeModal()">Done</button></div>`;}
+/* ── v2.5: two-level settings — a home list, then one section at a time with Back ── */
+let SET_SEC=null;
+const SET_ICONS={'Appearance':'🎨','You':'👤','Exchange rates':'💱','Data':'💾','Security':'🛡️','Price sources':'💹','Sync & devices':'☁️','Maintenance':'🧰','About':'ℹ️'};
+function settingsSections(){const html=settingsHTML();const parts=html.split('<div class="msec">').slice(1);
+  return parts.map(p=>{const m=p.match(/<h4>([^<]*)<\/h4>/);const raw=m?m[1].trim():'Section';const name=raw.replace(/^[^\w]+/,'').trim();
+    const body=p.replace(/<div class="mfoot">[\s\S]*$/,'');return{name,title:raw,body:'<div class="msec">'+body};});}
+function openSettings(sec){
+  const secs=settingsSections();SET_SEC=(sec===undefined)?SET_SEC:sec;
+  const open=SET_SEC;
+  $('#modal').innerHTML=`<h3>⚙️ Settings</h3><div class="desc">Tap an area to open it. Nothing changes until you change it.</div>
+    <div class="setlist">${secs.map(s=>{const isOpen=open===s.name;
+      return `<div class="setgrp ${isOpen?'open':''}">
+        <button class="setitem" onclick="openSettings(${isOpen?'null':`'${esc(s.name)}'`})"><span class="ie">${SET_ICONS[s.name]||'•'}</span><span class="lbl"><b>${esc(s.name)}</b></span><span class="chev">${isOpen?'⌄':'›'}</span></button>
+        ${isOpen?`<div class="setbody">${s.body}<div class="row" style="margin-top:10px"><button class="btn sm gho" onclick="openSettings(null)">‹ Back to all settings</button></div></div>`:''}</div>`;}).join('')}</div>
+    <div class="mfoot"><button class="btn pri" onclick="closeModal()">Close</button></div>`;
+  $('#scrim').classList.add('on');
+  if(open){const el=$('#modal');if(el&&el.querySelector){const g=el.querySelector('.setgrp.open');if(g&&g.scrollIntoView)try{g.scrollIntoView({block:'nearest'});}catch(e){}}}}
+async function guardOverwrite(what){
+  if(isEmptyDB())return true;
+  const n=DB.assets.categories.reduce((s,c)=>s+Object.values(DB.assets.data[c.id]||{}).reduce((a,v)=>a+v.length,0),0);
+  if(!await confirmGlass('You already have data here',`This device holds ${n} holdings, ${DB.rental.records.length} rental months and ${DB.payments.plans.length} plans. ${what} will REPLACE all of it.`,true))return false;
+  return await confirmGlass('Last check',`Really replace everything with ${what.toLowerCase()}? Export a backup first if you are not sure.`,true);}
+
 function saveSettings(){DB.settings.name=$('#set_name').value.trim();let ch=false;['USD','EUR','AED'].forEach(c=>{const v=parseAmt($('#set_'+c).value)||DB.rates[c];if(v!==DB.rates[c]){DB.rates[c]=v;ch=true;}});if(ch)DB.settings.ratesUpdated=todayStr();closeModal();persist();toast('Settings saved');}
 function downloadBackup(){const payload=Object.assign({__wealthos:true,exportDate:new Date().toISOString()},DB);
   const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='wealthos-backup-'+todayStr()+'.json';a.click();URL.revokeObjectURL(a.href);toast('Backup downloaded 💾');}
@@ -1720,6 +1862,7 @@ function findAssetItems(q){const s=q.trim().toLowerCase();const hits=[];DB.asset
 function fuzzyCat(q){if(!q)return null;const s=q.trim().toLowerCase();return DB.assets.categories.find(c=>c.name.toLowerCase().includes(s)||c.id===s)||null;}
 
 function parseUnified(text){const t=text.trim(),low=t.toLowerCase();
+  if(/paste .*transaction|import .*transaction|add .*transaction|historic/i.test(low))return{kind:'txhelp'};
   if(/^(help|\?|commands?|what can you do)$/.test(low))return{kind:'help'};
   let m=t.match(/^(buy|bought|sell|sold)\s+([\d.,]+)\s+(.+?)\s*(?:@|\bat\b)\s*([\d.,]+)(?:\s+fees?\s*([\d.,]+))?(?:\s+on\s+(\d{4}-\d{2}-\d{2}))?\s*$/i);
   if(m)return{kind:'fundtx',type:/^b/i.test(m[1])?'BUY':'SELL',units:parseAmt(m[2]),fundQ:m[3].trim(),price:parseAmt(m[4]),fee:m[5]?parseAmt(m[5]):0,date:m[6]||todayStr()};
@@ -1745,6 +1888,7 @@ function parseUnified(text){const t=text.trim(),low=t.toLowerCase();
 const A=(t)=>({role:'agent',kind:'text',text:t});
 function execUnified(it){
   switch(it.kind){
+    case 'txhelp':return{msgs:[A('Paste your transactions, one per line. I read shapes like:\n• buy 100 Osoul @ 962 on 2024-01-05\n• 2024-01-05 BUY Osoul 100 @ 962\n• sold 50 takamol at 880.25 on 12/03/2025\nFees optional (fee 12). I summarise first and wait for your go before anything is added.')]};
     case 'help':return{msgs:[A('Ask in plain words, or paste a table from Numbers. Examples: “net worth”, “usd balance”, “breakdown”, “buy 100 Osoul @ 962”, “add 5000 usd NVDA to stocks”, “add 5000 for rent and 3000 for expenses”, “when was Osoul purchased”, “how much is NVDA worth”, “price Takamol 655”, “set usd 51”, “upcoming”, “snapshot”.')]};
     case 'summary':{const n=netWorth();return{msgs:[A('Net worth: '+fmt(n.egp)+' EGP (≈ '+fmt(n.usd)+' USD). Assets '+shortN(n.assetsEgp)+', funds '+shortN(n.fundsEgp)+'.')]};}
     case 'breakdown':{return{msgs:[A('Your allocation right now:'),{role:'agent',kind:'card',card:'alloc',items:allocation()}]};}
@@ -1765,7 +1909,7 @@ function execUnified(it){
       return{changed:true,msgs:[A(it.type+' booked: '+fmt(it.units)+' '+f.match+' @ '+fmt(it.price)+(it.fee?' (fee '+fmt(it.fee)+')':'')+' on '+it.date+'.')]};}
     case 'assetadd':{if(!(it.amt>0))return{msgs:[A('Couldn’t read the amount — try “add 5000 usd NVDA to stocks”.')]};let cat=fuzzyCat(it.catQ);
       if(!cat){const d=it.desc.toLowerCase();const g=[['nvda','stocks'],['meta','stocks'],['stock','stocks'],['btc','crypto'],['bitcoin','crypto'],['eth','crypto'],['gold','gold'],['cd','egfunds'],['fund','egfunds'],['watch','personal'],['rolex','personal'],['omega','personal'],['cash','cash'],['apartment','realestate'],['house','realestate']].find(([k])=>d.includes(k));cat=g?DB.assets.categories.find(c=>c.id===g[1]):null;}
-      if(!cat){setTimeout(()=>openCatPick(it),0);return{msgs:[A('Which category should “'+it.desc+'” go to? I opened a picker — pick one or create it, and I\u2019ll file it.')]};} /* B1: no more silent dump into category #1 */
+      if(!cat){setTimeout(()=>openCatPick(it),0);return{msgs:[A('Which category should “'+it.desc+'” go to? I opened a picker — pick one or create it, and I’ll file it.')]};} /* B1: no more silent dump into category #1 */
       const cd=DB.assets.data[cat.id]=DB.assets.data[cat.id]||{};let cur=it.cur;if(!cur){const ks=Object.keys(cd);cur=ks.length===1?ks[0]:'EGP';}
       (cd[cur]=cd[cur]||[]).push({desc:it.desc,amt:it.amt,u:todayStr()});return{changed:true,msgs:[A('Logged ✨ '+it.desc+' ('+fmt(it.amt)+' '+cur+') → '+cat.icon+' '+cat.name+'.')]};}
     case 'assetupd':{const h=findAssetItems(it.q);if(!h.length)return{msgs:[A('Couldn’t find “'+it.q+'”.')]};if(h.length>1)return{msgs:[A('Found '+h.length+' matches ('+h.slice(0,3).map(x=>x.it.desc).join(', ')+'…) — be more specific.')]};
@@ -1862,12 +2006,84 @@ function continueMapping(dest,rows,header,map){const miss=SCHEMAS[dest].req.filt
     const opts=header.map((h,i)=>(i+1)+') '+(h||('col'+(i+1)))+(rows[0]&&rows[0][i]!=null&&rows[0][i]!==''?' ['+rows[0][i]+']':'')).join('   ');
     return{msgs:[A('Almost there — which column is the '+fieldLabel(need)+'? Reply with its number:  '+opts)]};}
   PENDING={stage:'confirm',dest,rows,map,header};
-  return{msgs:[A('Ready to place '+rows.length+' row'+(rows.length===1?'':'s')+' into '+SCHEMAS[dest].label+' \u2014 read as '+(mapDesc(dest,map,header)||'positional order')+'. Reply \u201cgo\u201d to confirm, or \u201ccancel\u201d.'),previewCard(dest,rows,map)]};}
+  return{msgs:[A('Ready to place '+rows.length+' row'+(rows.length===1?'':'s')+' into '+SCHEMAS[dest].label+' — read as '+(mapDesc(dest,map,header)||'positional order')+'. Reply “go” to confirm, or “cancel”.'),previewCard(dest,rows,map)]};}
 function routeDataset(d){const rows=PENDING.rows,header=PENDING.header;
   if(header){const map=buildMap(d,header);PENDING=null;return continueMapping(d,rows,header,map);}
   const map=positionalMap(d,maxCols(rows));PENDING={stage:'confirm',dest:d,rows,map,header:null};
   return{msgs:[A('No header detected. I’ll read it as: '+mapDesc(d,map,null)+'. Reply “go” to place '+rows.length+' row'+(rows.length===1?'':'s')+', or “cancel”.')]};}
 function destWord(s){if(/fund/.test(s))return'funds';if(/asset/.test(s))return'assets';if(/rent/.test(s))return'rental';if(/pay|loan|install|schedul/.test(s))return'payments';return null;}
+/* ── v2.2.10: bulk transaction ledger — paste or type many historic trades at once ──
+   Understood shapes (one per line, order-insensitive, commas optional):
+     buy 100 Osoul @ 962 on 2024-01-05 fee 12
+     2024-01-05 BUY Osoul 100 @ 962
+     sold 50 takamol at 880.25 on 12/03/2025
+     Osoul, BUY, 100, 962, 2024-01-05
+   Anything it cannot read is reported back line by line — nothing is guessed. */
+function parseTxLine(raw){
+  let t=String(raw||'').trim();if(!t)return null;
+  if(/^(fund|date|type|units|price)\b/i.test(t)&&/[,\t]/.test(t))return null; /* header row */
+  const out={fee:0};
+  let m=t.match(/\bfees?\s*[:=]?\s*([\d.,]+)/i);
+  if(m){out.fee=parseAmt(m[1]);t=t.replace(m[0],' ');}
+  m=t.match(/(\d{4}-\d{1,2}-\d{1,2})/);
+  if(m)out.date=m[1].replace(/-(\d)(?=-|$)/g,'-0$1').replace(/^(\d{4})-(\d)-/,'$1-0$2-');
+  else{m=t.match(/(\d{1,2})[\/.](\d{1,2})[\/.](\d{2,4})/);
+    if(m){let y=+m[3];y=y<100?2000+y:y;const pad=x=>String(x).padStart(2,'0');out.date=y+'-'+pad(m[2])+'-'+pad(m[1]);} }
+  if(out.date)t=t.replace(m[0],' ');
+  const ty=t.match(/\b(buy|bought|purchase[d]?|sell|sold|redeem(?:ed)?)\b/i);
+  out.type=ty?(/^(s|r)/i.test(ty[1])?'SELL':'BUY'):'BUY';
+  if(ty)t=t.replace(ty[0],' ');
+  let price=null,units=null;
+  m=t.match(/(?:@|\bat\b|price\s*[:=]?)\s*([\d][\d,]*(?:\.\d+)?)/i);
+  if(m){price=parseAmt(m[1]);t=t.replace(m[0],' ');}
+  const nums=(t.match(/-?[\d][\d,]*(?:\.\d+)?/g)||[]).map(parseAmt).filter(isFinite);
+  if(price==null){ if(nums.length>=2){units=nums[0];price=nums[1];} }
+  else units=nums.length?nums[0]:null;
+  if(units==null||price==null||!(units>0)||!(price>0))return{err:raw.trim(),why:'needs both a unit count and a price'};
+  let name=t.replace(/-?[\d][\d,]*(?:\.\d+)?/g,' ').replace(/[,;|\t]+/g,' ').replace(/\b(units?|shares?|on|of|for|egp)\b/gi,' ').replace(/\s+/g,' ').trim();
+  if(!name)return{err:raw.trim(),why:'no fund name found'};
+  return{type:out.type,units,price,fee:out.fee,date:out.date||todayStr(),fundQ:name};}
+function looksLikeTxBlock(text){
+  const lines=String(text).replace(/\r/g,'').split('\n').map(l=>l.trim()).filter(Boolean);
+  if(lines.length<2)return false;
+  const hits=lines.filter(l=>/\b(buy|bought|sell|sold|redeem)\b/i.test(l)||/(?:@|\bat\b)\s*[\d]/i.test(l)).length;
+  return hits>=2&&hits>=lines.length*0.6;}
+let TXQ=null;
+function ingestTx(text){
+  const lines=String(text).replace(/\r/g,'').split('\n').map(l=>l.trim()).filter(Boolean);
+  const ok=[],bad=[],newFunds=[];
+  lines.forEach(l=>{const p=parseTxLine(l);if(!p)return;
+    if(p.err){bad.push(p);return;}
+    const f=fuzzyFund(DB.funds.names,p.fundQ);
+    const fund=f.match||p.fundQ.replace(/\s+/g,' ').trim();
+    if(!f.match&&!newFunds.includes(fund))newFunds.push(fund);
+    ok.push({type:p.type,fund,date:p.date,units:p.units,price:p.price,fee:p.fee,
+      net:p.type==='BUY'?p.units*p.price+p.fee:p.units*p.price-p.fee});});
+  if(!ok.length)return{msgs:[A('I could not read a single transaction there. One per line, e.g. “buy 100 Osoul @ 962 on 2024-01-05”.')]};
+  ok.sort((a,b)=>a.date.localeCompare(b.date));
+  TXQ={rows:ok,newFunds};
+  const byFund={};ok.forEach(r=>{const k=byFund[r.fund]=byFund[r.fund]||{b:0,s:0,units:0,cost:0};
+    if(r.type==='BUY'){k.b++;k.units+=r.units;k.cost+=r.net;}else{k.s++;k.units-=r.units;}});
+  const lines2=Object.keys(byFund).map(f=>`• ${f}: ${byFund[f].b} buy${byFund[f].b===1?'':'s'}${byFund[f].s?', '+byFund[f].s+' sell'+(byFund[f].s===1?'':'s'):''} → ${fmt(byFund[f].units)} units, ${fmt(byFund[f].cost)} EGP invested`);
+  return{msgs:[A(`Read ${ok.length} transaction${ok.length===1?'':'s'} from ${ok[0].date} to ${ok[ok.length-1].date}.`+
+    (newFunds.length?` New fund${newFunds.length===1?'':'s'} to create: ${newFunds.join(', ')}.`:'')+
+    (bad.length?` ${bad.length} line${bad.length===1?'':'s'} I could not read — they are listed below and will be skipped.`:'')+
+    '\n'+lines2.join('\n')+(bad.length?'\n\nSkipped:\n'+bad.map(b=>'✗ '+b.err+'  ('+b.why+')').join('\n'):'')+
+    '\n\nSay **go** to add them, or **cancel**.')]};}
+function commitTx(){
+  if(!TXQ)return{msgs:[A('Nothing queued.')]};
+  const{rows,newFunds}=TXQ;TXQ=null;snapUndo('import transactions');
+  newFunds.forEach(f=>{if(!DB.funds.names.includes(f)){DB.funds.names.push(f);DB.funds.priceHistory[f]=DB.funds.priceHistory[f]||[];}});
+  rows.forEach(r=>DB.funds.transactions.push(Object.assign({u:todayStr()},r)));
+  DB.funds.transactions.sort((a,b)=>String(a.date).localeCompare(String(b.date)));
+  /* a fund with no logged price would read as a total loss — seed it with the last traded price */
+  const last={};rows.forEach(r=>{last[r.fund]=r.price;});
+  Object.keys(last).forEach(f=>{if(!(Number(DB.funds.currentPrices[f])>0)){DB.funds.currentPrices[f]=last[f];
+    (DB.funds.priceHistory[f]=DB.funds.priceHistory[f]||[]).push({date:todayStr(),price:last[f],u:todayStr(),src:'import'});}});
+  persist();
+  const p=portfolioStats();
+  return{msgs:[A(`Added ${rows.length} transaction${rows.length===1?'':'s'} ✓  Portfolio now ${fmt(p.value)} EGP · unrealized ${signed(p.upl)} · realized ${signed(p.rpl)}.`+
+    (Object.keys(last).some(f=>true)?' Prices for new funds were seeded from their last traded price — update them in Funds for a true value.':''))]};}
 function ingest(text){const rows=parseTable(text);if(!rows.length||(rows.length===1&&rows[0].length<2))return{msgs:[A('That didn’t look like a table. Copy cells from Excel or Numbers (they paste as columns), or type a command like “buy 100 Osoul @ 962”.')]};
   const hasHeader=detectHeader(rows);const header=hasHeader?rows[0]:null;const body=hasHeader?rows.slice(1):rows;
   if(!body.length)return{msgs:[A('I only see a header row — paste the data rows too.')]};
@@ -1893,8 +2109,21 @@ function cardHTML(m){
   if(m.card==='upcoming')return `<div class="mc"><div class="mc-t">Upcoming</div>${m.rows.map(i=>`<div class="mc-row"><span class="k">${esc(i.plan)}</span><span class="num ${i.over?'neg':''}">${fmtDate(i.date)} · ${shortN(i.amount)}</span></div>`).join('')}</div>`;
   return '';}
 function msgHTML(m){if(m.kind==='card')return `<div class="msg card">${cardHTML(m)}</div>`;return `<div class="msg ${m.role}">${esc(m.text)}</div>`;}
-function renderThread(){const th=$('#chatThread');if(!th)return;th.innerHTML=DB.chat.map(msgHTML).join('');applyMask();th.scrollTop=th.scrollHeight;}
-function pushMsgs(arr){arr.forEach(m=>DB.chat.push(m));if(DB.chat.length>240)DB.chat=DB.chat.slice(-200);save();renderThread();}
+/* B4 fix: append-only render — full innerHTML replacement replayed the .msg pop-in entrance
+   keyframe on every past bubble on every new message. Now only new bubbles enter the DOM;
+   a structural mismatch (restore/undo/truncate) still falls back to a full rebuild. */
+function renderThread(){const th=$('#chatThread');if(!th)return;
+  const already=Number(th.dataset.rendered||0);
+  if(already&&already<=DB.chat.length&&th.children.length===already){
+    const frag=document.createDocumentFragment();
+    DB.chat.slice(already).forEach(m=>{const wrap=document.createElement('div');wrap.innerHTML=msgHTML(m);const node=wrap.firstElementChild;if(node)frag.appendChild(node);});
+    th.appendChild(frag);
+  }else{
+    th.innerHTML=DB.chat.map(msgHTML).join('');
+  }
+  th.dataset.rendered=String(DB.chat.length);
+  applyMask();th.scrollTop=th.scrollHeight;}
+function pushMsgs(arr){arr.forEach(m=>DB.chat.push(m));if(DB.chat.length>240){DB.chat=DB.chat.slice(-200);const th=$('#chatThread');if(th)th.dataset.rendered='0';}save();renderThread();}
 function buildChatOnce(){const host=$('#ovChat');if(host.dataset.built)return;host.dataset.built='1';
   const acts=[['Brief','brief'],['Net worth','net worth'],['USD balance','usd balance'],['Allocation','breakdown'],['Upcoming','upcoming'],['Snapshot','snapshot'],['Help','help']];
   host.innerHTML=`<div class="panel glass chat" style="margin-bottom:18px">
@@ -1966,12 +2195,14 @@ function smartExtra(text){
       return say(it.length+' item(s) need you:\n'+it.slice(0,4).map(i=>i.icon+' '+i.title).join('\n')+(it.length>4?'\n…and '+(it.length-4)+' more in the Attention tab.':''));}
   }catch(e){}
   return null;}
-/* ── v3 look engine: Glass (the original) or Atelier (paper, navy, serif) — each in dark or light ── */
-const LOOKS=[['glass','Glass — aurora, blur, mono numbers'],['atelier','Atelier — paper, navy, serif numbers']];
-function currentLook(){return (DB.settings&&DB.settings.look)||'glass';}
-function setLook(v){DB.settings.look=v==='atelier'?'atelier':'glass';save();applyTheme();renderActive();
+/* ── v3 look engine: Glass (the original), Atelier (paper, navy, serif), or Ledger (a 3rd look) — each in dark or light ── */
+const LOOKS=[['glass','Glass — aurora, blur, mono numbers'],['ledger','Ledger — matte ink & rule lines, ledger-book precision']];
+function currentLook(){let l=DB.settings&&DB.settings.look;
+  if(l==='atelier'){l='ledger';DB.settings.look=l;} /* Atelier retired in v2.9 — nearest surviving look */
+  return LOOKS.some(x=>x[0]===l)?l:'glass';}
+function setLook(v){DB.settings.look=LOOKS.some(l=>l[0]===v)?v:'glass';save();applyTheme();renderActive();
   if($('#modal')&&String($('#modal').innerHTML).includes('Appearance'))openSettings();
-  toast(v==='atelier'?'Atelier look on':'Glass look on');}
+  toast('Look: '+(LOOKS.find(l=>l[0]===DB.settings.look)||LOOKS[0])[1].split(' — ')[0]);}
 /* the lock screen is rendered, not static, so it can show the right unlock method first */
 function renderLock(){
   const box=$('#lockBox');if(!box)return;
@@ -1997,13 +2228,18 @@ const TIER_DEFAULT={cash:'liquid',certs:'liquid',stocks:'market',crypto:'market'
 function tierOf(c){return c.tier||TIER_DEFAULT[c.id]||'market';}
 function setTier(cid,t){const c=DB.assets.categories.find(x=>x.id===cid);if(!c)return;c.tier=t;persist();}
 let AS_FILTER={tier:'',cur:''};
-function setAsFilter(k,v){AS_FILTER[k]=(AS_FILTER[k]===v)?'':v;renderAssets();}
+function setAsFilter(k,v){AS_FILTER[k]=(AS_FILTER[k]===v)?'':v;renderAssets();paintPies();} /* canvases are pixels — re-rendering without repainting left the mix blank */
 function assetChips(){
   const curs=Object.keys(assetsTotals().byCur);
   return `<div class="chips"><span class="lbl">Tier</span>${TIERS.map(([k,i,n])=>`<button class="chip ${AS_FILTER.tier===k?'on':''}" onclick="setAsFilter('tier','${k}')">${i} ${n}</button>`).join('')}
     <span class="lbl" style="margin-left:10px">Currency</span>${curs.map(c=>`<button class="chip ${AS_FILTER.cur===c?'on':''}" onclick="setAsFilter('cur','${c}')">${FLAGS[c]||''} ${c}</button>`).join('')}
-    ${(AS_FILTER.tier||AS_FILTER.cur)?`<button class="chip" onclick="AS_FILTER={tier:'',cur:''};renderAssets()">✕ Clear</button>`:''}</div>`;}
-function tierTotals(){const t=assetsTotals();const out={};DB.assets.categories.forEach(c=>{const k=tierOf(c);out[k]=(out[k]||0)+(t.byCat[c.id]||0);});return out;}
+    ${(AS_FILTER.tier||AS_FILTER.cur)?`<button class="chip" onclick="AS_FILTER={tier:'',cur:''};renderAssets();paintPies()">✕ Clear</button>`:''}</div>`;}
+function tierTotals(){const t=assetsTotals();const out={};
+  DB.assets.categories.forEach(c=>{const k=tierOf(c);out[k]=(out[k]||0)+(t.byCat[c.id]||0);});
+  const locked=lockedCapitalEGP();
+  if(locked>0){out.market=(out.market||0)-locked;out.hard=(out.hard||0)+locked;} /* a CD with 8 months to run is not sellable in days */
+  const l=liabTotalEGP();if(l>0)out.debt=(out.debt||0)-l;
+  return out;}
 /* lockout countdown that actually ticks */
 let LOCK_TICK=null;
 function startLockCountdown(){if(LOCK_TICK)clearInterval(LOCK_TICK);
@@ -2022,11 +2258,11 @@ function manualRows(){
   const age=u=>u?Math.round((new Date(today)-new Date(u))/86400000):9999;
   DB.assets.categories.forEach(c=>{const cd=DB.assets.data[c.id]||{};
     Object.keys(cd).forEach(cur=>(cd[cur]||[]).forEach((it,idx)=>{
-      if(it.bind&&it.bind.src&&srcState(it.bind.src).status!=='blocked')return;   /* it prices itself */
+      if(it.bind&&it.bind.src&&Number(it.bind.qty)>0&&srcState(it.bind.src).status!=='blocked')return;   /* it prices itself */
       if(!(Math.abs(Number(it.amt))>0))return;                                    /* nothing to keep fresh */
       if(it.noAsk)return;
       if(!it.u)return;   /* never dated at all → the hygiene flag already asks for that; don't nag twice */
-      out.push({kind:'asset',key:`asset:${c.id}:${cur}:${idx}`,label:it.desc,cat:c.name,catId:c.id,
+      out.push({kind:'asset',key:`asset:${c.id}:${cur}:${idx}`,label:it.desc,cat:c.name,catId:c.id,color:c.color,
         cur,current:Number(it.amt)||0,u:it.u,age:age(it.u)});}));});
   (DB.funds.names||[]).forEach(f=>{const b=(DB.funds.bind||{})[f];
     if(b&&b.src&&srcState(b.src).status!=='blocked')return;
@@ -2042,22 +2278,28 @@ const FAST_CATS=['stocks','crypto','gold','funds']; /* certificates and deposits
 function staleDaysFor(r){return FAST_CATS.indexOf(String(r.catId||'').toLowerCase())>=0||r.kind==='fund'?manualDays():90;}
 function manualStale(){return manualRows().filter(r=>r.age>=staleDaysFor(r));}
 let MU_ROWS=[];
-function openManualUpdate(onlyStale){
+let MU_REFRESHED=false;
+async function openManualUpdate(onlyStale,refreshed){
+  /* live feeds first, then ask only for what they could not cover */
+  if(!refreshed&&(DB.settings.pricePolicy||'daily')!=='manual'&&typeof fetch==='function'){
+    toast('Pulling live prices first…');try{await refreshPrices(false);}catch(e){}
+    return openManualUpdate(onlyStale,true);}
   const rows=onlyStale?manualStale():manualRows();MU_ROWS=rows;
   if(!rows.length){toast('Everything that needs a human is already fresh ✓');return;}
+  const groups={};rows.forEach((r,i)=>{(groups[r.cat]=groups[r.cat]||{rows:[],color:r.color||PAL[1]}).rows.push([r,i]);});
   $('#modal').innerHTML=`<h3>💹 Update today's values</h3>
-    <div class="desc">These holdings have no live feed, so they are only as right as your last update. Type today's value from the app or statement — the date, history and every total update themselves. Leave a row blank to skip it.</div>
-    <div class="histtbl" style="max-height:46vh"><table class="tbl"><thead><tr><th class="l">Holding</th><th>Last</th><th>Age</th><th>Today</th></tr></thead><tbody>
-    ${rows.map((r,i)=>`<tr><td class="l" data-l="Holding">${esc(r.label)}<div class="udate">${esc(r.cat)}${r.cur!=='EGP'?' · '+r.cur:''}</div></td>
-      <td class="num muted" data-l="Last">${fmt(r.current)}</td>
-      <td class="num ${r.age>=staleDaysFor(r)*3?'neg':r.age>=staleDaysFor(r)?'':'muted'}" data-l="Age">${r.age}d</td>
-      <td data-l="Today"><input class="inp num mu" id="mu_${i}" data-key="${esc(r.key)}" placeholder="${fmt(r.current)}" inputmode="decimal"></td></tr>`).join('')}
-    </tbody></table></div>
-    <div class="row" style="margin-top:10px;align-items:center"><span class="muted" style="font-size:11px">${rows.length} holding(s) · oldest ${rows[0].u?rows[0].age+' days':'never updated'}</span>
-    <span class="sp"></span><button class="btn sm gho" onclick="muRemind()">Remind me tomorrow</button></div>
+    <div class="desc">Live feeds are already applied. These holdings have no feed, so type today's value from the app or statement — <kbd>Enter</kbd> or <kbd>Tab</kbd> moves to the next one, blank rows are skipped.</div>
+    <div class="mu-prog"><span id="mu_cnt">0</span> of ${rows.length} typed · <span class="muted">oldest ${rows[0].age} days</span><span class="sp"></span><button class="btn sm gho" onclick="muRemind()">Remind me tomorrow</button></div>
+    <div class="mu-list">${Object.keys(groups).map(cat=>`<div class="mu-cat" style="border-left-color:${groups[cat].color}"><div class="mu-cath" style="color:${groups[cat].color}">${esc(cat)} <small>${groups[cat].rows.length}</small></div>
+      ${groups[cat].rows.map(([r,i])=>`<div class="mu-row"><div class="mu-name">${esc(r.label)}<small>last ${fmt(r.current)} ${r.cur} · <b class="${r.age>=staleDaysFor(r)*3?'neg':''}">${r.age}d</b></small></div>
+        <input class="inp num mu" id="mu_${i}" placeholder="${fmt(r.current)}" inputmode="decimal" autocomplete="off" onkeydown="muKey(event,${i})" oninput="muCount()"><span class="mu-cur">${r.cur}</span></div>`).join('')}</div>`).join('')}</div>
     <div class="mfoot"><button class="btn gho" onclick="closeModal()">Close</button><button class="btn pri" onclick="saveManualUpdate()">Save what I typed</button></div>`;
   $('#scrim').classList.add('on');
-  setTimeout(()=>{const f=$('#mu_0');if(f&&f.focus)try{f.focus();}catch(e){}},80);}
+  setTimeout(()=>{const f=$('#mu_'+rows[0]&&'#mu_0');const first=$('#mu_0');if(first&&first.focus)try{first.focus();}catch(e){}},80);}
+function muKey(e,i){if(e.key!=='Enter')return;e.preventDefault();
+  for(let j=i+1;j<MU_ROWS.length;j++){const n=$('#mu_'+j);if(n){try{n.focus();n.select&&n.select();}catch(x){}return;}}
+  saveManualUpdate();}
+function muCount(){let n=0;MU_ROWS.forEach((r,i)=>{const el=$('#mu_'+i);if(el&&String(el.value||'').trim())n++;});const c=$('#mu_cnt');if(c)c.textContent=n;}
 function muRemind(){DB.settings.lastManualNudge=todayStr();save();closeModal();toast('I will ask again tomorrow');}
 function saveManualUpdate(){
   let n=0;snapUndo('price update');
@@ -2170,6 +2412,11 @@ async function encryptNow(){
   const ct=await crypto.subtle.encrypt({name:'AES-GCM',iv},CRYPTO_KEY,new TextEncoder().encode(JSON.stringify(DB)));
   try{localStorage.setItem(ENC_KEY,b64(iv)+'.'+b64(ct));localStorage.removeItem(KEY);}catch(e){return false;}
   return true;}
+function flushEnc(){if(ENC_T){clearTimeout(ENC_T);ENC_T=null;return encryptNow();}return Promise.resolve(true);}
+function initEncFlush(){
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)flushEnc();});
+  window.addEventListener('pagehide',flushEnc);
+  window.addEventListener('beforeunload',e=>{if(ENC_T){flushEnc();e.preventDefault();e.returnValue='';}});}
 function scheduleEnc(){if(ENC_T)clearTimeout(ENC_T);ENC_T=setTimeout(()=>{ENC_T=null;encryptNow();},250);}
 async function decryptWith(key){
   const raw=localStorage.getItem(ENC_KEY);if(!raw)return null;
@@ -2324,23 +2571,31 @@ function sendChat(){const ta=$('#chatInput');const text=ta.value.trim();if(!text
   const th=$('#chatThread');th.insertAdjacentHTML('beforeend','<div class="typing" id="typing"><i></i><i></i><i></i></div>');th.scrollTop=th.scrollHeight;
   setTimeout(()=>{const ty=$('#typing');if(ty)ty.remove();let res=null;
     if(PENDING){res=resolveSmart(text);if(!res)PENDING=null;}
+    if(!res&&TXQ&&/^(go|yes|y|ok|confirm|add them|do it)$/i.test(text.trim()))res=commitTx();
+    if(!res&&TXQ&&/^(cancel|no|stop|nvm)$/i.test(text.trim())){TXQ=null;res={msgs:[A('Cancelled — nothing was added.')]};}
+    if(!res&&looksLikeTxBlock(text))res=ingestTx(text);
     if(!res)res=looksTabular(text)?ingest(text):(smartExtra(text)||execSmart(text));
     if(res.changed)persist();
     pushMsgs(res.msgs);if(res.changed)updateBadges();
   },240);
 }
-
+</script>
+<script>
 /* ════════════ NAV + BOOT ════════════ */
 const TITLES={overview:['Overview','Everything in one glance'],assets:['Assets','Holdings across every currency'],funds:['Funds','Mutual fund performance'],rental:['Rental','Income, tenants & P/L'],payments:['Payments','Schedules & commitments'],planner:['Planner','Short & long-term cashflow'],attention:['Attention','Everything that needs you, in one place']};
 function switchTab(name){showChrome(900);currentTab=name;$$('.view').forEach(v=>v.classList.toggle('on',v.dataset.view===name));
   $$('.navbtn').forEach(b=>b.classList.toggle('on',b.dataset.tab===name));$$('.mobtab button').forEach(b=>b.classList.toggle('on',b.dataset.tab===name));
   $('#tbTitle').textContent=TITLES[name][0];$('#tbSub').textContent=TITLES[name][1];$('.scroll').scrollTop=0;renderActive();}
 function renderActive(){switch(currentTab){
-  case 'overview':buildChatOnce();renderOverviewBody();break;
+  case 'overview':buildChatOnce();refreshBrief();renderOverviewBody();break;
   case 'assets':renderAssets();break;case 'funds':renderFunds();break;
   case 'rental':renderRental();break;case 'payments':renderPayments();break;case 'planner':renderPlanner();break;case 'attention':renderAttention();break;}
   paintPies();applyMask();requestAnimationFrame(moveSegPills);}
-function moveSegPills(){$$('.seg').forEach(seg=>{const on=seg.querySelector('button.on'),pill=seg.querySelector('.pill');if(on&&pill){pill.style.left=on.offsetLeft+'px';pill.style.width=on.offsetWidth+'px';}});}
+/* B4 fix: the segmented-control pill used to animate `left`/`width` (layout properties) via the
+   implicit `transition:.32s` shorthand on .seg .pill. Now it only transitions `transform`;
+   width is still assigned in JS, just not animated (a segment's own text width shouldn't tween). */
+function moveSegPills(){$$('.seg').forEach(seg=>{const on=seg.querySelector('button.on'),pill=seg.querySelector('.pill');
+  if(on&&pill){pill.style.width=on.offsetWidth+'px';pill.style.transform='translateX('+on.offsetLeft+'px)';}});}
 /* ── A1.2 applyMask + press-and-hold peek (≥350ms) ── */
 /* B1.5: masking scope is a user setting — money (default) → +percentages → +counts → everything numeric.
    Whole-value elements become ••••; mixed text ("2026-08 · received 30,000") is masked token-by-token so the label survives. */
@@ -2406,7 +2661,7 @@ let rsT;
 function boot(){load();applyTheme();applyPrivacy();initPeek();if(typeof initSecurity==='function'){initSecurity();initIdle();}{const vc=$('#vchip');if(vc)vc.textContent='v'+BUILD.v+' · '+BUILD.ts.slice(0,16).replace('T',' ');}
   if(!DB.snapshots.some(s=>s.date===todayStr())){recordSnapshot();save();}
   $$('.navbtn,.mobtab button').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab)));
-  document.body.dataset.booted='1';applyNavState();initSearch();initAutoHide();updateBadges();switchTab('overview');Sync.init();initB1();initPairLink();checkStorage();refreshUndo();initNumGuard();initManualAttn();maybeAutoPrices();maybeManualNudge();if(ratesStale())setTimeout(openRatesUpdate,700);
+  document.body.dataset.booted='1';applyNavState();initSearch();initAutoHide();updateBadges();switchTab('overview');Sync.init();initB1();initPairLink();checkStorage();refreshUndo();initNumGuard();initEncFlush();initManualAttn();maybeAutoPrices();maybeManualNudge();if(ratesStale())setTimeout(openRatesUpdate,700);
   window.addEventListener('resize',()=>{moveSegPills();clearTimeout(rsT);rsT=setTimeout(()=>{if(!document.activeElement||!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName))renderActive();},350);});}
 window.addEventListener('load',boot);
 </script>
@@ -2551,7 +2806,9 @@ function totalCommitments(){return allInstallments().filter(i=>!i.paid).reduce((
 function deltaSince(days){const s=DB.snapshots;if(!s||!s.length)return null;
   const cutoff=new Date(Date.now()-days*86400000).toISOString().slice(0,10);
   let ref=null;for(const x of s){if(x.date<=cutoff)ref=x;else break;}
-  if(!ref)ref=s[0];if(ref.date===todayStr())return null;return netWorth().egp-ref.egp;}
+  if(!ref)ref=s[0];if(ref.date===todayStr())return null;
+  const actual=Math.round((new Date(todayStr()+'T00:00:00')-new Date(ref.date+'T00:00:00'))/86400000);
+  return{egp:netWorth().egp-(Number(ref.egp)||0),days:actual,full:actual>=days};} /* never label a 3-day move as 30d */
 
 /* ════════════ LIQUIDITY TARGET ════════════ */
 function monthsTo(dateStr){const now=new Date();now.setDate(1);const g=new Date(dateStr+'T00:00:00');
@@ -2563,7 +2820,7 @@ function goalStatus(){const g=DB.planner.goal;if(!g||!(g.amount>0)||!g.date)retu
     text:'Target “'+g.label+'”: projected liquid '+shortN(liquid)+' vs '+shortN(g.amount)+' by '+fmtDate(g.date)+' — '+(gap<=0?'on track ✓':pctF.toFixed(0)+'% funded, short '+shortN(gap)+' (needs +'+shortN(gap/m)+'/mo)')+'.'};}
 function goalPanel(){const g=DB.planner.goal||{label:'',amount:0,date:''};const st=goalStatus();let body='';
   if(st){const p=Math.min(100,st.pctF);
-    body=`<div class="row" style="align-items:center;margin:10px 0 2px"><div style="flex:1"><div class="bar-track"><div class="bar-fill" style="width:${p}%;background:${st.onTrack?'var(--emerald)':'var(--amber)'}"></div></div></div><span class="muted num" style="font-size:12px">${st.pctF.toFixed(0)}% of ${shortN(g.amount)}</span></div>
+    body=`<div class="row" style="align-items:center;margin:10px 0 2px"><div style="flex:1"><div class="bar-track"><div class="bar-fill" style="transform:scaleX(${(p/100).toFixed(4)});background:${st.onTrack?'var(--emerald)':'var(--amber)'}"></div></div></div><span class="muted num" style="font-size:12px">${st.pctF.toFixed(0)}% of ${shortN(g.amount)}</span></div>
     <div class="kpi-mini" style="margin-top:9px"><div class="m">Projected liquid @ date<b class="num ${st.onTrack?'pos':''}">${shortN(st.liquid)}</b></div><div class="m">Gap<b class="num ${st.gap<=0?'pos':'neg'}">${st.gap<=0?'covered ✓':shortN(st.gap)}</b></div><div class="m">Needed / mo<b class="num">${st.gap>0?shortN(st.gap/st.m):'—'}</b></div><div class="m">Months left<b class="num">${st.m}</b></div></div>
     <div class="muted" style="font-size:10.5px;margin-top:8px">Projected liquid = cash-flow projection at that month + current funds value. Scheduled payments and what-if rows are already inside.</div>`;}
   else body='<div class="muted" style="font-size:11.5px;margin-top:8px">Set a target amount and date — projected liquidity (cash flow + funds) gets tracked against it.</div>';
@@ -2576,7 +2833,9 @@ function plGoal(f,v){DB.planner.goal=DB.planner.goal||{label:'',amount:0,date:''
 /* ════════════ DAILY BRIEF ════════════ */
 function execBrief(){const n=netWorth();const d30=deltaSince(30);const u=upcomingPayments(14);const uAmt=u.reduce((s,i)=>s+i.amount,0);
   const rows=rentalRows();const last=rows[rows.length-1];const g=goalStatus();const L=[];
-  L.push('Net worth '+fmt(n.egp)+' EGP'+(d30==null?'':' ('+signed(d30)+' over 30d)')+'.');
+  L.push('Net worth '+fmt(n.egp)+' EGP'+(n.liab?' (gross '+shortN(n.gross)+' less '+shortN(n.liab)+' of debt)':'')+(d30==null?'':' — '+signed(d30.egp)+' over '+d30.days+' days')+'.');
+  if(!spendNow())L.push('Monthly spending is still unset, so every runway number is optimistic.');
+  {const f=fxPosition();if(f.hardDebt>0&&f.net<0)L.push('You are net short hard currency by '+shortN(Math.abs(f.net))+' EGP — a 20% devaluation costs about '+shortN(Math.abs(devalImpact(20)))+' EGP.');}
   L.push(u.length?u.length+' payment'+(u.length===1?'':'s')+' due within 14 days — '+fmt(uAmt)+' EGP'+(u.some(x=>x.over)?' (some overdue ⚠)':'')+'.':'No payments due in the next 14 days.');
   if(last)L.push('Rental '+last.month+': net '+signed(last.net)+' EGP'+(last.variance?', variance '+signed(last.variance)+(last.note?'':' — needs a note'):'')+'.');
   if(g)L.push(g.text);
@@ -2615,7 +2874,6 @@ function primaryResidenceEgp(){let v=0;DB.assets.categories.forEach(c=>{const cd
   Object.keys(cd).forEach(cur=>{(cd[cur]||[]).forEach(it=>{if(/\bprimary\b/i.test(it.desc))v+=(Number(it.amt)||0)*rate(cur);});});});return v;}
 function investableNW(){return netWorth().egp-((assetsTotals().byCat['personal'])||0)-primaryResidenceEgp();}
 </script>
-
 <script>
 /* ════════════ A2 LAYER — grouped rail · Attention Center · global search · mobile chrome ════════════ */
 
@@ -2626,12 +2884,14 @@ function navGrp(k){DB.settings.navOpen=DB.settings.navOpen||{};
   DB.settings.navOpen[k]=DB.settings.navOpen[k]===false;save();applyNavState();}
 function renderNavSubs(){
   const A=$('#subs_assets');if(A)A.innerHTML=TIERS.map(([k,ic,nm])=>{const cs=DB.assets.categories.filter(c=>tierOf(c)===k);if(!cs.length)return '';
-    return `<div class="subhead">${ic} ${nm}</div>`+cs.map(c=>`<button class="subitem" onclick="navSub('assets','panel_cat_${c.id}')"><i class="sdot" style="background:${c.color||'var(--line)'}"></i>${c.icon} ${esc(c.name)}</button>`).join('');}).join('');
+    return `<button class="subhead" onclick="goTier('${k}')" title="Show only ${esc(nm)}">${ic} ${nm}<span class="go">›</span></button>`+cs.map(c=>`<button class="subitem" onclick="navSub('assets','panel_cat_${c.id}')"><i class="sdot" style="background:${c.color||'var(--line)'}"></i>${c.icon} ${esc(c.name)}</button>`).join('');}).join('');
   const F=$('#subs_funds');if(F)F.innerHTML=DB.funds.names.map(f=>
     `<button class="subitem" data-f="${esc(f)}" onclick="navSubFund(this.dataset.f)"><i class="sdot" style="background:${curColor('EGP')}"></i>📈 ${esc(f)}</button>`).join('');
   const P=$('#subs_payments');if(P)P.innerHTML=DB.payments.plans.map(p=>
     `<button class="subitem" onclick="navSub('payments','panel_plan_${p.id}')"><i class="sdot" style="background:${p.color}"></i>${esc(p.title)}</button>`).join('');}
 function navSub(tab,anchor){switchTab(tab);flashTarget(anchor);}
+/* a tier in the rail filters the page to that tier and scrolls to it — one tap, not three */
+function goTier(k){AS_FILTER={tier:k,cur:AS_FILTER.cur||''};switchTab('assets');renderAssets();paintPies();flashTarget('tier_'+k);}
 function navSubFund(name){fnChartFund=name;switchTab('funds');flashTarget('panel_funds_prices');}
 
 /* ── jump + flash (2× accent pulse, then clean) ── */
@@ -2656,8 +2916,8 @@ function attentionItems(fl){const items=[];fl=fl||collectFlags();
     detail:'Every EGP conversion in the app uses these rates — refresh to keep totals honest.',
     act:{label:'Update rates',fn:()=>openRatesUpdate()}});
   if(DB.rental.tenants.length&&!DB.rental.records.some(r=>r.month===monthStr()))
-    items.push({icon:'🏠',level:'amber',title:'Rent for '+monthStr()+' isn\u2019t logged yet',
-      detail:'One tap pre-fills last month\u2019s tenant, contract rent and mortgage \u2014 adjust only what changed.',
+    items.push({icon:'🏠',level:'amber',title:'Rent for '+monthStr()+' isn’t logged yet',
+      detail:'One tap pre-fills last month’s tenant, contract rent and mortgage — adjust only what changed.',
       act:{label:'Log month',fn:()=>{switchTab('rental');openRentWizard();}}});
   Object.keys(fl.per||{}).forEach(tab=>{const n=fl.per[tab];if(!n)return;const r=(fl.perRed||{})[tab]||0;
     const why=(fl.perWhy||{})[tab]||{},ex=(fl.perEx||{})[tab]||[];
@@ -2672,14 +2932,14 @@ function attnAct(i){const it=ATTN_LAST[i];if(it&&it.act&&typeof it.act.fn==='fun
 function renderAttention(){const items=attentionItems();ATTN_LAST=items;
   const red=items.filter(i=>i.level==='red').length,amb=items.length-red;
   $('#atBody').innerHTML=
-    secHead('Attention','Everything that needs you \u2014 worst first','')+
+    secHead('Attention','Everything that needs you — worst first','')+
     `<div class="cards">`+
     statCard({k:'Needs you',v:String(items.length),sub:items.length?'sorted worst-first below':'nothing at all',hero:true,icon:'⚑'})+
     statCard({k:'Red',v:String(red),sub:red?'act now':'none',scls:red?'neg':'pos',icon:'🔴'})+
     statCard({k:'Amber',v:String(amb),sub:amb?'act this week':'none',scls:amb?'':'pos',icon:'🟡'})+
     `</div>`+
     (items.length?items.map((it,i)=>`<div class="panel glass attn ${it.level}"><div class="ph"><span style="font-size:15px">${it.icon}</span><h3>${esc(it.title)}</h3><span class="sp"></span><button class="btn sm ${it.level==='red'?'pri':'gho'}" onclick="attnAct(${i})">${esc(it.act.label)}</button></div><div class="muted" style="font-size:11.5px">${esc(it.detail)}</div></div>`).join('')
-    :`<div class="panel glass"><div class="empty"><span class="big">✅</span>All clear \u2014 nothing needs you.</div></div>`);}
+    :`<div class="panel glass"><div class="empty"><span class="big">✅</span>All clear — nothing needs you.</div></div>`);}
 
 /* ── global indexed search ── */
 let GS_RES=[],GS_SEL=-1;
@@ -2688,20 +2948,20 @@ function buildSearchIndex(){const ix=[];const add=o=>ix.push(o);
   Object.keys(TITLES).forEach(t=>add({label:TITLES[t][0],sub:TITLES[t][1],icon:TICON[t]||'•',tab:t,anchorId:null,kw:'tab '+t,w:0}));
   DB.assets.categories.forEach(c=>{add({label:c.name,sub:'Asset category',icon:c.icon,color:c.color,tab:'assets',anchorId:'panel_cat_'+c.id,kw:'category',w:1});
     const cd=DB.assets.data[c.id]||{};Object.keys(cd).forEach(cur=>(cd[cur]||[]).forEach(it=>
-      add({label:it.desc,sub:c.name+' \u00b7 '+mval(Number(it.amt)||0)+' '+cur,icon:c.icon,color:curColor(cur),tab:'assets',anchorId:'panel_cat_'+c.id,
+      add({label:it.desc,sub:c.name+' · '+mval(Number(it.amt)||0)+' '+cur,icon:c.icon,color:curColor(cur),tab:'assets',anchorId:'panel_cat_'+c.id,
         kw:[c.name,cur,it.tp||'',(it.ts||[]).join(' ')].join(' '),w:2})));});
-  DB.funds.names.forEach(f=>add({label:f,sub:'Fund \u00b7 opens its price chart',icon:'📈',tab:'funds',anchorId:'panel_funds_prices',fund:f,kw:'fund',w:1}));
-  DB.funds.transactions.slice(-80).forEach(t=>add({label:t.type+' '+t.fund,sub:t.date+' \u00b7 '+mval(Number(t.units)||0)+' u @ '+mval(Number(t.price)||0),icon:'🧾',tab:'funds',anchorId:'panel_funds_tx',kw:t.fund+' '+t.date+' transaction',w:3}));
-  DB.rental.tenants.forEach(t=>add({label:t.name,sub:'Tenant \u00b7 '+(t.property||'\u2014'),icon:'🏠',color:t.color,tab:'rental',anchorId:'panel_rn_tenants',kw:'tenant '+(t.property||''),w:1}));
+  DB.funds.names.forEach(f=>add({label:f,sub:'Fund · opens its price chart',icon:'📈',tab:'funds',anchorId:'panel_funds_prices',fund:f,kw:'fund',w:1}));
+  DB.funds.transactions.slice(-80).forEach(t=>add({label:t.type+' '+t.fund,sub:t.date+' · '+mval(Number(t.units)||0)+' u @ '+mval(Number(t.price)||0),icon:'🧾',tab:'funds',anchorId:'panel_funds_tx',kw:t.fund+' '+t.date+' transaction',w:3}));
+  DB.rental.tenants.forEach(t=>add({label:t.name,sub:'Tenant · '+(t.property||'—'),icon:'🏠',color:t.color,tab:'rental',anchorId:'panel_rn_tenants',kw:'tenant '+(t.property||''),w:1}));
   DB.payments.plans.forEach(p=>{add({label:p.title,sub:'Payment plan',icon:'📅',color:p.color,tab:'payments',anchorId:'panel_plan_'+p.id,kw:'plan',w:1});
-    p.installments.forEach(i=>{if(i.note)add({label:i.note,sub:p.title+' \u00b7 '+i.date+' \u00b7 '+mval(Number(i.amount)||0),icon:'📅',color:p.color,tab:'payments',anchorId:'panel_plan_'+p.id,kw:'installment '+p.title,w:3});});});
-  DB.planner.incomings.concat(DB.planner.outgoings).forEach(x=>add({label:x.label,sub:'What-if row \u00b7 '+mval(Number(x.amount)||0)+' EGP',icon:'🧭',tab:'planner',anchorId:'panel_whatif',kw:'planner scenario what-if',w:2}));
-  const g=DB.planner.goal;if(g&&g.label)add({label:g.label,sub:'Liquidity target \u00b7 '+mval(Number(g.amount)||0)+' EGP',icon:'🎯',tab:'planner',anchorId:'panel_goal',kw:'goal target liquidity',w:1});
+    p.installments.forEach(i=>{if(i.note)add({label:i.note,sub:p.title+' · '+i.date+' · '+mval(Number(i.amount)||0),icon:'📅',color:p.color,tab:'payments',anchorId:'panel_plan_'+p.id,kw:'installment '+p.title,w:3});});});
+  DB.planner.incomings.concat(DB.planner.outgoings).forEach(x=>add({label:x.label,sub:'What-if row · '+mval(Number(x.amount)||0)+' EGP',icon:'🧭',tab:'planner',anchorId:'panel_whatif',kw:'planner scenario what-if',w:2}));
+  const g=DB.planner.goal;if(g&&g.label)add({label:g.label,sub:'Liquidity target · '+mval(Number(g.amount)||0)+' EGP',icon:'🎯',tab:'planner',anchorId:'panel_goal',kw:'goal target liquidity',w:1});
   add({label:'Update rates',sub:'Action',icon:'💱',tab:null,action:()=>openRatesUpdate(),kw:'settings fx currency rates',w:1});
-  add({label:'Backup',sub:'Action \u00b7 download JSON',icon:'💾',tab:null,action:()=>downloadBackup(),kw:'settings export save',w:1});
-  add({label:'Sync',sub:'Action \u00b7 encrypted cloud',icon:'☁️',tab:null,action:()=>openSync(),kw:'settings supabase cloud',w:1});
-  add({label:'Pair device',sub:'Action \u00b7 connect your phone',icon:'📱',tab:null,action:()=>openPair(),kw:'settings qr pairing sync phone',w:1});
-  add({label:'Privacy',sub:'Action \u00b7 mask numbers',icon:'👁',tab:null,action:()=>togglePrivacy(),kw:'settings hide mask numbers',w:1});
+  add({label:'Backup',sub:'Action · download JSON',icon:'💾',tab:null,action:()=>downloadBackup(),kw:'settings export save',w:1});
+  add({label:'Sync',sub:'Action · encrypted cloud',icon:'☁️',tab:null,action:()=>openSync(),kw:'settings supabase cloud',w:1});
+  add({label:'Pair device',sub:'Action · connect your phone',icon:'📱',tab:null,action:()=>openPair(),kw:'settings qr pairing sync phone',w:1});
+  add({label:'Privacy',sub:'Action · mask numbers',icon:'👁',tab:null,action:()=>togglePrivacy(),kw:'settings hide mask numbers',w:1});
   add({label:'Settings',sub:'Action',icon:'⚙️',tab:null,action:()=>openSettings(),kw:'name rates backup restore',w:1});
   return ix;}
 function gsOpen(){const w=$('#gsWrap'),i=$('#gsInput');if(w)w.classList.add('open');if(i){i.focus();if(i.select)try{i.select();}catch(e){}if(i.value)gsQuery();}}
@@ -2717,7 +2977,7 @@ function gsQuery(){const inp=$('#gsInput');const q=((inp&&inp.value)||'').trim()
     if(per[g]<=3)out.push(h.e);if(out.length>=8)break;}
   GS_RES=out;GS_SEL=out.length?0:-1;gsRenderDrop();}
 function gsRenderDrop(){const d=$('#gsDrop');if(!d)return;
-  if(!GS_RES.length){d.innerHTML='<div class="gsempty">No matches \u2014 try a fund, item, tenant or plan name.</div>';d.classList.add('on');return;}
+  if(!GS_RES.length){d.innerHTML='<div class="gsempty">No matches — try a fund, item, tenant or plan name.</div>';d.classList.add('on');return;}
   let g='',html='';GS_RES.forEach((e,i)=>{const grp=e.tab?(TITLES[e.tab]?TITLES[e.tab][0]:e.tab):'Actions';
     if(grp!==g){g=grp;html+=`<div class="gsg">${esc(grp)}</div>`;}
     html+=`<div class="gsrow${i===GS_SEL?' sel':''}" onmousedown="gsPick(${i})"><span class="gsic">${e.icon||'•'}</span>${e.color?`<i class="sdot" style="background:${e.color}"></i>`:''}<span class="gsl">${esc(e.label)}</span><span class="gss">${esc(e.sub||'')}</span></div>`;});
@@ -2747,7 +3007,6 @@ function initAutoHide(){const sc=document.querySelector('.scroll');if(!sc)return
     else if(y<last-2){document.body.classList.remove('chromehide');last=y;}
     else if(y>last)last=y;},{passive:true});}
 </script>
-
 <script>
 /* ════════════ B1 LAYER — entry flows: rent wizard · recurring costs & income · installment generator · sandbox · category modals ════════════ */
 
@@ -2965,7 +3224,7 @@ async function sandboxApply(){
   if(!await confirmGlass('Apply sandbox to real data','Everything you changed in the sandbox becomes your real records, and sync resumes.'))return;
   if(!await confirmGlass('Second confirmation','This deletes the pre-sandbox backup. Undo will still cover this one step — after that it is permanent.',true))return;
   snapUndo();DB.settings.sandbox=false;localStorage.removeItem(SB_KEY);
-  persist();sandboxBanner();toastUndo('Sandbox applied to real data ✓');}
+  persist();await flushEnc();sandboxBanner();toastUndo('Sandbox applied to real data ✓');}
 
 /* ── category & fund modals (the browser dialogs are gone) ── */
 const CAT_ICONS=['🗂','💵','🏦','📈','🥇','₿','🏠','⌚️','🚗','🧾','🛡','🎓'];
@@ -3052,7 +3311,6 @@ function initB1(){
   if(rentWizardDue())setTimeout(()=>{if(rentWizardDue())openRentWizard();},900);}
 
 </script>
-
 <script>
 /* ════════════ B1.5 LAYER — record detail (note + history + chart) · masking scope · rent backfill ════════════ */
 
@@ -3231,14 +3489,17 @@ function nwReturn(){
   const r=xirr(flows);
   const yrs=(new Date(todayStr()+'T00:00:00')-new Date(first.date+'T00:00:00'))/(365*86400000);
   const cagr=(yrs>0&&first.egp>0)?(Math.pow(nowV/first.egp,1/yrs)-1)*100:null;
-  if((DB.flows||[]).length&&r!=null)return{kind:'xirr',pct:r*100,since:first.date,cagr};
+  if((DB.flows||[]).length&&r!=null)return{kind:'xirr',pct:r*100,since:first.date,cagr,flows:(DB.flows||[]).length,
+    thin:(DB.flows||[]).length<Math.max(1,Math.floor(yrs))};  /* fewer flows than years is probably incomplete */
   return{kind:'cagr',pct:cagr,since:first.date,
     reason:'No deposits or withdrawals recorded, so this is growth between snapshots — not a money-weighted return.'};}
 function addFlow(date,amount,label){
   DB.flows=DB.flows||[];
   DB.flows.push({id:uid(),date:date||todayStr(),amount:Number(amount)||0,label:label||'',u:todayStr()});
   DB.flows.sort((a,b)=>a.date.localeCompare(b.date));}
+</script>
 
+<script>
 /* ════════════ C1 UI — returns you can defend, prices you can see the state of ════════════ */
 
 /* ── v9: chrome suppress, nav bulk, numeric guard, restore, pies, rearrange, proxy fetch ── */
@@ -3253,7 +3514,7 @@ function initNumGuard(){const h=e=>{const t=e.target;
   globalThis.__numGuardH=h;document.addEventListener('input',h,true);}
 function importBackupFile(inp){const f=inp&&inp.files&&inp.files[0];if(!f)return;
   const r=new FileReader();
-  r.onload=()=>{try{const o=JSON.parse(r.result);snapUndo('restore');
+  r.onload=async()=>{try{const o=JSON.parse(r.result);if(!await guardOverwrite('Restoring this backup'))return;snapUndo('restore');
     const nd=importBackupObject(o);DB=migrate(nd||DB);save();
     applyTheme();applyPrivacy(false);renderActive();updateBadges();refreshUndo();closeModal();
     toast('Backup restored ✓');}catch(e){toast('Could not read that file: '+e.message,true);}};
@@ -3262,7 +3523,11 @@ function importBackupFile(inp){const f=inp&&inp.files&&inp.files[0];if(!f)return
 function pieCard(cid,title){return `<div class="panel glass"><div class="ph"><h3>${title}</h3></div><div class="chart-wrap" style="height:200px"><canvas id="${cid}"></canvas></div><div class="legend" id="${cid}_lg"></div></div>`;}
 function pieItems(cid){
   if(cid==='as_pie'){const t=assetsTotals();
-    return DB.assets.categories.map((c,i)=>({label:c.name,n:c.name,v:Math.max(0,t.byCat[c.id]||0),color:c.color||PAL[i%PAL.length]}));}
+    return DB.assets.categories.filter(c=>!AS_FILTER.tier||tierOf(c)===AS_FILTER.tier).map((c,i)=>{
+      let v;
+      if(AS_FILTER.cur){const arr=((DB.assets.data[c.id]||{})[AS_FILTER.cur])||[];v=arr.reduce((s,x)=>s+(Number(x.amt)||0),0)*rate(AS_FILTER.cur);}
+      else v=t.byCat[c.id]||0;
+      return{label:c.name,n:c.name,v:Math.max(0,v),color:c.color||PAL[i%PAL.length]};});}
   if(cid==='fn_pie')return holdingsArray().map((h,i)=>({label:h.fund,n:h.fund,v:h.currentValue,color:PAL[i%PAL.length]}));
   if(cid==='rn_pie'){const yr=todayStr().slice(0,4),by={};
     rentalRows().filter(r=>r.month.slice(0,4)===yr).forEach(r=>{const k=(r.tenant&&r.tenant.name)||'—';
@@ -3323,7 +3588,8 @@ function nwReturnPanel(){
   const r=nwReturn();
   return `<div class="panel glass" id="panel_return" style="border-left:3px solid ${r.kind==='xirr'?'var(--pos)':'var(--amber)'}"><div class="ph"><span class="swatch" style="background:${r.kind==='xirr'?'var(--pos)':'var(--amber)'}"></span><h3>Return on everything</h3></div>
     <div class="cards">${nwReturnCard()}${r.kind!=='none'?statCard({k:'Snapshots',v:String((DB.snapshots||[]).length),sub:'valuation points',icon:'📸'}):''}${r.kind==='xirr'&&r.cagr!=null?statCard({k:'Simple growth',v:pct(r.cagr),sub:'ignores your flows — shown for contrast',icon:'📈'}):''}</div>
-    ${r.reason?`<div class="muted" style="font-size:11.5px;margin-top:4px">${esc(r.reason)}</div>`:''}</div>`;}
+    ${r.reason?`<div class="muted" style="font-size:11.5px;margin-top:4px">${esc(r.reason)}</div>`:''}
+    ${r.thin?`<div class="warnbox">This XIRR assumes the ${r.flows} recorded flow(s) are every deposit and withdrawal since ${esc(r.since)}. If any are missing the number is wrong — log them in Money in &amp; out below.</div>`:''}</div>`;}
 function flowsPanel(){
   const rows=(DB.flows||[]).slice().reverse().map(f=>`<tr><td class="num" data-l="Date">${f.date}</td>
     <td class="l" data-l="What">${esc(f.label||'—')}</td>
@@ -3485,17 +3751,23 @@ const PRICE_SOURCES=[
        const close=Number(cols[6]);if(isFinite(close)&&close>0)out[s]=close;}
      if(!Object.keys(out).length)throw new Error('no usable rows');
      return{type:'quote',cur:'USD',prices:out};}},
-  {id:'yahoo',name:'Stocks fallback (Yahoo chart)',kind:'stock',keyless:true,
-   note:'Tried only when stooq fails. Also commonly CORS-blocked.',
+  {id:'yahoo',name:'Stocks — Yahoo (EGX .CA, US, EU)',kind:'stock',keyless:true,
+   note:'COMI.CA, NVDA, MC.PA … quoted in each market\'s own currency. Browser-blocked, so it needs your proxy.',
    run:async(syms)=>{const list=(syms||[]).filter(Boolean);
      if(!list.length)throw new Error('nothing bound to this source yet');
-     const out={};
+     const out={},curs={};
      for(const s of list){
        const j=JSON.parse(await srcFetch('https://query1.finance.yahoo.com/v8/finance/chart/'+encodeURIComponent(s.replace(/\.us$/i,''))));
-       const p=j&&j.chart&&j.chart.result&&j.chart.result[0]&&j.chart.result[0].meta&&j.chart.result[0].meta.regularMarketPrice;
-       if(isFinite(p)&&p>0)out[s]=p;}
+       const meta=j&&j.chart&&j.chart.result&&j.chart.result[0]&&j.chart.result[0].meta;const p=meta&&meta.regularMarketPrice;
+       if(isFinite(p)&&p>0){out[s]=p;curs[s]=String(meta.currency||'USD').toUpperCase();}}
      if(!Object.keys(out).length)throw new Error('no usable quotes');
-     return{type:'quote',cur:'USD',prices:out};}},
+     return{type:'quote',cur:'USD',curs,prices:out};}},
+  {id:'aaim',name:'AAIM fund NAV (Bareeq, Afaaq, Gozoor…)',kind:'fund',keyless:true,
+   note:'Reads the NAV printed on aaim.com.eg. Browser-blocked, so it needs your proxy.',
+   run:async(syms)=>{const list=(syms||[]).filter(Boolean);if(!list.length)throw new Error('nothing bound to this source yet');
+     const out={};for(const slug of list){const html=await srcFetch('https://aaim.com.eg/en/what-we-offer/funds/'+encodeURIComponent(slug));
+       const m=String(html).match(/Current price[\s\S]{0,120}?(\d+\.\d+)/);if(m)out[slug]=Number(m[1]);}
+     if(!Object.keys(out).length)throw new Error('NAV not found on the page');return{type:'quote',cur:'EGP',prices:out};}},
 ];
 function allSources(){
   const custom=(DB.settings.customSources||[]).map(c=>({
@@ -3519,6 +3791,7 @@ function classifyErr(e){
   return{status:'err',why:m||'Unknown error'};}
 function boundSymbols(kind){
   const out=[];
+  if(kind==='fund'){Object.keys(DB.funds.bind||{}).forEach(f=>{const b=DB.funds.bind[f];if(b&&b.kind==='fund'&&b.symbol)out.push(b.symbol);});}
   if(kind==='stock'||kind==='crypto'){
     DB.assets.categories.forEach(c=>{const cd=DB.assets.data[c.id]||{};
       Object.keys(cd).forEach(cur=>(cd[cur]||[]).forEach(it=>{
@@ -3560,8 +3833,9 @@ function applyQuotes(s,res,opts){
         const qty=Number(b.qty)||0;if(!(qty>0))return;
         const raw=unit*qty;
         /* a USD quote has to be walked into the row's own currency via EGP, or a €-row silently records $ */
-        let val=raw;
-        if(res.cur==='USD'&&cur!=='USD'){const egp=raw*(DB.rates.USD||1);val=(cur==='EGP')?egp:egp/(DB.rates[cur]||1);}
+        let val=raw;const qc=(res.curs&&res.curs[b.symbol])||res.cur;
+        if(qc&&qc!==cur&&qc!=='USD'){const egp=raw*(DB.rates[qc]||(qc==='EGP'?1:0));if(egp>0)val=(cur==='EGP')?egp:egp/(DB.rates[cur]||1);}
+        else if(qc==='USD'&&cur!=='USD'){const egp=raw*(DB.rates.USD||1);val=(cur==='EGP')?egp:egp/(DB.rates[cur]||1);}
         else if(res.cur&&cur!==res.cur&&DB.rates[res.cur]){const egp=raw*(DB.rates[res.cur]||1);val=(cur==='EGP')?egp:egp/(DB.rates[cur]||1);}
         it.amt=Math.round(val*100)/100;it.u=todayStr();it.pxSrc=s.id;
         if(res.proxy)it.pxProxy=true;
@@ -3575,6 +3849,7 @@ async function refreshPrices(manual){
     const r=await runSource(id);
     if(r.ok)ok++;else if(r.status==='blocked')blocked++;else failed++;}
   DB.settings.lastPriceRun=new Date().toISOString();
+  if(DB.snapshots.some(s=>s.date===todayStr()))recordSnapshot(); /* boot snapshotted before prices landed */
   save();renderActive();updateBadges();
   if(manual)toast(ok+' source'+(ok===1?'':'s')+' updated'+(blocked?' · '+blocked+' blocked by the browser':'')+(failed?' · '+failed+' failed':''),!ok);
   return{ok,blocked,failed};}
@@ -3592,21 +3867,23 @@ function maybeAutoPrices(){
 /* ── the top bar keeps search + privacy; everything else lives behind one button ── */
 function openMenu(){
   const st=(typeof Sync!=='undefined'&&Sync.statusText)?Sync.statusText():'';
-  const on=DB.settings.theme==='light';
+  const on=DB.settings.theme==='light';const stale=backupStale();
+  const rows=[
+    ['⚙️','Settings','everything, grouped',"closeModal();openSettings()",''],
+    ['☁️','Sync',(Sync.hasCfg()?'connected':'not connected'),"closeModal();openSync()",''],
+    ['📱','Pair device','phone ↔ laptop',"closeModal();openPair()",''],
+    [on?'☀️':'🌙',(on?'Light':'Dark')+' theme','tap to switch',"toggleTheme();closeModal();openMenu()",''],
+    [(()=>{const l=LOOKS.findIndex(x=>x[0]===currentLook());return l===0?'🫧':l===1?'🖋️':'📒';})(),
+      'Look: '+(LOOKS.find(x=>x[0]===currentLook())||LOOKS[0])[1].split(' — ')[0],'tap to swap',
+      "setLook(LOOKS[(LOOKS.findIndex(x=>x[0]===currentLook())+1)%LOOKS.length][0]);closeModal();openMenu()",''],
+    ['📸','Snapshot',"freeze today's totals","closeModal();recordSnap()",''],
+    ['💾','Backup now',backupLine(),"closeModal();exportBackup()",stale?'dang':''],
+    ['✍️','Update values',manualStale().length?manualStale().length+' need a value':'all fresh',"closeModal();openManualUpdate(false)",''],
+    ['⚑','Attention',attentionItems().length+' item(s) need you',"closeModal();switchTab('attention')",attentionItems().some(i=>i.level==='red')?'dang':'']];
   $('#modal').innerHTML=`<h3>⌘ Menu</h3><div class="desc">${esc(st)}</div>
-    <div class="mgrid">
-      <button class="mbtn" onclick="closeModal();openSettings()"><span class="ie">⚙️</span><span>Settings<small>everything, grouped</small></span></button>
-      <button class="mbtn" onclick="closeModal();openSync()"><span class="ie">☁️</span><span>Sync<small>${Sync.hasCfg()?'connected':'not connected'}</small></span></button>
-      <button class="mbtn" onclick="closeModal();openPair()"><span class="ie">📱</span><span>Pair device<small>phone ↔ laptop</small></span></button>
-      <button class="mbtn" onclick="toggleTheme();closeModal();openMenu()"><span class="ie">${on?'☀️':'🌙'}</span><span>${on?'Light':'Dark'} theme<small>tap to switch</small></span></button>
-      <button class="mbtn" onclick="setLook(currentLook()==='atelier'?'glass':'atelier');closeModal();openMenu()"><span class="ie">${currentLook()==='atelier'?'🖋️':'🫧'}</span><span>${currentLook()==='atelier'?'Atelier':'Glass'} look<small>tap to swap</small></span></button>
-      <button class="mbtn" onclick="closeModal();recordSnap()"><span class="ie">📸</span><span>Snapshot<small>freeze today's totals</small></span></button>
-      <button class="mbtn ${backupStale()?'dang':''}" onclick="closeModal();exportBackup()"><span class="ie">💾</span><span>Backup now<small>${backupLine()}</small></span></button>
-      <button class="mbtn wide" onclick="closeModal();switchTab('attention')"><span class="ie">⚑</span><span>Attention<small>${attentionItems().length} item(s) need you</small></span></button>
-    </div>
-    <div class="mfoot"><button class="btn gho" onclick="closeModal()">Close</button></div>`;
+    <div class="setlist">${rows.map(([ic,t,s,fn,cls])=>`<button class="setitem ${cls}" onclick="${fn}"><span class="ie">${ic}</span><span class="lbl"><b>${t}</b><small>${esc(s)}</small></span><span class="chev">›</span></button>`).join('')}</div>
+    <div class="mfoot"><button class="btn pri" onclick="closeModal()">Close</button></div>`;
   $('#scrim').classList.add('on');}
-
 /* ── undo is a permanent affordance, not a toast you can miss ── */
 function refreshUndo(){const p=$('#undoPill');if(!p)return;
   p.classList.toggle('on',!!UNDO);
@@ -3695,7 +3972,10 @@ function refreshBrief(){
   const last=DB.snapshots[DB.snapshots.length-1];const n=netWorth();
   let line=greet+nm+' ☀️ Net worth is '+fmt(n.egp)+' EGP (≈ '+fmt(n.usd)+' USD). Ask me anything, or paste a table.';
   if(last)line=greet+nm+' ☀️ You’re '+(n.egp-last.egp>=0?'up':'down')+' '+fmt(Math.abs(n.egp-last.egp))+' EGP since '+last.date+' — net worth '+fmt(n.egp)+' EGP. Ask away, or paste a table.';
-  DB.chat[0].text=line;}
+  if(DB.chat[0].text===line)return;
+  DB.chat[0].text=line;
+  const th=$('#chatThread');                       /* the thread is append-only now, so repaint bubble 0 by hand */
+  if(th&&th.children[0])th.children[0].textContent=line;}
 function bfCommit(){
   const rows=bfPlan();if(!rows.length){toast('Nothing to add',true);return;}
   const tenantId=$('#bf_ten').value;snapUndo();
@@ -3704,5 +3984,217 @@ function bfCommit(){
   DB.rental.records.sort((a,b)=>a.month.localeCompare(b.month));
   closeModal();persist();toastUndo(rows.length+' months backfilled');}
 </script>
+
+<script>
+/* ════════════ C2 LAYER — liabilities · household spending · coupon income · currency exposure · duplicate guard ════════════ */
+
+/* ── LIABILITIES: real debt, in its own currency, netted off gross assets ── */
+function liabList(){return (DB.liabilities||[]);}
+function liabEGP(l){return (Number(l.balance)||0)*rate(l.cur||'EGP');}
+function liabTotalEGP(){return liabList().reduce((s,l)=>s+liabEGP(l),0);}
+function liabActive(l,key){
+  if(!l||l.closed)return false;
+  if(l.start&&key<String(l.start).slice(0,7))return false;
+  if(l.end&&key>String(l.end).slice(0,7))return false;
+  return true;}
+function liabPaymentEGP(l){return (Number(l.payment)||0)*rate(l.cur||'EGP');}
+function liabPaymentsFor(key){return liabList().filter(l=>liabActive(l,key)).reduce((s,l)=>s+liabPaymentEGP(l),0);}
+/* months to clear at the current payment, interest included. null months = the payment never clears it. */
+function liabPayoff(l){
+  const bal=Number(l.balance)||0,pay=Number(l.payment)||0,r=(Number(l.rate)||0)/100/12;
+  if(!(bal>0)||!(pay>0))return null;
+  if(r<=0){const m=Math.ceil(bal/pay);return{months:m,interest:0};}
+  if(pay<=bal*r)return{months:null,interest:null,never:true};   /* payment does not even cover the interest */
+  const n=Math.log(pay/(pay-bal*r))/Math.log(1+r);
+  const months=Math.ceil(n);
+  return{months,interest:Math.max(0,months*pay-bal)};}
+function liabLinkValue(l){
+  if(!l||!l.linked||!l.linked.kind)return null;
+  if(l.linked.kind==='fund'){const h=holdingsArray().find(h=>h.fund===l.linked.ref);return h?h.currentValue:null;}
+  const[cid,desc]=String(l.linked.ref).split('|');const cd=DB.assets.data[cid]||{};let v=null;
+  Object.keys(cd).forEach(cur=>{(cd[cur]||[]).forEach(it=>{if(it.desc===desc)v=(Number(it.amt)||0)*rate(cur);});});return v;}
+
+const LIAB_TYPES={mortgage:'Mortgage',bankloan:'Bank loan',carloan:'Car loan',personal:'Personal loan',credit:'Credit line',other:'Other'};
+function liabPanel(){
+  const list=liabList();
+  const rows=list.length?list.map(l=>{const po=liabPayoff(l);const lv=liabLinkValue(l);const eq=(lv!=null)?lv-liabEGP(l):null;
+    return `<tr><td class="l" data-l="Debt">${esc(l.name)}${l.closed?' <span class="tag">closed</span>':''}
+        <div class="udate">${LIAB_TYPES[l.type]||l.type||'—'}${l.linked&&l.linked.kind?' · 🔗 '+esc(String(l.linked.ref).split('|').pop()):''}</div></td>
+      <td class="num" data-l="Balance">${fmt(l.balance)} ${cchip(l.cur||'EGP')}</td>
+      <td class="num muted" data-l="≈ EGP">${fmt(liabEGP(l))}</td>
+      <td class="num" data-l="Rate">${l.rate?Number(l.rate).toFixed(2)+'%':'—'}</td>
+      <td class="num" data-l="Payment / mo">${l.payment?fmt(l.payment):'—'}</td>
+      <td class="num ${po&&po.never?'neg':''}" data-l="Clear in">${po?(po.never?'never at this payment':(po.months>=12?(po.months/12).toFixed(1)+' yr':po.months+' mo')):'—'}</td>
+      <td class="num ${eq!=null?(eq>=0?'pos':'neg'):'muted'}" data-l="Equity">${eq!=null?shortN(eq):'—'}</td>
+      <td><button class="x" onclick="openLiab('${l.id}')">✏️</button></td><td><button class="x" onclick="delLiab('${l.id}')">✕</button></td></tr>`;}).join('')
+    :'<tr><td colspan="9" class="muted" style="text-align:center;padding:14px">No debt tracked. If you hold a mortgage or loan, add it — until you do, net worth here is <b>gross</b>.</td></tr>';
+  const tot=liabTotalEGP(),pay=liabPaymentsFor(monthStr());
+  const fxDebt=list.filter(l=>(l.cur||'EGP')!=='EGP').reduce((s,l)=>s+liabEGP(l),0);
+  return `<div class="panel glass" id="panel_liabilities" style="border-left:3px solid var(--neg)"><div class="ph"><span class="swatch" style="background:var(--neg)"></span><h3>Liabilities</h3><span class="sp"></span><button class="btn sm" onclick="openLiab()">＋ Debt</button></div>
+    <div class="muted" style="font-size:11.5px;margin-bottom:9px">What you owe, in the currency you owe it in. This is subtracted from gross assets to give net worth, and the payments feed every projection.</div>
+    <div style="overflow-x:auto"><table class="tbl"><thead><tr><th class="l">Debt</th><th>Balance</th><th>≈ EGP</th><th>Rate</th><th>Payment / mo</th><th>Clear in</th><th>Equity</th><th></th><th></th></tr></thead><tbody>${rows}</tbody></table></div>
+    ${list.length?`<div class="kpi-mini" style="margin-top:10px"><div class="m">Total owed<b class="num neg">${fmt(tot)}</b></div><div class="m">Debt service / mo<b class="num neg">${fmt(pay)}</b></div><div class="m">Of which foreign-currency<b class="num ${fxDebt?'neg':''}">${fxDebt?fmt(fxDebt):'none'}</b></div></div>`:''}
+    ${fxDebt>0?`<div class="warnbox">⚠️ ${fmt(fxDebt)} EGP of this debt is denominated in a foreign currency. If the pound weakens, this balance grows in EGP terms while EGP-denominated assets do not. See Currency exposure on the Overview.</div>`:''}</div>`;}
+function openLiab(id){
+  const l=liabList().find(x=>x.id===id)||{id:'liab_'+uid(),name:'',type:'mortgage',cur:'EGP',balance:0,rate:0,payment:0,start:todayStr(),end:'',linked:{kind:null,ref:''},closed:false};
+  const isNew=!liabList().some(x=>x.id===l.id);
+  const linkRef=l.linked&&l.linked.kind?l.linked.kind+':'+l.linked.ref:'';
+  $('#modal').innerHTML=`<h3>${isNew?'New debt':'Edit debt'}</h3>
+    <div class="desc">Track the outstanding balance, not the payments. Link it to the asset it is secured against and you get equity and LTV for free.</div>
+    <label class="fl">Name</label><input class="inp" id="lb_n" value="${esc(l.name)}" placeholder="e.g. Downtown flat mortgage">
+    <div class="grid2"><div><label class="fl">Type</label><select class="inp" id="lb_t">${Object.entries(LIAB_TYPES).map(([k,v])=>`<option value="${k}" ${k===l.type?'selected':''}>${v}</option>`).join('')}</select></div>
+    <div><label class="fl">Currency</label><select class="inp" id="lb_c">${['EGP','USD','EUR','AED'].map(x=>`<option ${x===(l.cur||'EGP')?'selected':''}>${x}</option>`).join('')}</select></div></div>
+    <div class="grid2"><div><label class="fl">Outstanding balance</label><input class="inp num" id="lb_b" value="${fmt(l.balance)}"></div>
+    <div><label class="fl">Rate (% per year)</label><input class="inp num" id="lb_r" value="${l.rate||0}"></div></div>
+    <div class="grid2"><div><label class="fl">Payment / month</label><input class="inp num" id="lb_p" value="${fmt(l.payment)}"></div>
+    <div><label class="fl">Final payment (optional)</label><input class="inp" id="lb_e" type="date" value="${l.end||''}"></div></div>
+    <label class="fl">Secured against (optional)</label><select class="inp" id="lb_l">${holdingOptions().map(([v,lab])=>`<option value="${v}" ${v===linkRef?'selected':''}>${esc(lab)}</option>`).join('')}</select>
+    <label class="fl">Status</label><select class="inp" id="lb_s"><option value="0" ${!l.closed?'selected':''}>Open</option><option value="1" ${l.closed?'selected':''}>Settled / closed</option></select>
+    <div class="mfoot">${isNew?'':`<button class="btn gho dang" onclick="delLiab('${l.id}')">Delete</button>`}<button class="btn gho" onclick="closeModal()">Cancel</button><button class="btn pri" onclick="saveLiab('${l.id}')">Save debt</button></div>`;
+  $('#scrim').classList.add('on');}
+function saveLiab(id){
+  const name=$('#lb_n').value.trim();if(!name){toast('Name the debt',true);return;}
+  const lv=$('#lb_l').value;let linked={kind:null,ref:''};if(lv){const i=lv.indexOf(':');linked={kind:lv.slice(0,i),ref:lv.slice(i+1)};}
+  const prev=liabList().find(x=>x.id===id)||{};
+  const obj={id,name,type:$('#lb_t').value,cur:$('#lb_c').value,balance:parseAmt($('#lb_b').value),
+    rate:Number(parseAmt($('#lb_r').value))||0,payment:parseAmt($('#lb_p').value),
+    start:prev.start||todayStr(),end:$('#lb_e').value||'',linked,closed:$('#lb_s').value==='1',
+    n:prev.n||'',h:prev.h||[],u:todayStr()};
+  stampHist(obj,obj.balance);
+  DB.liabilities=DB.liabilities||[];
+  const i=DB.liabilities.findIndex(x=>x.id===id);
+  if(i>=0)DB.liabilities[i]=obj;else DB.liabilities.push(obj);
+  closeModal();persist();toast('Debt saved ✓');}
+async function delLiab(id){
+  const l=liabList().find(x=>x.id===id);if(!l)return;
+  if(!await confirmGlass('Delete debt','Remove “'+l.name+'”? Net worth rises by '+fmt(liabEGP(l))+' EGP — only do this if it is actually settled.',true))return;
+  snapUndo('delete debt');DB.liabilities=DB.liabilities.filter(x=>x.id!==id);persist();toastUndo('Debt removed');}
+
+/* ── HOUSEHOLD SPENDING: one number, effective-dated. Change it once a year, nothing else to maintain. ── */
+function spendRows(){return (DB.planner.spend||[]).slice().sort((a,b)=>String(a.from).localeCompare(String(b.from)));}
+function spendFor(key){let v=0;spendRows().forEach(s=>{if(String(s.from)<=key)v=Number(s.amount)||0;});return v;}
+function spendNow(){return spendFor(monthStr());}
+function spendPanel(){
+  const rows=spendRows();
+  const cur=spendNow();
+  const body=rows.length?rows.slice().reverse().map(s=>`<tr><td class="num" data-l="From">${s.from}</td>
+      <td class="num" data-l="Per month">${fmt(s.amount)}</td>
+      <td class="l muted" data-l="Note">${esc(s.note||'—')}</td>
+      <td><button class="x" onclick="delSpend('${s.id}')">✕</button></td></tr>`).join('')
+    :'<tr><td colspan="4" class="muted" style="text-align:center;padding:12px">No spending set — every runway number below assumes you spend nothing.</td></tr>';
+  return `<div class="panel glass" id="panel_spend" style="border-left:3px solid var(--rose)"><div class="ph"><span class="swatch" style="background:var(--rose)"></span><h3>Monthly spending</h3>
+      ${cur?`<span class="tag">${fmt(cur)} / mo now</span>`:'<span class="tag" style="color:var(--neg)">not set</span>'}<span class="sp"></span></div>
+    <div class="muted" style="font-size:11.5px;margin-bottom:10px">One number: what you spend in a typical month. When it changes, add a new row from that month — the old one stays as history and the projection uses whichever applies. Nothing else to keep up to date.</div>
+    <div class="row"><div class="field" style="flex:1"><label>Amount / month (EGP)</label><input class="inp num" id="sp_a" placeholder="${cur?fmt(cur):'e.g. 120,000'}"></div>
+      <div class="field"><label>From month</label><input class="inp num" id="sp_f" type="month" value="${monthStr()}"></div>
+      <div class="field" style="flex:1"><label>Note (optional)</label><input class="inp" id="sp_n" placeholder="e.g. after school fees went up"></div>
+      <button class="btn sm pri" onclick="addSpend()">Set</button></div>
+    <table class="tbl" style="margin-top:10px"><thead><tr><th>From</th><th>Per month</th><th class="l">Note</th><th></th></tr></thead><tbody>${body}</tbody></table></div>`;}
+function addSpend(){
+  const a=parseAmt($('#sp_a').value),from=$('#sp_f').value||monthStr(),note=$('#sp_n').value.trim();
+  if(!(a>0)){toast('Enter an amount',true);return;}
+  DB.planner.spend=DB.planner.spend||[];
+  const i=DB.planner.spend.findIndex(s=>s.from===from);
+  const row={id:(i>=0?DB.planner.spend[i].id:'sp_'+uid()),from,amount:a,note,u:todayStr()};
+  if(i>=0)DB.planner.spend[i]=row;else DB.planner.spend.push(row);
+  persist();toast('Spending set from '+from);}
+async function delSpend(id){
+  const s=(DB.planner.spend||[]).find(x=>x.id===id);if(!s)return;
+  if(!await confirmGlass('Remove spending row','Drop the '+fmt(s.amount)+' / month figure effective '+s.from+'? Projections change.',true))return;
+  snapUndo();DB.planner.spend=DB.planner.spend.filter(x=>x.id!==id);persist();toastUndo('Removed');}
+
+/* ── COUPON + MATURITY: a certificate pays real cash; the projection has to know about it ── */
+function assetInstruments(){const out=[];
+  DB.assets.categories.forEach(c=>{const cd=DB.assets.data[c.id]||{};
+    Object.keys(cd).forEach(cur=>(cd[cur]||[]).forEach(it=>{if(it.inst&&it.inst.maturity)out.push({it,cur,cat:c});}));});
+  return out;}
+function monthsBetweenKeys(a,b){if(!a||!b)return 0;
+  const A=String(a).split('-').map(Number),B=String(b).split('-').map(Number);
+  return Math.max(0,(B[0]-A[0])*12+(B[1]-A[1]));}
+function couponFor(key){
+  let s=0;
+  assetInstruments().forEach(({it,cur})=>{
+    const i=it.inst,y=instYield(it);if(!y)return;
+    const mk=String(i.maturity||'').slice(0,7),sk=String(i.start||'').slice(0,7);
+    if(sk&&key<sk)return;
+    if(mk&&key>mk)return;
+    const mo=Number(key.slice(5,7))||0;
+    const anchor=Number(sk.slice(5,7))||mo;
+    let pay=0;
+    if(i.payout==='monthly')pay=y.annual/12;
+    else if(i.payout==='quarterly')pay=((((mo-anchor)%3)+3)%3===0)?y.annual/4:0;
+    else if(i.payout==='annual')pay=(mo===anchor)?y.annual:0;
+    else if(key===mk)pay=y.annual*Math.max(1,monthsBetweenKeys(sk,mk))/12;  /* at maturity: everything accrued */
+    if(pay)s+=pay*rate(cur);});
+  return s;}
+function maturityPrincipalFor(key){let s=0;
+  assetInstruments().forEach(({it,cur})=>{
+    if(String(it.inst.maturity||'').slice(0,7)===key)s+=(Number(it.inst.principal)||Number(it.amt)||0)*rate(cur);});
+  return s;}
+function lockedCapitalEGP(){return assetInstruments().reduce((s,{it,cur})=>{
+  const r=instRAG(it);return (r&&r.days>92)?s+((Number(it.inst.principal)||Number(it.amt)||0)*rate(cur)):s;},0);}
+function annualCouponEGP(){return assetInstruments().reduce((s,{it,cur})=>{const y=instYield(it);return y?s+y.annual*rate(cur):s;},0);}
+
+/* ── CURRENCY EXPOSURE: for an EGP-based balance sheet this is the risk that actually matters ── */
+function fxPosition(){
+  const t=assetsTotals();
+  let hardAssets=0;Object.keys(t.byCur).forEach(c=>{if(c!=='EGP')hardAssets+=(t.byCur[c]||0)*rate(c);});
+  const hardDebt=liabList().filter(l=>(l.cur||'EGP')!=='EGP').reduce((s,l)=>s+liabEGP(l),0);
+  const nw=netWorth();
+  return{hardAssets,hardDebt,net:hardAssets-hardDebt,
+    pctAssets:nw.gross>0?hardAssets/nw.gross*100:0,
+    pctNet:nw.egp!==0?(hardAssets-hardDebt)/Math.abs(nw.egp)*100:0};}
+/* what a devaluation does to net worth: hard assets appreciate in EGP, hard debt grows too */
+function devalImpact(pctDrop){
+  const f=fxPosition();const k=pctDrop/100;
+  return f.net*k;}  /* net short ⇒ negative */
+function fxPanel(){
+  const f=fxPosition();const nw=netWorth();
+  const short=f.net<0;
+  return `<div class="panel glass" id="panel_fx" style="border-left:3px solid ${short?'var(--neg)':'var(--teal)'}"><div class="ph"><span class="swatch" style="background:${short?'var(--neg)':'var(--teal)'}"></span><h3>Currency exposure</h3>
+      <span class="tag" style="color:${short?'var(--neg)':'var(--pos)'}">${short?'Net short hard currency':'Net long hard currency'}</span><span class="sp"></span></div>
+    <div class="kpi-mini"><div class="m">Hard-currency assets<b class="num">${fmt(f.hardAssets)}</b></div>
+      <div class="m">Hard-currency debt<b class="num ${f.hardDebt?'neg':''}">${f.hardDebt?fmt(f.hardDebt):'none'}</b></div>
+      <div class="m">Net FX position<b class="num ${short?'neg':'pos'}">${signed(f.net)}</b></div>
+      <div class="m">Share of gross assets<b class="num">${f.pctAssets.toFixed(1)}%</b></div></div>
+    <div class="muted" style="font-size:11.5px;margin-top:10px">If the pound weakens <b>20%</b>, this position moves net worth by <b class="num ${devalImpact(20)>=0?'pos':'neg'}">${signed(devalImpact(20))} EGP</b>${short?' — foreign-currency debt grows faster than foreign-currency assets.':'.'} Hard currency is USD, EUR and AED; funds are treated as EGP.</div></div>`;}
+
+/* ── DUPLICATE GUARD: the same holding living in Assets and in Funds ── */
+function normName(s){return String(s||'').toLowerCase().replace(/\(.*?\)/g,' ').replace(/[^a-z0-9؀-ۿ ]/g,' ').split(/\s+/).filter(w=>w.length>=4);}
+function duplicateSuspects(){
+  const out=[];const funds=(DB.funds.names||[]).map(f=>({f,toks:normName(f)}));
+  if(!funds.length)return out;
+  DB.assets.categories.forEach(c=>{const cd=DB.assets.data[c.id]||{};
+    Object.keys(cd).forEach(cur=>(cd[cur]||[]).forEach((it,idx)=>{
+      const toks=normName(it.desc);if(!toks.length)return;
+      funds.forEach(({f,toks:ft})=>{
+        if(!ft.length)return;
+        const hit=toks.some(t=>ft.includes(t));
+        if(hit)out.push({assetDesc:it.desc,cat:c,cur,idx,fund:f,
+          assetEgp:(Number(it.amt)||0)*rate(cur),
+          fundEgp:(holdingsArray().find(h=>h.fund===f)||{}).currentValue||0,
+          path:`asset:${c.id}:${cur}:${idx}`});});}));});
+  return out;}
+ATTN_SOURCES.push(()=>{
+  const d=duplicateSuspects();if(!d.length)return[];
+  const worst=d[0];
+  return[{icon:'♊',level:'red',
+    title:d.length+' holding'+(d.length===1?'':'s')+' may be counted twice',
+    detail:'“'+worst.assetDesc+'” in '+worst.cat.name+' ('+shortN(worst.assetEgp)+') looks like the same thing as the fund “'+worst.fund+'” ('+shortN(worst.fundEgp)+'), which is tracked separately with units and a price. If both are real, net worth is overstated by the smaller of the two. Keep the fund, delete the asset row — or rename one if they are genuinely different.',
+    act:{label:'Open the asset',fn:()=>{switchTab('assets');openDetail(worst.path);}}}];});
+ATTN_SOURCES.push(()=>{
+  const out=[];
+  const hasMortgageRows=DB.rental.records.some(r=>Number(r.mortgage)>0);
+  if(hasMortgageRows&&!liabList().length)out.push({icon:'🏦',level:'red',
+    title:'You pay a mortgage but no loan balance is tracked',
+    detail:'Your rental ledger records mortgage payments, so there is a loan — but with no balance recorded, net worth here is gross and overstated by whatever is still outstanding.',
+    act:{label:'Add the debt',fn:()=>{switchTab('assets');openLiab();}}});
+  if(!spendNow())out.push({icon:'🧾',level:'amber',
+    title:'Monthly spending is not set',
+    detail:'Runway, the low-point warnings and the liquidity target all assume you spend nothing each month. One number fixes every one of them.',
+    act:{label:'Set it',fn:()=>{switchTab('planner');flashTarget('panel_spend');}}});
+  return out;});
+</script>
+
 </body>
 </html>
