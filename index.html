@@ -178,6 +178,93 @@ html[data-look="ledger"] .tbl tbody tr:nth-child(even){background:rgba(120,110,9
 .tiergrp{background:var(--glass-2);box-shadow:0 8px 26px rgba(0,0,0,.22)}
 .tiergrp .tierhead{background:rgba(255,255,255,.035)}
 html[data-theme="light"] .tiergrp .tierhead{background:rgba(15,23,32,.035)}
+
+/* ═══════════ v2.3.0 — the Update surface: organised by where money lives ═══════════ */
+.up-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 18px;margin-bottom:14px}
+.up-top .big{font-size:22px;font-weight:700;letter-spacing:-.01em}
+.up-top .sp{flex:1}
+.up-strip{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.up-strip::-webkit-scrollbar{display:none}
+.up-chip{flex:none;display:flex;align-items:center;gap:8px;padding:9px 13px;border-radius:14px;border:1px solid var(--line);background:var(--glass-2);color:var(--ink);font-family:inherit;font-size:12.5px;cursor:pointer;transition:transform .15s,border-color .15s}
+.up-chip:hover{transform:translateY(-1px);border-color:var(--accent)}
+.up-chip.on{border-color:var(--accent);background:var(--glass-hi);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 30%,transparent)}
+.up-chip .ic{font-size:15px}
+.up-chip .due{font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:999px;background:var(--amber,#f59e0b);color:#1a1a1a}
+.up-chip .due.ok{background:rgba(52,211,153,.2);color:var(--pos)}
+.up-panel .ph h3{display:flex;align-items:center;gap:9px}
+.up-panel .tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:4px 0 12px}
+.up-panel .tbl input.upin{width:100%;min-width:120px;max-width:190px;font-size:15px;padding:9px 11px;text-align:right;border-radius:10px;border:1px solid var(--line);background:var(--bg-1);color:var(--ink);font-family:var(--mono)}
+.up-panel .tbl input.upin:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 25%,transparent)}
+.up-panel tr.due td:first-child{box-shadow:inset 3px 0 0 var(--amber,#f59e0b)}
+.up-panel .hl{font-size:13px}.up-panel .hl small{display:block;font-size:10.5px;color:var(--ink-faint);margin-top:2px}
+.up-panel .catchip{font-size:9.5px;padding:1px 6px;border-radius:999px;border:1px solid var(--line);color:var(--ink-dim);margin-left:6px;vertical-align:1px}
+.up-panel .live{font-size:9.5px;padding:1px 6px;border-radius:999px;background:rgba(52,211,153,.16);color:var(--pos);margin-left:6px}
+.up-panel tr.acchead td{padding:14px 12px 6px!important;font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim);background:transparent!important;border:none!important}
+.okbtn{border:1px solid var(--line);background:var(--glass-2);color:var(--ink-dim);border-radius:9px;padding:6px 10px;font-size:12px;cursor:pointer;font-family:inherit;transition:all .15s}
+.okbtn:hover{border-color:var(--pos);color:var(--pos);background:rgba(52,211,153,.12)}
+.udate .okbtn{padding:0 6px;font-size:10.5px;margin-left:6px;border-radius:6px}
+/* motion with colour: add green · update blue · confirm amber · delete red */
+@keyframes fxAdd{0%{background:rgba(52,211,153,.42);box-shadow:inset 4px 0 0 #34d399}70%{background:rgba(52,211,153,.10)}100%{background:transparent;box-shadow:inset 4px 0 0 transparent}}
+@keyframes fxUpd{0%{background:rgba(96,165,250,.40);box-shadow:inset 4px 0 0 #60a5fa}70%{background:rgba(96,165,250,.10)}100%{background:transparent;box-shadow:inset 4px 0 0 transparent}}
+@keyframes fxOk{0%{background:rgba(251,191,36,.34);box-shadow:inset 4px 0 0 #fbbf24}70%{background:rgba(251,191,36,.08)}100%{background:transparent;box-shadow:inset 4px 0 0 transparent}}
+@keyframes fxDel{0%{background:rgba(248,113,113,.45);opacity:1;transform:none}100%{background:rgba(248,113,113,0);opacity:0;transform:translateX(18px)}}
+@keyframes fxPop{0%{transform:scale(1)}40%{transform:scale(1.07)}100%{transform:scale(1)}}
+tr.fx-add{animation:fxAdd 1.5s ease-out}tr.fx-upd{animation:fxUpd 1.5s ease-out}tr.fx-ok{animation:fxOk 1.3s ease-out}tr.fx-del{animation:fxDel .36s ease-in forwards}
+tr.fx-upd .num,tr.fx-add .num,tr.fx-ok .num{animation:fxPop .5s ease-out}
+@media (prefers-reduced-motion:reduce){tr[class*="fx-"],tr[class*="fx-"] .num{animation:none!important}}
+.mobtab button .ml{font-size:9.5px}
+
+/* ── v2.3.1: sub-group headers in any table, other-currency chip ── */
+.tbl tr.acchead td{padding:14px 12px 6px!important;font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim);background:transparent!important;border:none!important;border-bottom:1px solid var(--line-2)!important}
+.tbl tr.acchead:nth-child(even){background:transparent}
+.origchip{font-size:10px;padding:1px 7px;border-radius:999px;border:1px dashed var(--line);color:var(--ink-dim);text-decoration:none;margin-right:4px}
+.origchip:hover{border-color:var(--accent);color:var(--ink)}
+.catchip{font-size:9.5px;padding:1px 6px;border-radius:999px;border:1px solid var(--line);color:var(--ink-dim)}
+
+/* ── v2.3.2: the Update group is its own thing — tinted, collapsible, never mistaken for navigation ── */
+.navgrp.upd{margin:10px 0 4px;border-radius:12px;background:color-mix(in srgb,var(--accent,#5eead4) 9%,transparent);border:1px solid color-mix(in srgb,var(--accent,#5eead4) 32%,transparent);padding:2px 4px 6px}
+.navgrp.upd .grph{margin:4px 0 2px;background:transparent;border:none;box-shadow:none;color:var(--accent,#5eead4);letter-spacing:.16em}
+.navgrp.upd .grph .chev::after{color:var(--accent,#5eead4)}
+.navgrp.upd .navbtn.on{background:color-mix(in srgb,var(--accent,#5eead4) 22%,transparent)}
+.navgrp.upd .badge{background:var(--amber,#f59e0b);color:#1a1a1a}
+.navgrp.upd.closed{padding-bottom:2px}
+
+/* ── v2.4.0: the Funds desk ── */
+.fundlink{color:var(--ink);text-decoration:none;font-weight:600;border-bottom:1px dashed var(--line)}
+.fundlink:hover{border-bottom-color:var(--accent);color:var(--accent)}
+.acts{white-space:nowrap}.acts .okbtn{margin-right:4px}
+.tbl input.fpin{text-align:right}
+.totbar{display:flex;gap:22px;flex-wrap:wrap;padding:14px 18px;margin-top:6px}
+.totbar div{display:flex;flex-direction:column;gap:2px}
+.totbar small{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
+.totbar b{font-size:16px;font-family:var(--mono)}
+.deskcard{border-color:color-mix(in srgb,var(--accent,#5eead4) 55%,var(--line));box-shadow:0 0 0 1px color-mix(in srgb,var(--accent,#5eead4) 22%,transparent),0 14px 34px rgba(0,0,0,.28)}
+.deskstats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:14px}
+.deskstats>div{padding:10px 12px;border-radius:12px;background:var(--glass-2);border:1px solid var(--line-2)}
+.deskstats small{display:block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:3px}
+.deskstats b{font-size:15px;font-family:var(--mono)}
+.deskstats input{width:100%;font-size:15px;font-family:var(--mono);padding:2px 0;border:none;border-bottom:1px solid var(--line);background:transparent;color:var(--ink)}
+.deskstats input:focus{outline:none;border-bottom-color:var(--accent)}
+.desk-trade{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:4px 0 6px}
+.desk-trade .inp{flex:1 1 110px;min-width:96px}
+#dk_prev{font-size:12px;margin:0 0 12px;min-height:16px}
+@media(max-width:820px){.acts .okbtn,.acts .x{min-height:36px}.desk-trade .inp{flex:1 1 45%}}
+
+/* ── v2.5.0 ── */
+.navbtn[data-tab="overview"]:not(.on){background:color-mix(in srgb,var(--accent,#5eead4) 12%,transparent);color:var(--ink);font-weight:600}
+.navbtn[data-tab="overview"]:not(.on):hover{background:color-mix(in srgb,var(--accent,#5eead4) 22%,transparent)}
+.fine{font-size:10.5px;opacity:.72;margin-left:4px;font-weight:400}
+.closedbox{margin:18px 0;border:1px dashed var(--line);border-radius:14px;padding:10px 14px;opacity:.82}
+.closedbox summary{cursor:pointer;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim);list-style:none}
+.closedbox summary::-webkit-details-marker{display:none}
+.closedbox summary::before{content:'▸ ';color:var(--ink-faint)}
+.closedbox[open] summary::before{content:'▾ '}
+.closedrow td{color:var(--ink-dim)}
+.editrow td{background:color-mix(in srgb,var(--accent,#5eead4) 10%,transparent)!important}
+.editrow input,.editrow select{width:100%;min-width:70px}
+.chips.tiny{display:inline-flex;gap:4px;margin:0}
+.chips.tiny .chip{padding:3px 8px;font-size:10.5px}
+.trprev{font-size:12px;margin:0 0 12px;min-height:16px}
 /*V29*/.tierhead{display:flex;align-items:center;gap:10px;margin:26px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
 .tierhead:first-child{margin-top:4px}
 .tierhead h3{font-size:14px;font-weight:700;letter-spacing:.02em}
@@ -717,7 +804,11 @@ canvas{display:block;width:100%}
 <div class="app">
   <aside class="rail">
     <div class="brand"><div class="mark"></div><div><b>Wealth OS</b><small id="brandSub">Command center</small></div></div>
-    <button class="navbtn on" data-tab="overview"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/></svg></span> Overview</button>
+    <button class="navbtn" data-tab="overview"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/></svg></span> Overview</button>
+    <div class="navgrp upd" data-grp="update"><button class="grph" onclick="navGrp('update')">Update <span class="chev">▾</span></button><div class="grpb">
+    <button class="navbtn" data-tab="update"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span> Start updating <span class="badge" id="upBadge"></span></button>
+    <div class="subwrap" id="subs_update"></div>
+    </div></div>
     <div class="navgrp" data-grp="wealth"><button class="grph" onclick="navGrp('wealth')">Wealth <span class="chev">▾</span></button><div class="grpb">
     <button class="navbtn" data-tab="assets"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span> Assets</button>
     <div class="subwrap" id="subs_assets"></div>
@@ -757,7 +848,8 @@ canvas{display:block;width:100%}
 
     <div class="scroll">
       <!-- OVERVIEW -->
-      <section class="view on" data-view="overview">
+      <section class="view" data-view="update"><div id="upBody"></div></section>
+      <section class="view" data-view="overview">
         <div id="ovChat"></div>
         <div id="ovBody"></div>
       </section>
@@ -794,7 +886,8 @@ canvas{display:block;width:100%}
 </div>
 
 <nav class="mobtab">
-  <button class="on" data-tab="overview"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/></svg></span><span class="ml">Overview</span></button>
+  <button data-tab="overview"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/></svg></span><span class="ml">Overview</span></button>
+  <button data-tab="update"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><span class="ml">Update</span></button>
   <button data-tab="assets"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span><span class="ml">Assets</span></button>
   <button data-tab="funds"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span><span class="ml">Funds</span></button>
   <button data-tab="rental"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span><span class="ml">Rental</span></button>
@@ -822,7 +915,7 @@ const FLAGS={EGP:'🇪🇬',USD:'🇺🇸',EUR:'🇪🇺',AED:'🇦🇪'};
 const KEY='wealthos_v1';
 
 /* ── A1.5 build identity ── */
-const BUILD={v:'2.2.12',ts:'2026-09-13T22:07Z'};
+const BUILD={v:'2.6.0',ts:'2026-10-01T19:08Z'};
 /* forceUpdate lives in the B3 layer — the old ?v= version 404'd inside in-app browsers */
 
 /* ── A1.3 colour tokens: one colour = one meaning (currency dimension) ── */
@@ -1036,7 +1129,7 @@ function load(){
 function migrate(d){const base=defaultDB();d.settings=Object.assign(base.settings,d.settings||{});
   d.rates=Object.assign(base.rates,d.rates||{});d.assets=d.assets||base.assets;d.funds=d.funds||base.funds;
   d.rental=d.rental||base.rental;d.payments=d.payments||base.payments;d.planner=Object.assign(base.planner,d.planner||{});
-  d.snapshots=d.snapshots||[];d.chat=d.chat||[];return migrateV6(migrateV5(migrateV4(migrateV3(migrateV2(d)))));}
+  d.snapshots=d.snapshots||[];d.chat=d.chat||[];return migrateV8(migrateV7(migrateV6(migrateV5(migrateV4(migrateV3(migrateV2(d)))))));}
 /* ── A1.1 schema v2: tags struct + category colours; records gain u on next edit (never back-dated) ── */
 function migrateV2(d){
   if((d.v||1)>=2)return d;
@@ -1350,6 +1443,61 @@ function updateBadges(){const up=upcomingPayments(30).length;const b=$('#payBadg
 function toggleColl(id){$('#'+id).classList.toggle('closed');}
 
 /* ════════════ ASSETS ════════════ */
+function assetRowHTML(c,cur,idx,it,showCat){const egp=(Number(it.amt)||0)*rate(cur);const fl=flagFor(it,'asset');const rg=instRAG(it);
+  return `<tr id="arow_${c.id}_${cur}_${idx}" class="${rg&&rg.level!=='green'?'mat-'+rg.level:''} ${fxClass(`asset:${c.id}:${cur}:${idx}`)}"><td class="l" data-l="Item"><div class="cellf">${ragDot(it)}<input class="l" value="${esc(it.desc)}" onchange="assetEdit('${c.id}','${cur}',${idx},'desc',this.value)">${flagIcon(fl)}</div><div class="udate">${showCat?'<span class="catchip">'+esc(c.name)+'</span> ':''}${it.orig?`<a class="origchip" href="#" onclick="openOrigEdit('${c.id}','${cur}',${idx});return false">${fmt(it.orig.amt)} ${esc(it.orig.cur)} @ ${it.orig.rate} $</a> `:''}${it.u||'—'}<button class="okbtn" onclick="assetConfirm('${c.id}','${cur}',${idx})" title="Still right — stamp today">✓</button></div></td>
+        <td data-l="Amount"><input class="num" value="${fmt(it.amt)}" onkeydown="if(event.key==='Enter'){event.preventDefault();this.dataset.done='1';assetEnter('${c.id}','${cur}',${idx},this.value)}" onchange="if(!this.dataset.done)assetEdit('${c.id}','${cur}',${idx},'amt',this.value)"></td>
+        <td data-l="Currency"><select onchange="assetMove('${c.id}','${cur}',${idx},this.value)">${['EGP','USD','EUR','AED'].map(x=>`<option ${x===cur?'selected':''}>${x}</option>`).join('')}</select></td>
+        <td class="num muted" data-l="≈ EGP">${fmt(egp)}</td><td class="l" data-l="Note">${noteChip(`asset:${c.id}:${cur}:${idx}`,it.n)}${histBadge(it)}</td><td><button class="x" onclick="assetDel('${c.id}','${cur}',${idx})">✕</button></td></tr>`;}
+/* ── v2.3.1: arrange and sort the Assets page the way you think about it ── */
+function asView(){const v=DB.settings.asView||{};return{group:v.group||'tier',sort:v.sort||'app'};}
+function setAsView(k,val){const v=asView();v[k]=val;DB.settings.asView=v;save();renderAssets();paintPies();}
+function sortAssetItems(items){const v=asView().sort;const ord=instList().map(x=>x.id);const egp=x=>(Number(x.it.amt)||0)*rate(x.cur);
+  const by={app:(a,b)=>(ord.indexOf(instOfAsset(a.it,a.c))-ord.indexOf(instOfAsset(b.it,b.c)))||String(a.it.desc).localeCompare(String(b.it.desc)),
+    name:(a,b)=>String(a.it.desc).localeCompare(String(b.it.desc)),value:(a,b)=>egp(b)-egp(a),
+    cur:(a,b)=>String(a.cur).localeCompare(String(b.cur))||String(a.it.desc).localeCompare(String(b.it.desc)),
+    updated:(a,b)=>String(a.it.u||'0000').localeCompare(String(b.it.u||'0000'))};
+  if(by[v])items.sort(by[v]);return items;}
+function assetArrange(){const v=asView();
+  return `<div class="chips"><span class="lbl">Arrange</span>${[['tier','By tier'],['inst','By app'],['cur','By currency']].map(([k,l])=>`<button class="chip ${v.group===k?'on':''}" onclick="setAsView('group','${k}')">${l}</button>`).join('')}
+    <span class="lbl" style="margin-left:10px">Sort</span>${[['app','App'],['name','Name'],['value','Amount'],['cur','Currency'],['updated','Oldest first'],['manual','Manual']].map(([k,l])=>`<button class="chip ${v.sort===k?'on':''}" onclick="setAsView('sort','${k}')">${l}</button>`).join('')}</div>`;}
+function assetsGroupedHTML(mode){
+  const groups={};
+  DB.assets.categories.forEach(c=>{if(AS_FILTER.tier&&tierOf(c)!==AS_FILTER.tier)return;const cd=DB.assets.data[c.id]||{};
+    Object.keys(cd).forEach(cur=>{if(AS_FILTER.cur&&cur!==AS_FILTER.cur)return;(cd[cur]||[]).forEach((it,idx)=>{
+      const k=mode==='inst'?instOfAsset(it,c):cur;(groups[k]=groups[k]||[]).push({c,cur,idx,it});});});});
+  const order=mode==='inst'?instList().map(x=>x.id).filter(k=>groups[k]):Object.keys(groups).sort((a,b)=>a==='EGP'?-1:b==='EGP'?1:a.localeCompare(b));
+  let i=0;
+  return `<section class="tiergrp" id="grp_${mode}"><div class="tierhead"><h3>${mode==='inst'?'🏦 By app or bank':'💱 By currency'}</h3><span class="tsub">${mode==='inst'?'every holding grouped where it lives':'every holding in its own currency'} · add new items from “By tier”</span><span class="num">${order.length} groups</span></div><div class="tierbody">`+
+    order.map(k=>{const items=sortAssetItems(groups[k]);const tot=items.reduce((q,x)=>q+(Number(x.it.amt)||0)*rate(x.cur),0);
+      const head=mode==='inst'?(instMeta(k).icon+' '+esc(instMeta(k).name)):((FLAGS[k]||'')+' '+cchip(k));
+      const native=mode==='cur'&&k!=='EGP'?` · ${fmt(items.reduce((q,x)=>q+(Number(x.it.amt)||0),0))} ${k}`:'';
+      return `<div class="panel glass catcard ${(i++%2)?'alt':''}" id="grp_${mode}_${esc(k)}"><div class="ph"><h3>${head}</h3><span class="muted" style="font-size:11px;margin-left:8px">${items.length} holding${items.length===1?'':'s'}${native}</span><span class="sp"></span><span class="muted num">${fmt(tot)} EGP</span></div>
+        <table class="tbl"><thead><tr><th class="l">Item</th><th>Amount</th><th>Cur</th><th>≈ EGP</th><th class="l">Note</th><th></th></tr></thead><tbody>${items.map(x=>assetRowHTML(x.c,x.cur,x.idx,x.it,true)).join('')}</tbody></table></div>`;}).join('')+`</div></section>`;}
+/* ── v2.3.1: a currency you only hold a little of — kept in USD, remembered in its own unit ── */
+function openOtherCcy(cid){const d=(($('#ad_'+cid+'_d')||{}).value||'').trim();
+  $('#modal').innerHTML=`<h3>💱 Another currency</h3><div class="desc">For small balances in currencies the app does not track — RMB, SAR, TRY… It is stored as its US-dollar value so every total stays right, and remembers the original amount so you can update it later.</div>
+    <label class="fl">Description</label><input class="inp" id="oc_d" value="${esc(d)}" placeholder="e.g. Cash at home — yuan">
+    <div class="grid2"><div><label class="fl">Currency code</label><input class="inp" id="oc_c" placeholder="CNY" maxlength="5" style="text-transform:uppercase" oninput="ocPrev()"></div>
+    <div><label class="fl">Amount in that currency</label><input class="inp num" id="oc_a" placeholder="1,000" oninput="ocPrev()"></div></div>
+    <label class="fl">US dollars per 1 unit</label><input class="inp num" id="oc_r" placeholder="0.14" oninput="ocPrev()">
+    <div class="statline" id="oc_p" style="margin-top:8px">—</div>
+    <div class="mfoot"><button class="btn gho" onclick="closeModal()">Cancel</button><button class="btn pri" onclick="saveOtherCcy('${cid}')">Add</button></div>`;
+  $('#scrim').classList.add('on');}
+function ocPrev(){const a=parseAmt(($('#oc_a')||{}).value),r=Number(String(($('#oc_r')||{}).value||'').replace(/,/g,'')),c=String(($('#oc_c')||{}).value||'').toUpperCase();
+  const p=$('#oc_p');if(p)p.innerHTML=(a>0&&r>0)?`<b>${fmt(a)} ${esc(c)}</b> ≈ <b>$${fmt(a*r)}</b> ≈ ${fmt(a*r*rate('USD'))} EGP`:'Fill all three to see the value';}
+function saveOtherCcy(cid,edit){const d=String($('#oc_d').value||'').trim(),c=String($('#oc_c').value||'').trim().toUpperCase();
+  const a=parseAmt($('#oc_a').value),r=Number(String($('#oc_r').value||'').replace(/,/g,''));
+  if(!d||!c||!(a>=0)||!(r>0)){toast('Description, code, amount and rate are all needed',true);return;}
+  const usd=Math.round(a*r*100)/100;snapUndo('other currency');
+  if(edit){const it=getRec(edit);if(!it){closeModal();return;}it.desc=d;it.orig={cur:c,amt:a,rate:r,u:todayStr()};it.amt=usd;it.u=todayStr();stampHist(it,usd);fxMark(edit,'upd');}
+  else{const arr=(DB.assets.data[cid]=DB.assets.data[cid]||{}).USD=(DB.assets.data[cid].USD||[]);
+    arr.push(stampHist({desc:d,amt:usd,u:todayStr(),orig:{cur:c,amt:a,rate:r,u:todayStr()},inst:inferInst(d)||undefined},usd));
+    fxMark(`asset:${cid}:USD:${arr.length-1}`,'add');const di=$('#ad_'+cid+'_d');if(di)di.value='';}
+  closeModal();persist();toast(`${fmt(a)} ${c} saved as $${fmt(usd)} ✓`);}
+function openOrigEdit(cid,cur,idx){const it=((DB.assets.data[cid]||{})[cur]||[])[idx];if(!it||!it.orig)return;openOtherCcy(cid);
+  $('#oc_d').value=it.desc;$('#oc_c').value=it.orig.cur;$('#oc_a').value=fmt(it.orig.amt);$('#oc_r').value=String(it.orig.rate);ocPrev();
+  const btn=$('#modal').querySelector?$('#modal').querySelector('.mfoot .btn.pri'):null;
+  if(btn){btn.textContent='Save';btn.setAttribute('onclick',`saveOtherCcy('${cid}','asset:${cid}:${cur}:${idx}')`);}}
 function renderAssets(){
   const t=assetsTotals();
   const curCards=Object.keys(t.byCur).map(c=>statCard({k:`${FLAGS[c]||''} ${cchip(c)} exposure`,v:fmt(t.byCur[c]),sub:`≈ ${fmt(t.byCur[c]*rate(c))} EGP`})).join('');
@@ -1372,35 +1520,38 @@ function renderAssets(){
     secHead('Workbench','Holdings & inputs',`<button class="btn sm ${REARR?'pri':'gho'}" onclick="toggleRearr()">${REARR?'✓ Done':'⇅ Rearrange'}</button> <button class="btn sm" onclick="openCatMgr()">＋ Category</button> <span class="collapse-h btn sm gho" onclick="toggleColl('asColl')"><span class="arr">▾</span> Collapse</span>`)+
     `<div class="body">`;
   let curTier=null,tierIdx=0;const TT=tierTotals();
-  DB.assets.categories.forEach(c=>{const cd=DB.assets.data[c.id]||{};let rows='';let sub=0;
+  if(asView().group!=='tier')work+=assetsGroupedHTML(asView().group);
+  else DB.assets.categories.forEach(c=>{const cd=DB.assets.data[c.id]||{};let rows='';let sub=0;
     if(AS_FILTER.tier&&tierOf(c)!==AS_FILTER.tier)return;
     if(AS_FILTER.cur&&!Object.keys(cd).some(k=>k===AS_FILTER.cur&&(cd[k]||[]).length))return;
     if(tierOf(c)!==curTier){if(curTier)work+=`</div></section>`;curTier=tierOf(c);tierIdx=0;const T=TIERS.find(x=>x[0]===curTier)||TIERS[1];work+=`<section class="tiergrp tier-${curTier}" id="tier_${curTier}"><div class="tierhead"><h3>${T[1]} ${T[2]}</h3><span class="tsub">${T[3]}</span><span class="num">${fmt(TT[curTier]||0)} EGP</span></div><div class="tierbody">`;}
-    Object.keys(cd).forEach(cur=>{if(AS_FILTER.cur&&cur!==AS_FILTER.cur)return;(cd[cur]||[]).forEach((it,idx)=>{const egp=(Number(it.amt)||0)*rate(cur);sub+=egp;const fl=flagFor(it,'asset');
-      const rg=instRAG(it);
-      rows+=`<tr class="${rg&&rg.level!=='green'?'mat-'+rg.level:''}"><td class="l" data-l="Item"><div class="cellf">${ragDot(it)}<input class="l" value="${esc(it.desc)}" onchange="assetEdit('${c.id}','${cur}',${idx},'desc',this.value)">${flagIcon(fl)}</div><div class="udate">${it.u||'—'}</div></td>
-        <td data-l="Amount"><input class="num" value="${fmt(it.amt)}" onchange="assetEdit('${c.id}','${cur}',${idx},'amt',this.value)"></td>
-        <td data-l="Currency"><select onchange="assetMove('${c.id}','${cur}',${idx},this.value)">${['EGP','USD','EUR','AED'].map(x=>`<option ${x===cur?'selected':''}>${x}</option>`).join('')}</select></td>
-        <td class="num muted" data-l="≈ EGP">${fmt(egp)}</td><td class="l" data-l="Note">${noteChip(`asset:${c.id}:${cur}:${idx}`,it.n)}${histBadge(it)}</td><td><button class="x" onclick="assetDel('${c.id}','${cur}',${idx})">✕</button></td></tr>`;});});
+    const items=[];Object.keys(cd).forEach(cur=>{if(AS_FILTER.cur&&cur!==AS_FILTER.cur)return;(cd[cur]||[]).forEach((it,idx)=>items.push({c,cur,idx,it}));});
+    sortAssetItems(items);let lastI=null;
+    const multi=asView().sort==='app'&&new Set(items.map(x=>instOfAsset(x.it,c))).size>1;
+    items.forEach(({cur,idx,it})=>{sub+=(Number(it.amt)||0)*rate(cur);
+      if(multi){const ii=instOfAsset(it,c);if(ii!==lastI){lastI=ii;const m=instMeta(ii);const grp=items.filter(x=>instOfAsset(x.it,c)===ii);
+        rows+=`<tr class="acchead"><td colspan="6">${m.icon} ${esc(m.name)} · ${grp.length} <span class="num" style="float:right">${fmt(grp.reduce((q,x)=>q+(Number(x.it.amt)||0)*rate(x.cur),0))} EGP</span></td></tr>`;}}
+      rows+=assetRowHTML(c,cur,idx,it,false);});
     work+=`<div class="panel glass catcard ${(tierIdx++%2)?'alt':''}" id="panel_cat_${c.id}" style="border-left:3px solid ${c.color||'var(--line)'}"><div class="ph"><h3>${c.icon} ${esc(c.name)}</h3><span class="sp"></span>${REARR?`<button class="x" onclick="moveCat('${c.id}',-1)" title="Move up">↑</button><button class="x" onclick="moveCat('${c.id}',1)" title="Move down">↓</button>`:''}<span class="muted num">${fmt(sub)} EGP</span>
       <button class="btn sm gho" onclick="renameCat('${c.id}')" title="Rename">✏️</button><button class="x" onclick="delCat('${c.id}')" title="Delete">🗑</button></div>
       <table class="tbl"><thead><tr><th class="l">Item</th><th>Amount</th><th>Cur</th><th>≈ EGP</th><th class="l">Note</th><th></th></tr></thead>
       <tbody>${rows||`<tr><td colspan="6" class="muted" style="text-align:center;padding:14px">No items yet</td></tr>`}</tbody></table>${sub<0?`<div class="liab-note">💳 Total ${esc(c.name.toLowerCase())}: <b class="num">${fmt(Math.abs(sub))} EGP</b> owed — these are debts, shown negative so they pull net worth down correctly.</div>`:''}
       <div class="row" style="margin-top:10px"><input class="inp" id="ad_${c.id}_d" placeholder="Description" style="flex:2"><input class="inp num" id="ad_${c.id}_a" placeholder="Amount" style="flex:1">
-      <select class="inp" id="ad_${c.id}_c" style="max-width:90px">${['EGP','USD','EUR','AED'].map(x=>`<option>${x}</option>`).join('')}</select>
+      <select class="inp" id="ad_${c.id}_c" style="max-width:110px" onchange="if(this.value==='__other'){this.value='USD';openOtherCcy('${c.id}');}">${['EGP','USD','EUR','AED'].map(x=>`<option>${x}</option>`).join('')}<option value="__other">Other…</option></select>
       <button class="btn sm" onclick="assetAdd('${c.id}')">＋ Add</button></div></div>`;});
   if(curTier)work+=`</div></section>`;
-  $('#asWork').innerHTML=assetChips()+pieCard('as_pie','🥧 Category mix'+((AS_FILTER.tier||AS_FILTER.cur)?' — '+[AS_FILTER.tier?(TIERS.find(x=>x[0]===AS_FILTER.tier)||[])[2]:'',AS_FILTER.cur].filter(Boolean).join(' · '):''))+work+maturityPanel()+liabPanel()+`</div></div>`;
+  $('#asWork').innerHTML=assetArrange()+assetChips()+pieCard('as_pie','🥧 Category mix'+((AS_FILTER.tier||AS_FILTER.cur)?' — '+[AS_FILTER.tier?(TIERS.find(x=>x[0]===AS_FILTER.tier)||[])[2]:'',AS_FILTER.cur].filter(Boolean).join(' · '):''))+work+maturityPanel()+liabPanel()+`</div></div>`;
 }
 function setRate(c,v){DB.rates[c]=parseAmt(v)||DB.rates[c];DB.settings.ratesUpdated=todayStr();persist();}
-function assetEdit(cid,cur,idx,f,v){const it=DB.assets.data[cid][cur][idx];if(f==='amt'){it.amt=parseAmt(v);stampHist(it,it.amt);}else it[f]=v;it.u=todayStr();persist();}
+function assetEdit(cid,cur,idx,f,v){const it=DB.assets.data[cid][cur][idx];if(f==='amt'){it.amt=parseAmt(v);stampHist(it,it.amt);}else it[f]=v;it.u=todayStr();fxMark(`asset:${cid}:${cur}:${idx}`,'upd');persist();}
 function assetMove(cid,cur,idx,to){if(to===cur)return;const it=DB.assets.data[cid][cur].splice(idx,1)[0];it.u=todayStr();if(!DB.assets.data[cid][cur].length)delete DB.assets.data[cid][cur];
   (DB.assets.data[cid][to]=DB.assets.data[cid][to]||[]).push(it);persist();}
 async function assetDel(cid,cur,idx){const it=(DB.assets.data[cid][cur]||[])[idx]||{};
   if(!await confirmGlass('Delete item','Remove “'+(it.desc||'this item')+'” ('+fmt(it.amt)+' '+cur+')? Its note and history go with it.',true))return;
-  snapUndo();DB.assets.data[cid][cur].splice(idx,1);if(!DB.assets.data[cid][cur].length)delete DB.assets.data[cid][cur];persist();toastUndo('Item removed');}
+  snapUndo();const go=()=>{DB.assets.data[cid][cur].splice(idx,1);if(!DB.assets.data[cid][cur].length)delete DB.assets.data[cid][cur];persist();toastUndo('Item removed');};
+  const row=$('#arow_'+cid+'_'+cur+'_'+idx);if(row&&row.classList){row.classList.add('fx-del');setTimeout(go,360);}else go();}
 function assetAdd(cid){const d=$('#ad_'+cid+'_d').value.trim(),a=parseAmt($('#ad_'+cid+'_a').value),cur=$('#ad_'+cid+'_c').value;
-  if(!d){toast('Add a description',true);return;}(DB.assets.data[cid]=DB.assets.data[cid]||{});(DB.assets.data[cid][cur]=DB.assets.data[cid][cur]||[]).push(stampHist({desc:d,amt:a,u:todayStr()},a));persist();toast('Added');}
+  if(!d){toast('Add a description',true);return;}(DB.assets.data[cid]=DB.assets.data[cid]||{});(DB.assets.data[cid][cur]=DB.assets.data[cid][cur]||[]).push(stampHist({desc:d,amt:a,u:todayStr(),inst:inferInst(d)||undefined},a));fxMark(`asset:${cid}:${cur}:${DB.assets.data[cid][cur].length-1}`,'add');persist();toast('Added ✓');}
 function openCatMgrLegacy(){const ic=null,nm=null;if(1)return;
   const id='cat_'+uid();DB.assets.categories.push({id,icon:ic||'🗂',name:nm,color:PAL[DB.assets.categories.length%PAL.length],u:todayStr()});DB.assets.data[id]={};persist();toast('Category added');}
 function renameCat(id){openCatModal(id);}
@@ -1410,6 +1561,172 @@ function recordSnap(){const upd=recordSnapshot();persist();toast(upd?'Snapshot u
 
 /* ════════════ FUNDS ════════════ */
 let fnSort={col:'date',dir:'desc'},fnChartFund=null;
+/* ═══════════ v2.4.0 FUNDS DESK — group by where it lives, one place per fund, keyboard-first ═══════════ */
+let FN_FOCUS=null,DK_TYPE='BUY',DK_DATE='',FN_TXF='',FN_TXALL=false,FN_TXSEL='',FN_FOCUS_ID=null,FN_ROWS=[];
+function fnView(){const v=DB.settings.fnView||{};return{group:v.group||'app',sort:v.sort||'value'};}
+function setFnView(k,val){const v=fnView();v[k]=val;DB.settings.fnView=v;save();renderFunds();paintPies();}
+function fundInst(f){return (DB.funds.inst||{})[f]||inferInst(f)||'unassigned';}
+function fundShort(f){return String(f).split(' — ')[0].replace(/\s*\(.*\)\s*$/,'');}
+function fundLastPrice(f){const ph=DB.funds.priceHistory[f]||[];return ph.reduce((m,e)=>(e.date>m?e.date:m),'');}
+function fundPriceAge(f){const d=fundLastPrice(f);return d?daysSince(d):9999;}
+function txKey(t){return `tx:${t.fund}|${t.date}|${t.units}|${t.price}|${t.type}`;}
+function unitsAsOf(fund,date){let u=0;DB.funds.transactions.forEach(t=>{if(t.fund===fund&&String(t.date)<=String(date))u+=(t.type==='BUY'?1:-1)*Number(t.units);});return u;}
+let FN_EDIT=null,TX_TYPE='BUY',TX_DATE='',FN_CLOSED_OPEN=false;
+function fnClosed(p){return p.arr.filter(h=>!(h.units>1e-6));}
+function fnGroups(p,V){const gm={};
+  p.arr.filter(h=>h.units>1e-6).forEach(h=>{const id=V.group==='app'?fundInst(h.fund):'all';(gm[id]=gm[id]||[]).push(h);});
+  const so={value:(a,b)=>b.currentValue-a.currentValue,ret:(a,b)=>b.returnPct-a.returnPct,name:(a,b)=>a.fund.localeCompare(b.fund),
+    realized:(a,b)=>(b.realizedPL||0)-(a.realizedPL||0),price:(a,b)=>fundPriceAge(b.fund)-fundPriceAge(a.fund)};
+  const out=Object.keys(gm).map(id=>{const items=gm[id].slice().sort(so[V.sort]||so.value);
+    const value=items.reduce((q,h)=>q+h.currentValue,0),upl=items.reduce((q,h)=>q+h.unrealizedPL,0),cost=items.reduce((q,h)=>q+(h.totalCost||0),0),rpl=items.reduce((q,h)=>q+(h.realizedPL||0),0);
+    const unknown=items.some(h=>DB.funds.transactions.some(t=>t.fund===h.fund&&t.dateUnknown));
+    const x=unknown?null:xirr(items.flatMap(h=>fundFlows(h.fund)));
+    return{id,items,value,upl,cost,rpl,ret:cost>0?upl/cost*100:0,xirr:x==null?null:x*100};});
+  out.sort((a,b)=>((a.id==='unassigned')-(b.id==='unassigned'))||(b.value-a.value));return out;}
+function fnArrange(){const v=fnView();
+  return `<div class="chips"><span class="lbl">Group</span>${[['app','By app'],['flat','Flat']].map(([k,l])=>`<button class="chip ${v.group===k?'on':''}" onclick="setFnView('group','${k}')">${l}</button>`).join('')}
+    <span class="lbl" style="margin-left:10px">Sort</span>${[['value','Value'],['ret','Return'],['name','Name'],['realized','Realized'],['price','Oldest price']].map(([k,l])=>`<button class="chip ${v.sort===k?'on':''}" onclick="setFnView('sort','${k}')">${l}</button>`).join('')}</div>`;}
+function fundRowHTML(h,di){const ni=DB.funds.names.indexOf(h.fund);const last=fundLastPrice(h.fund),age=last?daysSince(last):9999;const live=!!((DB.funds.bind||{})[h.fund]);
+  const xr=fundXIRR(h.fund);
+  return `<tr id="frow_${ni}" class="${fxClass('fund:'+h.fund)}"><td class="l" data-l="Fund"><a class="fundlink" href="#" onclick="openFundDesk(${ni});return false" title="Open this fund's desk">${esc(h.fund)}</a>${live?'<span class="live">live</span>':''}<div class="udate">${last?'price '+(age===0?'today':age+'d old'):'no price logged'}</div></td>
+    <td class="num" data-l="Units">${fmt(h.units)}</td><td class="num muted" data-l="Avg cost">${fmt(h.avgCost)}</td>
+    <td data-l="Price"><input class="num fpin" id="fp_${di}" value="${fmt(h.price)}" inputmode="decimal" onfocus="this.select&&this.select()" onkeydown="fpKey(event,${di})" onchange="fpChange(${di})" style="max-width:110px"></td>
+    <td class="num" data-l="Value">${fmt(h.currentValue)}</td><td class="num ${h.unrealizedPL>=0?'pos':'neg'}" data-l="Unrealized">${signed(h.unrealizedPL)}</td>
+    <td class="num ${h.returnPct>=0?'pos':'neg'}" data-l="Return">${pct(h.returnPct)}</td>
+    <td class="num ${(xr||0)>=0?'pos':'neg'}" data-l="XIRR" title="Money-weighted return on the actual dates you bought and sold">${pctOrDash(xr)}</td>
+    <td class="num ${h.realizedPL>0?'pos':h.realizedPL<0?'neg':'muted'}" data-l="Realized">${h.realizedPL?signed(h.realizedPL):'—'}</td>
+    <td class="acts"><button class="okbtn" onclick="fundConfirm(${ni})" title="Price still right — stamp today">✓</button><button class="okbtn" onclick="openFundDesk(${ni})" title="Book a trade / see this fund's history">＋ Trade</button><button class="x" onclick="openFundAssign(${ni})" title="Move to another app">⋯</button><button class="x" onclick="delFund(${ni})">✕</button></td></tr>`;}
+function setFundPrice(name,raw){if(!name)return false;const cur=Number(DB.funds.currentPrices[name])||0;
+  let v=parseAmt(raw);if(String(raw).trim()===fmt(cur))v=cur;   /* a rounded display must never overwrite a precise price */
+  if(!(v>0))return false;const same=Math.abs(v-cur)<1e-12;
+  DB.funds.currentPrices[name]=v;const arr=DB.funds.priceHistory[name]=DB.funds.priceHistory[name]||[];
+  const k=arr.findIndex(e=>e.date===todayStr());if(k>=0){arr[k].price=v;arr[k].u=todayStr();}else arr.push({date:todayStr(),price:v,u:todayStr()});
+  fxMark('fund:'+name,same?'ok':'upd');return true;}
+function fundPrice(i,v){if(setFundPrice(DB.funds.names[i],v))persist();}
+function fundConfirm(ni){const n=DB.funds.names[ni];if(!n)return;setFundPrice(n,fmt(DB.funds.currentPrices[n]));persist();toast('Price confirmed for today ✓');}
+function fpApply(di){const n=FN_ROWS[di],el=$('#fp_'+di);if(!n||!el)return false;return setFundPrice(n,el.value);}
+function fpKey(e,di){const el=$('#fp_'+di);
+  if(e.key==='Enter'){e.preventDefault();if(el)el.dataset.done='1';snapUndo('price');fpApply(di);FN_FOCUS_ID=(di+1<FN_ROWS.length)?'fp_'+(di+1):null;persist();return;}
+  if(e.key==='Tab'&&!e.shiftKey&&el){const cur=Number(DB.funds.currentPrices[FN_ROWS[di]])||0;
+    if(String(el.value).trim()!==fmt(cur)&&Math.abs(parseAmt(el.value)-cur)>1e-12){e.preventDefault();el.dataset.done='1';snapUndo('price');fpApply(di);FN_FOCUS_ID=(di+1<FN_ROWS.length)?'fp_'+(di+1):null;persist();}}}
+function fpChange(di){const el=$('#fp_'+di);if(!el||el.dataset.done)return;snapUndo('price');if(fpApply(di))persist();}
+/* one place per fund: stats, a price you can type, a trade row that keeps focus, and its own history */
+function openFundDesk(ni){const n=DB.funds.names[ni];if(!n)return;FN_FOCUS=n;fnChartFund=n;FN_TXF=n;FN_TXALL=false;DK_TYPE='BUY';DK_DATE='';renderFunds();flashTarget('fn_desk');}
+function closeFundDesk(){FN_FOCUS=null;FN_TXF='';renderFunds();}
+function setTrType(pre,t){if(pre==='dk')DK_TYPE=t;else TX_TYPE=t;const sg=$('#'+pre+'_seg');
+  if(sg&&sg.querySelectorAll)sg.querySelectorAll('button').forEach(b=>b.classList.toggle('on',String(b.textContent).trim().toUpperCase()===t));
+  const b=$('#'+pre+'_go');if(b)b.textContent=t==='BUY'?'Book buy':'Book sell';trPrev(pre);}
+function setDkType(t){setTrType('dk',t);}
+function setTrDate(pre,off){const d=new Date();d.setDate(d.getDate()+off);const z=n=>String(n).padStart(2,'0');
+  const el=$('#'+pre+'_date');if(el)el.value=d.getFullYear()+'-'+z(d.getMonth()+1)+'-'+z(d.getDate());trPrev(pre);}
+/* any two of units · price · amount give the third — the way the app screens show a purchase */
+function trSolve(pre,which){const g=id=>($('#'+pre+'_'+id)||{});const U=parseAmt(g('units').value),P=parseAmt(g('price').value),A=parseAmt(g('amt').value);
+  const setv=(id,v,dp)=>{const el=g(id);if(el)el.value=(isFinite(v)&&v>0)?String(Math.round(v*dp)/dp):'';};
+  if(which==='amt'){if(P>0&&A>0)setv('units',A/P,1e4);else if(U>0&&A>0)setv('price',A/U,1e4);}
+  else if(U>0&&P>0)setv('amt',U*P,100);
+  trPrev(pre);}
+function trPrev(pre){const el=$('#'+pre+'_prev');if(!el)return;const g=id=>($('#'+pre+'_'+id)||{}).value;
+  const u=parseAmt(g('units')),p=parseAmt(g('price')),f=parseAmt(g('fee'))||0;const T=pre==='dk'?DK_TYPE:TX_TYPE;
+  const fund=pre==='dk'?FN_FOCUS:(($('#tx_fund')||{}).value);
+  el.innerHTML=(u>0&&p>0)?`${T==='BUY'?'Cost':'Proceeds'}: <b class="num">${fmt(T==='BUY'?u*p+f:u*p-f)} EGP</b>${T==='SELL'&&fund?' · held on that date: '+fmt(unitsAsOf(fund,g('date')||todayStr())):''}`:'<span class="muted">Type units × price, or amount × price — Enter books it</span>';}
+function dkPrev(){trPrev('dk');}
+function trKey(e,pre){if(e.key==='Enter'){e.preventDefault();trBook(pre);}}
+function dkKey(e){trKey(e,'dk');}
+function trBook(pre){return pre==='dk'?deskTrade():addTx();}
+function tradeFormHTML(pre,fundSel,curPrice){const T=(pre==='dk')?DK_TYPE:TX_TYPE;const dv=(pre==='dk'?DK_DATE:TX_DATE)||todayStr();
+  return `<div class="desk-trade" id="${pre}_form"><div class="seg" id="${pre}_seg"><button class="${T==='BUY'?'on':''}" onclick="setTrType('${pre}','BUY')">Buy</button><button class="${T==='SELL'?'on':''}" onclick="setTrType('${pre}','SELL')">Sell</button><span class="pill"></span></div>
+    ${fundSel||''}
+    <input class="inp num" id="${pre}_units" placeholder="Units" inputmode="decimal" oninput="trSolve('${pre}','units')" onkeydown="trKey(event,'${pre}')">
+    <input class="inp num" id="${pre}_price" placeholder="Price${curPrice?' (now '+fmt(curPrice)+')':''}" inputmode="decimal" oninput="trSolve('${pre}','price')" onkeydown="trKey(event,'${pre}')">
+    <input class="inp num" id="${pre}_amt" placeholder="or Amount" inputmode="decimal" oninput="trSolve('${pre}','amt')" onkeydown="trKey(event,'${pre}')" title="Type the amount paid or received plus the price — the units are worked out for you">
+    <input class="inp num" id="${pre}_fee" placeholder="Fee" inputmode="decimal" oninput="trPrev('${pre}')" onkeydown="trKey(event,'${pre}')">
+    <input class="inp" id="${pre}_date" type="date" value="${dv}" onchange="trPrev('${pre}')" onkeydown="trKey(event,'${pre}')">
+    <span class="chips tiny"><button class="chip" onclick="setTrDate('${pre}',0)">Today</button><button class="chip" onclick="setTrDate('${pre}',-1)">Yesterday</button></span>
+    <button class="btn pri" id="${pre}_go" onclick="trBook('${pre}')">${T==='BUY'?'Book buy':'Book sell'}</button></div>
+    <div id="${pre}_prev" class="muted trprev"><span class="muted">Type units × price, or amount × price — Enter books it</span></div>`;}
+/* edit any trade in place: ✎ or double-click, Enter saves, Esc cancels — and the ledger is re-checked so units never go negative */
+function ledgerOK(txs,fund){let u=0;return txs.filter(x=>x.fund===fund).sort((a,b)=>String(a.date).localeCompare(String(b.date))||((a.type==='BUY')?-1:1))
+  .every(x=>{u+=(x.type==='BUY'?1:-1)*Number(x.units);return u>=-1e-6;});}
+function startTxEdit(i){if(!DB.funds.transactions[i])return;FN_EDIT=i;FN_FOCUS_ID='ed_units';renderFunds();}
+function cancelTxEdit(){FN_EDIT=null;renderFunds();}
+function edKey(e,i){if(e.key==='Enter'){e.preventDefault();saveTxEdit(i);}else if(e.key==='Escape'){e.preventDefault();cancelTxEdit();}}
+function edPrev(){const g=id=>($('#'+id)||{}).value;const u=parseAmt(g('ed_units')),p=parseAmt(g('ed_price')),f=parseAmt(g('ed_fee'))||0;const n=$('#ed_net');
+  if(n)n.textContent=(u>0&&p>0)?fmt(g('ed_type')==='SELL'?u*p-f:u*p+f):'—';}
+function txEditRowHTML(i,t,withFund){const fo=DB.funds.names.map(f=>`<option ${f===t.fund?'selected':''}>${esc(f)}</option>`).join('');const k=`onkeydown="edKey(event,${i})"`;
+  return `<tr class="editrow"><td class="l" data-l="Type"><select id="ed_type" onchange="edPrev()" ${k}><option ${t.type==='BUY'?'selected':''}>BUY</option><option ${t.type==='SELL'?'selected':''}>SELL</option></select></td>
+    ${withFund?`<td class="l" data-l="Fund"><select id="ed_fund" ${k}>${fo}</select></td>`:''}
+    <td data-l="Date"><input type="date" id="ed_date" value="${esc(t.date)}" ${k}></td>
+    <td data-l="Units"><input class="num" id="ed_units" value="${t.units}" inputmode="decimal" oninput="edPrev()" ${k}></td>
+    <td data-l="Price"><input class="num" id="ed_price" value="${t.price}" inputmode="decimal" oninput="edPrev()" ${k}></td>
+    <td data-l="Fee"><input class="num" id="ed_fee" value="${t.fee||0}" inputmode="decimal" oninput="edPrev()" ${k}></td>
+    <td class="num" data-l="Net" id="ed_net">${fmt(t.net)}</td>
+    <td class="acts"><button class="okbtn" onclick="saveTxEdit(${i})">✓ Save</button><button class="x" onclick="cancelTxEdit()" title="Cancel (Esc)">✕</button></td></tr>`;}
+function saveTxEdit(i){const t=DB.funds.transactions[i];if(!t)return false;const g=id=>($('#'+id)||{}).value;
+  const type=g('ed_type')||t.type,fund=g('ed_fund')||t.fund,date=g('ed_date')||t.date,units=parseAmt(g('ed_units')),price=parseAmt(g('ed_price')),fee=parseAmt(g('ed_fee'))||0;
+  if(!(units>0)||!(price>0)){toast('Units and price must be above zero',true);return false;}
+  const nt=Object.assign({},t,tx(type,fund,date,units,price,fee),{u:todayStr()});delete nt.dateUnknown;
+  const trial=DB.funds.transactions.map((x,k)=>k===i?nt:x);
+  const bad=[t.fund,fund].find(f=>!ledgerOK(trial,f));
+  if(bad){toast('That would leave '+fundShort(bad)+' with negative units at some date — check the type, units and date',true);return false;}
+  snapUndo('edit trade');DB.funds.transactions[i]=nt;DB.funds.transactions.sort((a,b)=>String(a.date).localeCompare(String(b.date)));
+  FN_EDIT=null;fxMark(txKey(nt),'upd');fxMark('fund:'+fund,'upd');persist();toast('Trade updated ✓');return true;}
+function bookTrade(type,fund,date,units,price,fee,focusId){
+  if(!fund||!(units>0)||!(price>0)){toast('Need fund, units and a price',true);return false;}
+  if(type==='SELL'){const have=unitsAsOf(fund,date);if(units>have+1e-6){toast('You held only '+fmt(have)+' units on '+date,true);return false;}}
+  snapUndo('trade');const t=Object.assign(tx(type,fund,date,units,price,fee),{u:todayStr()});DB.funds.transactions.push(t);
+  DB.funds.transactions.sort((a,b)=>String(a.date).localeCompare(String(b.date)));
+  const ph=DB.funds.priceHistory[fund]=DB.funds.priceHistory[fund]||[];if(!ph.some(e=>e.date===date))ph.push({date,price,u:todayStr()});
+  if(!(Number(DB.funds.currentPrices[fund])>0))DB.funds.currentPrices[fund]=price;
+  fxMark(txKey(t),'add');fxMark('fund:'+fund,'upd');FN_FOCUS_ID=focusId||null;persist();
+  toast((type==='BUY'?'Buy':'Sell')+' booked ✓  '+fmt(units)+' @ '+fmt(price));return true;}
+function deskTrade(){if(!FN_FOCUS)return false;const g=id=>($('#'+id)||{}).value;const date=g('dk_date')||todayStr();
+  const ok=bookTrade(DK_TYPE,FN_FOCUS,date,parseAmt(g('dk_units')),parseAmt(g('dk_price')),parseAmt(g('dk_fee'))||0,'dk_units');if(ok)DK_DATE=date;return ok;}
+function deskRowHTML(i,t){return `<tr class="${fxClass(txKey(t))}" ondblclick="startTxEdit(${i})" title="Double-click to edit"><td class="l" data-l="Type"><span class="tag" style="background:${t.type==='BUY'?'rgba(52,211,153,.15)':'rgba(251,113,133,.15)'};color:${t.type==='BUY'?'var(--pos)':'var(--neg)'}">${t.type}</span></td>
+  <td class="num" data-l="Date">${fmtDate(t.date)}</td><td class="num" data-l="Units">${fmt(t.units)}</td><td class="num" data-l="Price">${fmt(t.price)}</td><td class="num muted" data-l="Fee">${fmt(t.fee)}</td><td class="num" data-l="Net">${fmt(t.net)}</td>
+  <td class="acts"><button class="x" onclick="startTxEdit(${i})" title="Edit this trade">✎</button><button class="x" onclick="delTx(${i})">✕</button></td></tr>`;}
+function fundDeskHTML(){if(!FN_FOCUS)return '';const h=holdingsArray().find(x=>x.fund===FN_FOCUS);if(!h){FN_FOCUS=null;return '';}
+  const m=instMeta(fundInst(h.fund)),xr=fundXIRR(h.fund);const closed=!(h.units>1e-6);
+  const mine=DB.funds.transactions.map((t,i)=>({t,i})).filter(x=>x.t.fund===h.fund).sort((a,b)=>String(b.t.date).localeCompare(String(a.t.date)));
+  const rows=mine.map(({t,i})=>i===FN_EDIT?txEditRowHTML(i,t,false):deskRowHTML(i,t)).join('')
+    ||'<tr><td colspan="7" class="muted" style="text-align:center;padding:14px">No trades yet — book the first one above</td></tr>';
+  return `<section class="tiergrp deskcard" id="fn_desk"><div class="tierhead"><h3>🗂️ ${esc(h.fund)}</h3><span class="tsub">${m.icon} ${esc(m.name)} · ${closed?'sold out':fmt(h.units)+' units'}</span><span class="num">${fmt(h.currentValue)} EGP</span><button class="x" onclick="closeFundDesk()" title="Close" style="margin-left:12px">✕</button></div>
+    <div class="tierbody"><div class="deskstats">
+      <div><small>Avg cost</small><b>${fmt(h.avgCost)}</b></div>
+      <div><small>Price · Enter saves</small><input id="dk_cur" value="${fmt(h.price)}" inputmode="decimal" onfocus="this.select&&this.select()" onkeydown="if(event.key==='Enter'){event.preventDefault();snapUndo('price');setFundPrice(FN_FOCUS,this.value);persist();}"></div>
+      <div><small>Unrealized</small><b class="${h.unrealizedPL>=0?'pos':'neg'}">${signed(h.unrealizedPL)} <span style="font-size:11px">${pct(h.returnPct)}</span></b></div>
+      <div><small>XIRR</small><b class="${(xr||0)>=0?'pos':'neg'}">${pctOrDash(xr)}</b></div>
+      <div><small>Realized</small><b class="${h.realizedPL>=0?'pos':'neg'}">${h.realizedPL?signed(h.realizedPL):'—'}</b></div></div>
+    ${tradeFormHTML('dk',null,h.price)}
+    <div style="overflow-x:auto"><table class="tbl"><thead><tr><th class="l">Type</th><th>Date</th><th>Units</th><th>Price</th><th>Fee</th><th>Net</th><th></th></tr></thead><tbody>${rows}</tbody></table></div></div></section>`;}
+function openFundAssign(ni){const f=DB.funds.names[ni];if(!f)return;const cur=fundInst(f);
+  $('#modal').innerHTML=`<h3>Where does this fund live?</h3><div class="desc">${esc(f)}</div>
+    <label class="fl">App / bank</label><select class="inp" id="as_inst" onchange="asSync()">${instList().filter(x=>x.id!=='valuations').map(x=>`<option value="${x.id}" ${x.id===cur?'selected':''}>${x.icon} ${esc(x.name)}</option>`).join('')}<option value="__new">＋ New app or bank…</option></select>
+    <input class="inp" id="as_new" placeholder="Name of the new app / bank" style="margin-top:8px;display:none">
+    <label class="fl">Account inside it (optional)</label><input class="inp" id="as_acct" value="${esc((DB.funds.acct||{})[f]||'')}" placeholder="e.g. Funds, Savings">
+    <div class="mfoot"><button class="btn gho" onclick="closeModal()">Cancel</button><button class="btn pri" onclick="saveFundAssign(${ni})">Save</button></div>`;
+  $('#scrim').classList.add('on');}
+function saveFundAssign(ni){const f=DB.funds.names[ni];if(!f)return;let id=$('#as_inst').value;const acct=String($('#as_acct').value||'').trim();
+  if(id==='__new'){const nm=String($('#as_new').value||'').trim();if(!nm){toast('Give the new app a name',true);return;}
+    id=nm.toLowerCase().replace(/[^a-z0-9]+/g,'').slice(0,20)||('inst'+Date.now());DB.institutions=DB.institutions||[];if(!DB.institutions.some(x=>x.id===id))DB.institutions.push({id,name:nm,icon:'🏦'});}
+  DB.funds.inst=DB.funds.inst||{};DB.funds.acct=DB.funds.acct||{};DB.funds.inst[f]=id;DB.funds.acct[f]=acct;fxMark('fund:'+f,'upd');closeModal();persist();toast('Moved to '+instMeta(id).name);}
+function fnGoApp(id){switchTab('funds');if(fnView().group!=='app')setFnView('group','app');flashTarget('fgrp_'+id);}
+function setTxF(f){FN_TXF=f;FN_TXALL=false;renderFunds();}
+function fnTxRows(){const c=fnSort.col;let r=DB.funds.transactions.map((t,i)=>({t,i}));if(FN_TXF)r=r.filter(x=>x.t.fund===FN_TXF);
+  r.sort((a,b)=>{let A=a.t[c],B=b.t[c];if(c==='date'){A=new Date(A);B=new Date(B);}return(A<B?-1:A>B?1:0)*(fnSort.dir==='asc'?1:-1);});
+  const total=r.length;if(!FN_TXALL)r=r.slice(0,10);return{rows:r,total};}
+function txRowHTML(i,t){const fl=flagFor(t,'tx');
+  return `<tr class="${fxClass(txKey(t))}" ondblclick="startTxEdit(${i})" title="Double-click to edit"><td class="l" data-l="Type"><span class="tag" style="background:${t.type==='BUY'?'rgba(52,211,153,.15)':'rgba(251,113,133,.15)'};color:${t.type==='BUY'?'var(--pos)':'var(--neg)'}">${t.type}</span>${flagIcon(fl)}<div class="udate">${t.u||'—'}</div></td>
+    <td class="l" data-l="Fund">${esc(t.fund)}</td><td class="num" data-l="Date">${fmtDate(t.date)}</td><td class="num" data-l="Units">${fmt(t.units)}</td><td class="num" data-l="Price">${fmt(t.price)}</td>
+    <td class="num muted" data-l="Fee">${fmt(t.fee)}</td><td class="num" data-l="Net">${fmt(t.net)}</td><td class="acts"><button class="x" onclick="startTxEdit(${i})" title="Edit this trade">✎</button><button class="x" onclick="delTx(${i})">✕</button></td></tr>`;}
+let PT_READY=false;
+function openPasteTx(){TXQ=null;$('#modal').innerHTML=`<h3>📋 Paste transactions</h3><div class="desc">One per line. I read <b>buy 100 Osoul @ 962 on 2024-01-05 fee 12</b>, <b>2024-06-02 BUY Osoul 50 @ 1010</b>, <b>sold 25 osoul at 1080.5 on 12/03/2025</b> and comma rows. Nothing is added until you press Add.</div>
+  <textarea class="inp" id="pt_in" style="min-height:150px;font-family:var(--mono);font-size:12.5px" placeholder="buy 100 Osoul @ 962 on 2024-01-05"></textarea>
+  <div class="noteview" id="pt_out" style="display:none"></div>
+  <div class="mfoot"><button class="btn gho" onclick="closeModal()">Cancel</button><button class="btn" onclick="ptPreview()">Preview</button><button class="btn pri" id="pt_go" onclick="ptCommit()" style="display:none">Add them</button></div>`;$('#scrim').classList.add('on');}
+function ptPreview(){const t=String(($('#pt_in')||{}).value||'');if(!t.trim()){toast('Paste something first',true);return;}
+  const r=ingestTx(t);const msg=String(r.msgs[0].text||'').replace(/\*\*/g,'');const o=$('#pt_out');
+  if(o){o.style.display='block';o.innerHTML=esc(msg).replace(/\n/g,'<br>');}const g=$('#pt_go');if(g)g.style.display=(TXQ&&TXQ.rows.length)?'':'none';}
+function ptCommit(){if(!TXQ){toast('Preview first',true);return;}const n=TXQ.rows.length;TXQ.rows.forEach(r=>fxMark(txKey(r),'add'));commitTx();closeModal();toast(n+' transaction'+(n===1?'':'s')+' added ✓');}
 function renderFunds(){
   const p=portfolioStats();
   $('#fnStats').innerHTML=
@@ -1422,52 +1739,56 @@ function renderFunds(){
     `</div>`+
     `<div class="panel glass" style="margin-top:14px"><div class="ph"><h3>Allocation</h3></div>${allocBars(p.arr.filter(h=>h.currentValue>0).map((h,i)=>({n:h.fund,v:h.currentValue,color:PAL[i%PAL.length]})),p.value)}</div>`;
 
-  let hRows=p.arr.map((h,i)=>`<tr><td class="l" data-l="Fund">${esc(h.fund)}</td><td class="num" data-l="Units">${fmt(h.units)}</td><td class="num muted" data-l="Avg cost">${fmt(h.avgCost)}</td>
-    <td data-l="Price"><input class="num" value="${fmt(h.price)}" onchange="fundPrice(${i},this.value)" style="max-width:100px"></td>
-    <td class="num" data-l="Value">${fmt(h.currentValue)}</td><td class="num ${h.unrealizedPL>=0?'pos':'neg'}" data-l="Unrealized">${signed(h.unrealizedPL)}</td>
-    <td class="num ${h.returnPct>=0?'pos':'neg'}" data-l="Return">${pct(h.returnPct)}</td>
-    <td class="num ${(fundXIRR(h.fund)||0)>=0?'pos':'neg'}" data-l="XIRR" title="Money-weighted return on the actual dates you bought and sold">${pctOrDash(fundXIRR(h.fund))}</td>
-    <td class="num ${h.realizedPL>0?'pos':h.realizedPL<0?'neg':'muted'}" data-l="Realized">${h.realizedPL?signed(h.realizedPL):'—'}</td>
-    <td><button class="x" onclick="delFund(${i})">✕</button></td></tr>`).join('');
-  if(p.arr.length)hRows+=`<tr class="totrow"><td class="l" data-l="Fund"><b>Totals</b></td><td class="num muted" data-l="Units">—</td><td class="num muted" data-l="Avg cost">—</td><td class="num muted" data-l="Price">—</td>
-    <td class="num" data-l="Value"><b>${fmt(p.value)}</b></td><td class="num ${p.upl>=0?'pos':'neg'}" data-l="Unrealized"><b>${signed(p.upl)}</b></td>
-    <td class="num ${p.upl>=0?'pos':'neg'}" data-l="Return"><b>${pct(p.cost>0?p.upl/p.cost*100:0)}</b></td>
-    <td class="num ${(portfolioXIRR()||0)>=0?'pos':'neg'}" data-l="XIRR"><b>${pctOrDash(portfolioXIRR())}</b></td>
-    <td class="num ${p.rpl>=0?'pos':'neg'}" data-l="Realized"><b>${p.rpl?signed(p.rpl):'—'}</b></td><td></td></tr>`;
-  const txs=DB.funds.transactions.map((t,i)=>({t,i})).sort((a,b)=>{const c=fnSort.col;let A=a.t[c],B=b.t[c];if(c==='date'){A=new Date(A);B=new Date(B);}return(A<B?-1:A>B?1:0)*(fnSort.dir==='asc'?1:-1);});
-  let tRows=txs.map(({t,i})=>{const fl=flagFor(t,'tx');return `<tr><td class="l"><span class="tag" style="background:${t.type==='BUY'?'rgba(52,211,153,.15)':'rgba(251,113,133,.15)'};color:${t.type==='BUY'?'var(--pos)':'var(--neg)'}">${t.type}</span>${flagIcon(fl)}<div class="udate">${t.u||'—'}</div></td>
-    <td class="l">${esc(t.fund)}</td><td class="num">${fmtDate(t.date)}</td><td class="num">${fmt(t.units)}</td><td class="num">${fmt(t.price)}</td>
-    <td class="num muted">${fmt(t.fee)}</td><td class="num">${fmt(t.net)}</td><td><button class="x" onclick="delTx(${i})">✕</button></td></tr>`;}).join('');
-  const opts=DB.funds.names.map(f=>`<option>${esc(f)}</option>`).join('');
+  const V=fnView();FN_ROWS=[];const G=fnGroups(p,V);const CL=fnClosed(p);
+  const head='<thead><tr><th class="l">Fund</th><th>Units</th><th>Avg cost</th><th>Price</th><th>Value</th><th>Unreal. P/L</th><th>Return</th><th>XIRR</th><th>Realized</th><th></th></tr></thead>';
+  const groupHTML=G.map((g,gi)=>{const m=g.id==='all'?{icon:'📚',name:'All funds'}:instMeta(g.id);
+    const rows=g.items.map(h=>{FN_ROWS.push(h.fund);return fundRowHTML(h,FN_ROWS.length-1);}).join('');
+    const tot=`<tr class="totrow"><td class="l" data-l="Fund"><b>Subtotal</b></td><td class="num muted" data-l="Units">—</td><td class="num muted" data-l="Avg cost">—</td><td class="num muted" data-l="Price">—</td>
+      <td class="num" data-l="Value"><b>${fmt(g.value)}</b></td><td class="num ${g.upl>=0?'pos':'neg'}" data-l="Unrealized"><b>${signed(g.upl)}</b></td><td class="num ${g.upl>=0?'pos':'neg'}" data-l="Return"><b>${pct(g.ret)}</b></td>
+      <td class="num ${(g.xirr||0)>=0?'pos':'neg'}" data-l="XIRR"><b>${pctOrDash(g.xirr)}</b></td><td class="num ${g.rpl>=0?'pos':'neg'}" data-l="Realized"><b>${g.rpl?signed(g.rpl):'—'}</b></td><td></td></tr>`;
+    return `<section class="tiergrp" id="fgrp_${g.id}"><div class="tierhead"><h3>${m.icon} ${esc(m.name)}</h3><span class="tsub">${g.items.length} fund${g.items.length===1?'':'s'} · <span class="${g.upl>=0?'pos':'neg'}">${signed(g.upl)} (${pct(g.ret)})</span></span><span class="num">${fmt(g.value)} EGP</span></div>
+      <div class="tierbody"><div class="panel glass catcard ${gi%2?'alt':''}"><div style="overflow-x:auto"><table class="tbl">${head}<tbody>${rows}${tot}</tbody></table></div></div></div></section>`;}).join('')
+    ||'<div class="panel glass muted" style="text-align:center;padding:18px">No open positions — add a fund with ＋ Fund, or paste your transactions.</div>';
+  const closedHTML=CL.length?`<details class="closedbox" ${FN_CLOSED_OPEN?'open':''} ontoggle="FN_CLOSED_OPEN=this.open"><summary>Closed positions · ${CL.length} <span class="muted">kept for history — realized ${signed(CL.reduce((q,h)=>q+(h.realizedPL||0),0))}</span></summary>
+    <div style="overflow-x:auto"><table class="tbl"><thead><tr><th class="l">Fund</th><th>Realized P/L</th><th>XIRR</th><th>Last trade</th><th></th></tr></thead><tbody>${CL.map(h=>{const ni=DB.funds.names.indexOf(h.fund);
+      const last=DB.funds.transactions.filter(t=>t.fund===h.fund).map(t=>t.date).sort().pop();const xr=fundXIRR(h.fund);
+      return `<tr class="closedrow"><td class="l" data-l="Fund"><a class="fundlink" href="#" onclick="openFundDesk(${ni});return false">${esc(h.fund)}</a><div class="udate">${esc(instMeta(fundInst(h.fund)).name)} · sold out</div></td>
+        <td class="num ${(h.realizedPL||0)>=0?'pos':'neg'}" data-l="Realized">${signed(h.realizedPL||0)}</td><td class="num" data-l="XIRR">${pctOrDash(xr)}</td><td class="num" data-l="Last trade">${last?fmtDate(last):'—'}</td>
+        <td class="acts"><button class="okbtn" onclick="openFundDesk(${ni})">Open</button><button class="x" onclick="delFund(${ni})" title="Delete this fund and all its trades">✕</button></td></tr>`;}).join('')}</tbody></table></div></details>`:'';
+  const px=portfolioXIRR();
+  const totbar=p.arr.length?`<div class="panel glass totbar"><div><small>Portfolio value</small><b>${fmt(p.value)}</b></div><div><small>Unrealized</small><b class="${p.upl>=0?'pos':'neg'}">${signed(p.upl)}</b></div><div><small>Return</small><b class="${p.upl>=0?'pos':'neg'}">${pct(p.cost>0?p.upl/p.cost*100:0)}</b></div><div><small>XIRR</small><b class="${(px||0)>=0?'pos':'neg'}">${pctOrDash(px)}</b></div><div><small>Realized</small><b class="${p.rpl>=0?'pos':'neg'}">${p.rpl?signed(p.rpl):'—'}</b></div><div><small>Fees paid</small><b>${fmt(p.fees)}</b></div></div>`:'';
+  const T=fnTxRows();
+  const tRows=T.rows.map(({t,i})=>(i===FN_EDIT&&!(FN_FOCUS&&t.fund===FN_FOCUS))?txEditRowHTML(i,t,true):txRowHTML(i,t)).join('');
+  const sel=FN_TXSEL||FN_FOCUS||FN_TXF||DB.funds.names[0];
+  const opts=DB.funds.names.map(f=>`<option ${f===sel?'selected':''}>${esc(f)}</option>`).join('');
   if(!fnChartFund)fnChartFund=DB.funds.names[0];
   const phSel=DB.funds.names.map(f=>`<option ${f===fnChartFund?'selected':''}>${esc(f)}</option>`).join('');
+  const cnt={};DB.funds.transactions.forEach(t=>{cnt[t.fund]=(cnt[t.fund]||0)+1;});
+  const chips=`<div class="up-strip"><button class="up-chip ${!FN_TXF?'on':''}" onclick="setTxF('')">All <span class="due ok">${DB.funds.transactions.length}</span></button>${DB.funds.names.map(f=>`<button class="up-chip ${FN_TXF===f?'on':''}" data-f="${esc(f)}" onclick="setTxF(this.dataset.f)">${esc(fundShort(f))} <span class="due ok">${cnt[f]||0}</span></button>`).join('')}</div>`;
+  const fundSel=`<select class="inp" id="tx_fund" style="flex:1.4;min-width:180px" onchange="trPrev('tx')">${opts}</select>`;
   $('#fnWork').innerHTML=`<div class="collapse" id="fnColl">`+
-    secHead('Workbench','Holdings, transactions & prices',`<span class="collapse-h btn sm gho" onclick="toggleColl('fnColl')"><span class="arr">▾</span> Collapse</span>`)+`<div class="body">`+pieCard('fn_pie','🥧 Holdings mix')+
-    `<div class="panel glass" id="panel_funds_holdings"><div class="ph"><h3>Holdings</h3><span class="sp"></span><span class="muted" style="font-size:11px">Edit current price inline →</span></div>
-      <div style="overflow-x:auto"><table class="tbl"><thead><tr><th class="l">Fund</th><th>Units</th><th>Avg cost</th><th>Price</th><th>Value</th><th>Unreal. P/L</th><th>Return</th><th>XIRR</th><th>Realized</th><th></th></tr></thead><tbody>${hRows||'<tr><td colspan="10" class="muted" style="text-align:center;padding:14px">No funds yet</td></tr>'}</tbody></table></div></div>`+
+    secHead('Workbench','Funds, grouped where they live',`<button class="btn sm" onclick="openPasteTx()">📋 Paste transactions</button> <span class="collapse-h btn sm gho" onclick="toggleColl('fnColl')"><span class="arr">▾</span> Collapse</span>`)+`<div class="body">`+
+    fnArrange()+fundDeskHTML()+pieCard('fn_pie','🥧 '+(V.group==='app'?'Value by app':'Holdings mix'))+
+    `<div id="panel_funds_holdings">${groupHTML}</div>`+closedHTML+totbar+
     `<div class="panel glass" id="panel_funds_prices"><div class="ph"><h3>Price history</h3><span class="sp"></span><select class="inp" style="max-width:200px" onchange="fnChartFund=this.value;renderFunds()">${phSel}</select></div>
       <div class="chart-wrap"><canvas id="fnPriceChart"></canvas></div>
       <div class="row" style="margin-top:10px"><input class="inp num" id="pp_date" type="date" value="${todayStr()}" style="max-width:170px"><input class="inp num" id="pp_price" placeholder="Price" style="max-width:130px"><button class="btn sm" onclick="addPrice()">＋ Log price</button></div></div>`+
-    `<div class="panel glass" id="panel_funds_tx"><div class="ph"><h3>Transactions</h3></div>
-      <div class="row" style="margin-bottom:12px"><select class="inp" id="tx_type" style="max-width:90px"><option>BUY</option><option>SELL</option></select>
-        <select class="inp" id="tx_fund" style="flex:1.4">${opts}</select><input class="inp num" id="tx_units" placeholder="Units" style="flex:1">
-        <input class="inp num" id="tx_price" placeholder="Price" style="flex:1"><input class="inp num" id="tx_fee" placeholder="Fee" style="flex:.8">
-        <input class="inp num" id="tx_date" type="date" value="${todayStr()}" style="max-width:160px"><button class="btn sm pri" onclick="addTx()">＋ Add</button></div>
-      <div style="overflow-x:auto"><table class="tbl"><thead><tr>${[['type','Type','l'],['fund','Fund','l'],['date','Date'],['units','Units'],['price','Price'],['fee','Fee'],['net','Net cost']].map(([c,l,al])=>`<th class="sortable ${al||''}" onclick="fnSortBy('${c}')">${l}${fnSort.col===c?(fnSort.dir==='asc'?' ▲':' ▼'):''}</th>`).join('')}<th></th></tr></thead><tbody>${tRows||'<tr><td colspan="8" class="muted" style="text-align:center;padding:14px">No transactions yet</td></tr>'}</tbody></table></div></div>`+
+    `<div class="panel glass" id="panel_funds_tx"><div class="ph"><h3>Transactions</h3><span class="sp"></span><span class="muted" style="font-size:11px">${T.rows.length} of ${T.total}</span>${T.total>10?`<button class="btn sm gho" onclick="FN_TXALL=${FN_TXALL?'false':'true'};renderFunds()" style="margin-left:8px">${FN_TXALL?'Show last 10':'Show all'}</button>`:''}</div>${chips}
+      ${tradeFormHTML('tx',fundSel,null)}
+      <div style="overflow-x:auto"><table class="tbl"><thead><tr>${[['type','Type','l'],['fund','Fund','l'],['date','Date'],['units','Units'],['price','Price'],['fee','Fee'],['net','Net cost']].map(([c,l,al])=>`<th class="sortable ${al||''}" onclick="fnSortBy('${c}')">${l}${fnSort.col===c?(fnSort.dir==='asc'?' ▲':' ▼'):''}</th>`).join('')}<th></th></tr></thead><tbody>${tRows||'<tr><td colspan="8" class="muted" style="text-align:center;padding:14px">No transactions</td></tr>'}</tbody></table></div></div>`+
     `</div></div>`;
   const cv=$('#fnPriceChart');if(cv){const ph=(DB.funds.priceHistory[fnChartFund]||[]).slice().sort((a,b)=>a.date.localeCompare(b.date));Charts.line(cv,[{label:fnChartFund,color:PAL[1],points:ph.map(p=>({x:p.date,y:p.price}))}],{h:210});}
+  paintPies();
+  if(FN_FOCUS_ID){const n=$('#'+FN_FOCUS_ID);FN_FOCUS_ID=null;if(n&&n.focus)setTimeout(()=>{try{n.focus();n.select&&n.select();}catch(e){}},0);}
 }
 function fnSortBy(c){if(fnSort.col===c)fnSort.dir=fnSort.dir==='asc'?'desc':'asc';else{fnSort.col=c;fnSort.dir='asc';}renderFunds();}
-function fundPrice(i,v){const n=DB.funds.names[i];DB.funds.currentPrices[n]=parseAmt(v);const ph=DB.funds.priceHistory[n]||[];const e=ph.find(x=>x.date===todayStr());if(e){e.price=DB.funds.currentPrices[n];e.u=todayStr();}persist();}
 async function delFund(i){const name=DB.funds.names[i];if(!await confirmGlass('Delete fund','Remove "'+name+'" and all its transactions & prices?',true))return;snapUndo();
   DB.funds.names.splice(i,1);DB.funds.transactions=DB.funds.transactions.filter(t=>t.fund!==name);delete DB.funds.priceHistory[name];delete DB.funds.currentPrices[name];persist();}
 async function delTx(i){const t=DB.funds.transactions[i]||{};
   if(!await confirmGlass('Delete transaction','Remove the '+(t.type||'')+' of '+fmt(t.units)+' units in '+(t.fund||'this fund')+' on '+(t.date||'')+'? Holdings and cost basis recalculate.',true))return;
   snapUndo();DB.funds.transactions.splice(i,1);persist();toastUndo('Transaction removed');}
-function addTx(){const type=$('#tx_type').value,fund=$('#tx_fund').value,units=parseAmt($('#tx_units').value),price=parseAmt($('#tx_price').value),fee=parseAmt($('#tx_fee').value),date=$('#tx_date').value||todayStr();
-  if(!fund||units<=0||price<=0){toast('Need fund, units and price',true);return;}DB.funds.transactions.push(Object.assign(tx(type,fund,date,units,price,fee),{u:todayStr()}));
-  DB.funds.priceHistory[fund]=DB.funds.priceHistory[fund]||[];if(!DB.funds.priceHistory[fund].some(e=>e.date===date))DB.funds.priceHistory[fund].push({date,price});
-  if(!DB.funds.currentPrices[fund])DB.funds.currentPrices[fund]=price;persist();toast(type+' booked');}
+function addTx(){const g=id=>($('#'+id)||{}).value;const fund=g('tx_fund'),date=g('tx_date')||todayStr();
+  const ok=bookTrade(TX_TYPE,fund,date,parseAmt(g('tx_units')),parseAmt(g('tx_price')),parseAmt(g('tx_fee'))||0,'tx_units');if(ok){FN_TXSEL=fund;TX_DATE=date;}return ok;}
 function addPrice(){const date=$('#pp_date').value,price=parseAmt($('#pp_price').value);if(!fnChartFund||price<=0){toast('Pick a price',true);return;}
   const arr=DB.funds.priceHistory[fnChartFund]=DB.funds.priceHistory[fnChartFund]||[];const i=arr.findIndex(e=>e.date===date);if(i>=0){arr[i].price=price;arr[i].u=todayStr();}else arr.push({date,price,u:todayStr()});
   DB.funds.currentPrices[fnChartFund]=price;persist();toast('Price logged');}
@@ -1476,7 +1797,7 @@ function openAddFundLegacy(){const nm=null;if(1)return;if(DB.funds.names.include
 </script>
 <script>
 /* ════════════ RENTAL ════════════ */
-let rnView='tenant';
+let rnView='thisyear';
 function rentalSeries(mode){const rows=rentalRows();const groups={};let ci=0;
   rows.forEach(r=>{let key,label,color;
     if(mode==='tenant'){key=r.tenantId;label=r.tenant?r.tenant.name:'—';color=r.tenant?r.tenant.color:PAL[0];}
@@ -1488,50 +1809,174 @@ function rentalSeries(mode){const rows=rentalRows();const groups={};let ci=0;
     groups[key].points.push({x:r.month+'-01',y:r.net});});
   return Object.values(groups);
 }
+/* ═══════════ v2.5.0 — rental money keeps its own currency; reports are bars per period or one cumulative line ═══════════ */
+const CUR_SYM={EUR:'€',USD:'$',AED:'AED ',EGP:''};
+function rnProps(){return (DB.rental&&DB.rental.properties)||[];}
+function propById(id){return rnProps().find(p=>p.id===id);}
+function propCur(id){const p=propById(id);return p?p.currency:'EGP';}
+function propName(id){const p=propById(id);return p?p.name:'—';}
+function propIdOfTenantId(tid){const t=tenantById(tid);return (t&&t.propertyId)||(rnProps()[0]||{}).id||'';}
+function propIdOfRow(r){return propIdOfTenantId(r.tenantId);}
+function rnSel(){const ps=rnProps();if(!ps.length)return null;const v=DB.settings.rnProp;if(v==='all'&&ps.length>1)return 'all';if(v&&ps.some(p=>p.id===v))return v;return ps[0].id;}
+function rnPid(){const q=rnSel();return (q&&q!=='all')?q:(rnProps()[0]||{}).id;}
+/* the view currency: a property's own, or EGP when comparing several — never a guess */
+function rnCur(){const q=rnSel();return (!q||q==='all')?'EGP':propCur(q);}
+function csym(c){return CUR_SYM[c]!==undefined?CUR_SYM[c]:c+' ';}
+function cplain(v,c){return (v<0?'−':'')+csym(c)+fmt(Math.abs(v));}
+function csigned(v,c){return (v>0?'+':v<0?'−':'')+csym(c)+fmt(Math.abs(v));}
+function ceq(v,c){return c==='EGP'?'':`<span class="fine">≈ ${fmt(v*rate(c))} EGP</span>`;}
+function rsym(){return csym(rnCur());}
+function rplain(v){return cplain(v,rnCur());}
+function rsigned(v){return csigned(v,rnCur());}
+function rmoney(v){return rnCur()==='EGP'?fmt(v)+' <small>EGP</small>':rplain(v);}
+function reqv(v){return ceq(v,rnCur());}
+function rentalRowsV(){const q=rnSel();const rows=rentalRows();if(!q)return rows;
+  if(q==='all')return rows.map(r=>{const f=rate(propCur(propIdOfRow(r)));return Object.assign({},r,{received:r.received*f,expected:r.expected*f,mortgage:(Number(r.mortgage)||0)*f,costs:r.costs*f,net:r.net*f,variance:r.variance*f});});
+  return rows.filter(r=>propIdOfRow(r)===q);}
+function setRnProp(id){DB.settings.rnProp=id;save();renderRental();}
+function addProperty(name,cur){const id='prop_'+uid();DB.rental.properties=DB.rental.properties||[];
+  DB.rental.properties.push({id,name,currency:cur||'EGP',color:PAL[DB.rental.properties.length%PAL.length],u:todayStr()});return id;}
+function openProperty(id){const p=propById(id);const isNew=!p;const q=p||{id:'prop_'+uid(),name:'',currency:'EGP',color:PAL[rnProps().length%PAL.length]};
+  $('#modal').innerHTML=`<h3>${isNew?'New property':'Edit property'}</h3>
+    <div class="desc">Currency belongs to the property: its rent, mortgage and costs are entered and shown in it. Everywhere else you only see the EGP equivalent as fine text.</div>
+    <label class="fl">Name</label><input class="inp" id="p_name" value="${esc(q.name)}" placeholder="e.g. Cairo apartment">
+    <div class="grid2"><div><label class="fl">Currency</label><select class="inp" id="p_cur">${['EGP','EUR','USD','AED'].map(c=>`<option ${c===q.currency?'selected':''}>${c}</option>`).join('')}</select></div>
+    <div><label class="fl">Colour</label><input class="inp" id="p_color" type="color" value="${q.color}" style="height:42px;padding:4px"></div></div>
+    ${isNew?'':'<div class="warnbox">Changing the currency does not convert existing numbers — it only changes how they are read.</div>'}
+    <div class="mfoot">${(!isNew&&!DB.rental.tenants.some(t=>t.propertyId===q.id))?`<button class="btn gho dang" onclick="delProperty('${q.id}')">Delete</button>`:''}<button class="btn gho" onclick="closeModal()">Cancel</button><button class="btn pri" onclick="saveProperty('${q.id}')">Save</button></div>`;
+  $('#scrim').classList.add('on');}
+async function saveProperty(id){const name=$('#p_name').value.trim();if(!name){toast('Name required',true);return false;}
+  const cur=$('#p_cur').value,color=$('#p_color').value;const ex=propById(id);
+  if(ex&&ex.currency!==cur){if(!await confirmGlass('Change currency','Existing numbers are NOT converted — every figure for “'+ex.name+'” will now be read as '+cur+' instead of '+ex.currency+'. Continue?',true))return false;}
+  snapUndo('property');DB.rental.properties=DB.rental.properties||[];
+  if(ex){ex.name=name;ex.currency=cur;ex.color=color;ex.u=todayStr();DB.rental.tenants.forEach(t=>{if(t.propertyId===id)t.property=name;});}
+  else DB.rental.properties.push({id,name,currency:cur,color,u:todayStr()});
+  DB.settings.rnProp=id;closeModal();persist();toast('Property saved ✓');return true;}
+async function delProperty(id){const p=propById(id);if(!p)return;if(DB.rental.tenants.some(t=>t.propertyId===id)){toast('Move or delete its tenants first',true);return;}
+  if(!await confirmGlass('Delete property','Remove “'+p.name+'”? Recurring costs attached to it go too.',true))return;snapUndo();
+  DB.rental.properties=DB.rental.properties.filter(x=>x.id!==id);DB.rental.recurring=(DB.rental.recurring||[]).filter(x=>x.propertyId!==id);closeModal();persist();toastUndo('Property removed');}
+function rentalHeadline(){const ps=rnProps();if(!ps.length||!DB.rental.records.length)return null;const rows=rentalRows();const m=rows[rows.length-1].month;const mr=rows.filter(r=>r.month===m);
+  if(ps.length===1){const net=mr.reduce((q,r)=>q+r.net,0);return{month:m,net,cur:ps[0].currency,multi:false,n:1};}
+  const net=mr.reduce((q,r)=>q+r.net*rate(propCur(propIdOfRow(r))),0);return{month:m,net,cur:'EGP',multi:true,n:ps.length};}
+function rentalCard(){const h=rentalHeadline();
+  return statCard({k:'Rental net (mo)',v:h?csigned(h.net,h.cur):'—',sub:h?h.month+' '+ceq(h.net,h.cur)+(h.multi?` <span class="fine">${h.n} properties</span>`:''):'',scls:h&&h.net>=0?'pos':'neg',icon:'🏠',goto:'rental'});}
+function rentSummaryText(){const ps=rnProps();if(!ps.length)return 'No rental properties yet — add one on the Rental page.';const yr=todayStr().slice(0,4);
+  return ps.map(p=>{const rows=rentalRows().filter(r=>propIdOfRow(r)===p.id);if(!rows.length)return p.name+': no months logged yet.';
+    const last=rows[rows.length-1];const ytd=rows.filter(r=>r.month.slice(0,4)===yr).reduce((q,r)=>q+r.net,0);const cur=rows.some(r=>r.month===monthStr());
+    return p.name+': last logged '+last.month+' (received '+cplain(last.received,p.currency)+', net '+csigned(last.net,p.currency)+'); '+yr+' net so far '+csigned(ytd,p.currency)+(p.currency==='EGP'?'':' (≈ '+fmt(ytd*rate(p.currency))+' EGP)')+'. '+(cur?'This month is logged ✓':'This month is not logged yet.');}).join('\n');}
+function rentDueProps(){const key=monthStr();return rnProps().filter(p=>{const act=DB.rental.tenants.some(t=>t.propertyId===p.id&&(!t.contractEnd||String(t.contractEnd).slice(0,7)>=key));
+  return act&&!DB.rental.records.some(r=>r.month===key&&propIdOfRow(r)===p.id);});}
+function tnSync(){const v=($('#t_pid')||{}).value;const nw=(v==='__new');const w=$('#t_newwrap');if(w&&w.style)w.style.display=nw?'':'none';
+  const c=nw?(($('#t_newcur')||{}).value||'EGP'):propCur(v);const lb=$('#t_rentlbl');if(lb)lb.textContent='Contract rent ('+c+' / month)';}
+let RW_PROP=null;
+function setRnView(v){rnView=v;renderRental();}
+function setRnCum(b){DB.settings.rnCum=!!b;save();renderRental();}
+function rnPeriods(view){const rows=rentalRowsV();const cum=!!DB.settings.rnCum;
+  if(view==='tenant'){
+    if(!cum){const m={};rows.forEach(r=>{const g=m[r.tenantId]=m[r.tenantId]||{label:r.tenant?r.tenant.name:'—',color:r.tenant?r.tenant.color:PAL[0],v:0};g.v+=r.net;});
+      const L=Object.values(m);return{kind:'bars',labels:L.map(x=>x.label),shorts:L.map(x=>x.label),series:[{vals:L.map(x=>x.v),colors:L.map(x=>x.color)}],note:'Total net P/L per tenant — all months.'};}
+    const m={};let ci=0;rows.forEach(r=>{const g=m[r.tenantId]=m[r.tenantId]||{label:r.tenant?r.tenant.name:'—',color:r.tenant?r.tenant.color:PAL[ci++%PAL.length],points:[],run:0};g.run+=r.net;g.points.push({x:r.month+'-01',y:g.run});});
+    return{kind:'line',series:Object.values(m),note:'Running total per tenant.'};}
+  const MN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];let buckets=[];let note='';
+  if(view==='thisyear'){const yr=String(new Date().getFullYear()),nowM=monthStr();const byM={};
+    rows.filter(r=>r.month.startsWith(yr)).forEach(r=>{byM[r.month]=(byM[r.month]||0)+r.net;});
+    const tail=rows.filter(r=>r.month<=nowM).slice(-3);const avg=tail.length?tail.reduce((q,r)=>q+r.net,0)/tail.length:0;
+    for(let k=1;k<=12;k++){const key=yr+'-'+String(k).padStart(2,'0');const has=key in byM;const proj=key>nowM||(key===nowM&&!has);
+      buckets.push({label:key,short:MN[k-1],x:key+'-01',v:proj?avg:(byM[key]||0),proj});}
+    const ytd=buckets.filter(b=>!b.proj).reduce((q,b)=>q+b.v,0),pj=buckets.filter(b=>b.proj).reduce((q,b)=>q+b.v,0);
+    note=`${yr} so far <b>${rsigned(ytd)}</b> ${reqv(ytd)} · projected full year <b>${rsigned(ytd+pj)}</b> ${reqv(ytd+pj)}. Dashed bars are projections from your last 3 logged months — they are not in any total.`;}
+  else{const qOf=r=>r.month.slice(0,4)+' Q'+(Math.floor((Number(r.month.slice(5,7))-1)/3)+1);
+    const kf={quarter:qOf,calendar:r=>r.month.slice(0,4),fiscal:r=>String(fiscalYearOf(r)),all:r=>r.month}[view]||(r=>r.month);
+    const m={},order=[];rows.forEach(r=>{const k=kf(r);if(!m[k]){m[k]={label:k,short:view==='all'?new Date(r.month+'-01').toLocaleDateString('en-GB',{month:'short',year:'2-digit'}):k,x:r.month+'-01',v:0};order.push(k);}m[k].v+=r.net;});
+    buckets=order.map(k=>m[k]);}
+  if(cum){let run=0;const pts=buckets.filter(b=>!b.proj).map(b=>{run+=b.v;return{x:b.x,y:run};});
+    return{kind:'line',series:[{label:'Cumulative net',color:PAL[1],points:pts}],note:note||'Running total of net P/L.'};}
+  return{kind:'bars',labels:buckets.map(b=>b.label),shorts:buckets.map(b=>b.short||b.label),series:[{vals:buckets.map(b=>b.v),proj:buckets.map(b=>!!b.proj)}],note};}
+Charts.bars=function(cv,spec){const{x,w,h}=ctxOf(cv,spec.h||230);const dim=cvar('--ink-faint'),line=cvar('--line'),ink=cvar('--ink'),pos=cvar('--pos'),neg=cvar('--neg');
+  const L=spec.labels||[],S=spec.series||[];
+  if(!L.length||!S.length){x.fillStyle=dim;x.font='12px '+cvar('--ui');x.textAlign='center';x.fillText('No data yet',w/2,h/2);return;}
+  const padL=52,padR=10,padT=24,padB=30;const vals=[0];S.forEach(s=>s.vals.forEach(v=>vals.push(v)));
+  let ymin=Math.min(...vals),ymax=Math.max(...vals);if(ymax===ymin)ymax=ymin+1;const yp=(ymax-ymin)*0.12;ymax+=yp;if(ymin<0)ymin-=yp;
+  const PY=v=>h-padB-(v-ymin)/(ymax-ymin)*(h-padT-padB);const n=L.length,band=(w-padL-padR)/n,gap=Math.min(band*0.2,10),k=S.length,bw=Math.max(2,(band-gap*2)/k);
+  x.strokeStyle=line;x.lineWidth=1;x.fillStyle=dim;x.font='10px '+cvar('--mono');x.textAlign='right';
+  for(let i=0;i<=4;i++){const v=ymin+(ymax-ymin)*i/4,yy=PY(v);x.beginPath();x.moveTo(padL,yy);x.lineTo(w-padR,yy);x.globalAlpha=.4;x.stroke();x.globalAlpha=1;x.fillText(mval(v,shortN),padL-6,yy+3);}
+  const y0=PY(0);x.beginPath();x.moveTo(padL,y0);x.lineTo(w-padR,y0);x.globalAlpha=.9;x.stroke();x.globalAlpha=1;
+  const sel=cv._sel;
+  S.forEach((s,si)=>s.vals.forEach((v,i)=>{const bx=padL+i*band+gap+si*bw,y1=PY(v),top=Math.min(y0,y1),hh=Math.max(1.5,Math.abs(y1-y0));
+    const col=(s.colors&&s.colors[i])||s.color||(v>=0?pos:neg);const proj=s.proj&&s.proj[i];
+    if(proj){x.globalAlpha=.16;x.fillStyle=col;x.fillRect(bx,top,bw,hh);x.globalAlpha=1;x.strokeStyle=col;x.lineWidth=1.4;if(x.setLineDash)x.setLineDash([4,3]);x.strokeRect(bx,top,bw,hh);if(x.setLineDash)x.setLineDash([]);}
+    else{x.globalAlpha=(sel!=null&&sel!==i)?.45:1;x.fillStyle=col;x.fillRect(bx,top,bw,hh);x.globalAlpha=1;}}));
+  x.fillStyle=dim;x.textAlign='center';x.font='10px '+cvar('--mono');const every=Math.max(1,Math.ceil(n/Math.max(1,Math.floor((w-padL-padR)/54))));
+  (spec.shorts||L).forEach((lb,i)=>{if(i%every===0)x.fillText(String(lb),padL+i*band+band/2,h-10);});
+  const showI=(sel!=null)?sel:L.length-1;const v0=S[0].vals[showI];
+  if(v0!=null){const cxl=Math.min(w-padR-40,Math.max(padL+40,padL+showI*band+band/2)),ty=Math.max(12,Math.min(PY(0),PY(v0))-6);
+    x.fillStyle=ink;x.font='600 11px '+cvar('--mono');x.textAlign='center';x.fillText((sel!=null?String(L[showI])+' · ':'')+mval(v0,spec.fmt||fmt),cxl,ty);}
+  cv._bars={padL,band,n};cv._spec=spec;
+  if(!cv._bh){cv._bh=1;const at=e=>{const r=cv.getBoundingClientRect();const i=Math.floor((e.clientX-r.left-cv._bars.padL)/cv._bars.band);cv._sel=(i>=0&&i<cv._bars.n)?i:null;Charts.bars(cv,cv._spec);};
+    cv.addEventListener('pointermove',at);cv.addEventListener('pointerdown',at);cv.addEventListener('pointerleave',()=>{cv._sel=null;Charts.bars(cv,cv._spec);});}
+};
+function movePlan(id,dir){const a=DB.payments.plans;const i=a.findIndex(p=>p.id===id),j=i+dir;if(i<0||j<0||j>=a.length)return;snapUndo('reorder');const[x]=a.splice(i,1);a.splice(j,0,x);persist();}
 function renderRental(){
-  const rows=rentalRows();const yr=String(new Date().getFullYear());
-  const ytdRec=rows.filter(r=>r.month.startsWith(yr)).reduce((s,r)=>s+r.received,0);
-  const ytdNet=rows.filter(r=>r.month.startsWith(yr)).reduce((s,r)=>s+r.net,0);
-  const last=rows[rows.length-1];
-  $('#rnStats').innerHTML=
-    secHead('Rental income','Cash to your account · P/L by month, quarter, year & all time',`<button class="btn sm gho" onclick="openBackfill()">⏪ Backfill history</button> <button class="btn sm" onclick="openTenant()">＋ Tenant</button>`)+
-    `<div class="cards">`+
-      statCard({k:'Net this month',v:last?signed(last.net):'—',sub:last?`${last.month} · received ${fmt(last.received)}`:'No records yet',scls:last&&last.net>=0?'pos':'neg',hero:true,icon:'🏠'})+
-      statCard({k:`Received ${yr}`,v:fmt(ytdRec)+' <small>EGP</small>',sub:'into your account',icon:'💰'})+
-      statCard({k:`Net P/L ${yr}`,v:signed(ytdNet),sub:'rent − mortgage − costs',scls:ytdNet>=0?'pos':'neg',icon:'📈'})+
+  const props=rnProps(),sel=rnSel(),all=(sel==='all'),cur=rnCur();
+  const rows=rentalRowsV();const yr=String(new Date().getFullYear());
+  const ytdRows=rows.filter(r=>r.month.startsWith(yr));const ytdRec=ytdRows.reduce((q,r)=>q+r.received,0),ytdNet=ytdRows.reduce((q,r)=>q+r.net,0);
+  const lastM=rows.length?rows[rows.length-1].month:null;const mRows=rows.filter(r=>r.month===lastM);
+  const netM=mRows.reduce((q,r)=>q+r.net,0),recM=mRows.reduce((q,r)=>q+r.received,0);
+  const strip=`<div class="up-strip">${props.map(p=>`<button class="up-chip ${sel===p.id?'on':''}" onclick="setRnProp('${p.id}')"><span class="ic" style="color:${p.color}">●</span><b>${esc(p.name)}</b><span class="due ok">${esc(p.currency)}</span></button>`).join('')}${props.length>1?`<button class="up-chip ${all?'on':''}" onclick="setRnProp('all')"><span class="ic">∑</span><b>All properties</b><span class="due ok">in EGP</span></button>`:''}<button class="up-chip" onclick="openProperty()"><span class="ic">＋</span><b>Property</b></button></div>`;
+  const acts=(!all&&sel?`<button class="btn sm gho" onclick="openProperty('${sel}')">✎ Property</button> <button class="btn sm gho" onclick="openBackfill()">⏪ Backfill history</button> `:'')+(props.length?`<button class="btn sm" onclick="openTenant()">＋ Tenant</button>`:'');
+  $('#rnStats').innerHTML=secHead('Rental income',all?'All properties · reported in EGP':(sel?esc(propName(sel))+' · '+cur:'Add your first property'),acts)+strip+
+    (props.length?`<div class="cards">`+
+      statCard({k:all?'Net latest month · all':'Net this month',v:lastM?rsigned(netM):'—',sub:lastM?`${lastM} · received ${rplain(recM)} ${reqv(netM)}`:'No records yet',scls:lastM&&netM>=0?'pos':'neg',hero:true,icon:'🏠'})+
+      statCard({k:`Received ${yr}`,v:rmoney(ytdRec),sub:'into your account '+reqv(ytdRec),icon:'💰'})+
+      statCard({k:`Net P/L ${yr}`,v:rsigned(ytdNet),sub:'rent − mortgage − costs '+reqv(ytdNet),scls:ytdNet>=0?'pos':'neg',icon:'📈'})+
     `</div>`+
-    `<div class="panel glass" style="margin-top:14px"><div class="ph"><h3>P/L over time</h3><span class="sp"></span>
-      <div class="seg" id="rnSeg">${[['tenant','By tenant'],['quarter','Quarterly'],['calendar','Calendar year'],['fiscal','Fiscal year'],['all','All time']].map(([k,l])=>`<button class="${rnView===k?'on':''}" onclick="rnView='${k}';renderRental()">${l}</button>`).join('')}<span class="pill"></span></div></div>
-      <div class="chart-wrap"><canvas id="rnChartC"></canvas></div><div class="legend" id="rnLeg"></div></div>`;
-
-  const topts=DB.rental.tenants.map(t=>`<option value="${t.id}">${esc(t.name)}</option>`).join('');
-  let tRows=DB.rental.tenants.map(t=>`<tr><td class="l"><span class="swatch" style="display:inline-block;background:${t.color};margin-right:6px"></span>${esc(t.name)}${flagIcon(flagFor(t,'tenant'))}<div class="udate">${t.u||'—'}</div></td>
-    <td class="l muted">${esc(t.property||'—')}</td><td class="num">${fmt(t.contractRent)}</td><td class="num muted">${t.contractStart?fmtDate(t.contractStart):'—'}${t.contractEnd?'<div class="udate">ends '+t.contractEnd+'</div>':'<div class="udate">ongoing</div>'}</td>
-    <td class="l">${noteChip(`tenant:${t.id}`,t.n)}${histBadge(t)}</td><td><button class="x" onclick="editTenant('${t.id}')">✏️</button></td><td><button class="x" onclick="delTenant('${t.id}')">✕</button></td></tr>`).join('');
-  let recRows=rows.map(r=>{const needNote=r.variance!==0&&!r.note;const fl=flagFor(r,'rental');
-    return `<tr><td class="num" data-l="Month">${r.month}${flagIcon(fl)}<div class="udate">${r.u||'—'}</div></td>
-    <td class="l"><select onchange="recEdit('${r.id}','tenantId',this.value)">${DB.rental.tenants.map(t=>`<option value="${t.id}" ${t.id===r.tenantId?'selected':''}>${esc(t.name)}</option>`).join('')}</select></td>
-    <td><input class="num" value="${fmt(r.received)}" onchange="recEdit('${r.id}','received',this.value)" style="max-width:96px"></td>
-    <td><input class="num" value="${fmt(r.expected)}" onchange="recEdit('${r.id}','expected',this.value)" style="max-width:96px"></td>
-    <td class="num ${r.variance>0?'pos':r.variance<0?'neg':'muted'}">${r.variance?signed(r.variance):'0'}</td>
-    <td class="l"><input class="l" value="${esc(r.note)}" placeholder="${needNote?'What is this for?':'—'}" onchange="recEdit('${r.id}','note',this.value)" style="${needNote?'border-bottom-color:var(--amber)':''}"></td>
-    <td><input class="num" value="${fmt(r.mortgage)}" onchange="recEdit('${r.id}','mortgage',this.value)" style="max-width:96px"></td>
-    <td class="num ${r.costs?'neg':'muted'}" title="${esc((r.expenses||[]).map(e=>e.label+' '+fmt(e.amount)).join(' · ')||'no recurring costs')}" style="cursor:${r.costs?'help':'default'}">${r.costs?fmt(r.costs):'—'} <button class="x" onclick="openRentWizard('${r.id}')" title="Edit month">✏️</button></td>
-    <td class="num ${r.net>=0?'pos':'neg'}" data-l="Net P/L">${signed(r.net)}</td><td class="l" data-l="Note">${noteChip(`rental:${r.id}`,r.n)}${histBadge(r)}</td><td><button class="x" onclick="delRec('${r.id}')">✕</button></td></tr>`;}).join('');
-  $('#rnWork').innerHTML=`<div class="collapse" id="rnColl">`+
-    secHead('Workbench','Tenants & monthly ledger',`<span class="collapse-h btn sm gho" onclick="toggleColl('rnColl')"><span class="arr">▾</span> Collapse</span>`)+`<div class="body">`+pieCard('rn_pie','🥧 Rent received this year — by tenant')+
-    `<div class="panel glass" id="panel_rn_tenants"><div class="ph"><h3>Tenants</h3><span class="sp"></span><span class="muted" style="font-size:11px">Carries to new months automatically</span></div>
-      <table class="tbl"><thead><tr><th class="l">Tenant</th><th class="l">Property</th><th>Contract rent</th><th>Since</th><th class="l">Note</th><th></th><th></th></tr></thead>
+    `<div class="panel glass" style="margin-top:14px"><div class="ph"><h3>P/L over time <span class="muted" style="font-size:11px">· ${cur}${all?' · all properties':''}</span></h3><span class="sp"></span>
+      <div class="seg" id="rnSeg">${[['thisyear','This year'],['tenant','By tenant'],['quarter','Quarterly'],['calendar','Calendar year'],['fiscal','Fiscal year'],['all','All time']].map(([k,l])=>`<button class="${rnView===k?'on':''}" onclick="setRnView('${k}')">${l}</button>`).join('')}<span class="pill"></span></div>
+      <div class="seg" id="rnMode"><button class="${!DB.settings.rnCum?'on':''}" onclick="setRnCum(false)">Per period</button><button class="${DB.settings.rnCum?'on':''}" onclick="setRnCum(true)">Cumulative</button><span class="pill"></span></div></div>
+      <div class="chart-wrap"><canvas id="rnChartC"></canvas></div><div class="legend" id="rnLeg"></div><div class="muted" id="rnNote" style="font-size:12px;margin-top:6px"></div></div>`:'');
+  if(!props.length){$('#rnWork').innerHTML='<div class="panel glass"><div class="empty"><span class="big">🏠</span>Add your first property — its currency decides how every rent figure is shown.<br><br><button class="btn pri" onclick="openProperty()">＋ Property</button></div></div>';return;}
+  let work;
+  if(all){
+    const pr=props.map(p=>{const prr=rentalRows().filter(r=>propIdOfRow(r)===p.id);const yn=prr.filter(r=>r.month.startsWith(yr)).reduce((q,r)=>q+r.net,0);
+      const act=DB.rental.tenants.filter(t=>t.propertyId===p.id&&(!t.contractEnd||String(t.contractEnd).slice(0,7)>=monthStr())).length;
+      return{p,yn,egp:yn*rate(p.currency),act,last:prr.length?prr[prr.length-1].month:'—'};});
+    const tot=pr.reduce((q,x)=>q+x.egp,0);
+    work=`<div class="panel glass" id="panel_rn_properties"><div class="ph"><h3>Properties</h3><span class="sp"></span><span class="muted" style="font-size:11px">each in its own currency · total in EGP</span></div>
+      <table class="tbl"><thead><tr><th class="l">Property</th><th>Currency</th><th>Active tenants</th><th>Net ${yr}</th><th>≈ EGP</th><th>Last month logged</th><th></th></tr></thead><tbody>
+      ${pr.map(x=>`<tr><td class="l" data-l="Property"><span class="swatch" style="display:inline-block;background:${x.p.color};margin-right:6px"></span>${esc(x.p.name)}</td><td data-l="Currency">${esc(x.p.currency)}</td><td class="num" data-l="Tenants">${x.act}</td>
+        <td class="num ${x.yn>=0?'pos':'neg'}" data-l="Net">${csigned(x.yn,x.p.currency)}</td><td class="num muted" data-l="≈ EGP">${x.p.currency==='EGP'?'—':fmt(x.egp)}</td><td class="num" data-l="Last">${x.last}</td><td><button class="okbtn" onclick="setRnProp('${x.p.id}')">Open</button></td></tr>`).join('')}
+      <tr class="totrow"><td class="l"><b>Total</b></td><td></td><td></td><td></td><td class="num ${tot>=0?'pos':'neg'}"><b>${fmt(tot)}</b></td><td></td><td></td></tr></tbody></table></div>`;
+  }else{
+    const ptn=DB.rental.tenants.filter(t=>t.propertyId===sel);
+    const tRows=ptn.map(t=>`<tr><td class="l"><span class="swatch" style="display:inline-block;background:${t.color};margin-right:6px"></span>${esc(t.name)}${flagIcon(flagFor(t,'tenant'))}<div class="udate">${t.u||'—'}</div></td>
+      <td class="l muted">${esc(propName(t.propertyId))}</td><td class="num">${fmt(t.contractRent)}</td><td class="num muted">${t.contractStart?fmtDate(t.contractStart):'—'}${t.contractEnd?'<div class="udate">ends '+t.contractEnd+'</div>':'<div class="udate">ongoing</div>'}</td>
+      <td class="l">${noteChip(`tenant:${t.id}`,t.n)}${histBadge(t)}</td><td><button class="x" onclick="editTenant('${t.id}')">✏️</button></td><td><button class="x" onclick="delTenant('${t.id}')">✕</button></td></tr>`).join('');
+    const recRows=rows.map(r=>{const needNote=r.variance!==0&&!r.note;const fl=flagFor(r,'rental');
+      return `<tr><td class="num" data-l="Month">${r.month}${flagIcon(fl)}<div class="udate">${r.u||'—'}</div></td>
+      <td class="l"><select onchange="recEdit('${r.id}','tenantId',this.value)">${ptn.map(t=>`<option value="${t.id}" ${t.id===r.tenantId?'selected':''}>${esc(t.name)}</option>`).join('')}</select></td>
+      <td><input class="num" value="${fmt(r.received)}" onchange="recEdit('${r.id}','received',this.value)" style="max-width:96px"></td>
+      <td><input class="num" value="${fmt(r.expected)}" onchange="recEdit('${r.id}','expected',this.value)" style="max-width:96px"></td>
+      <td class="num ${r.variance>0?'pos':r.variance<0?'neg':'muted'}">${r.variance?signed(r.variance):'0'}</td>
+      <td class="l"><input class="l" value="${esc(r.note)}" placeholder="${needNote?'What is this for?':'—'}" onchange="recEdit('${r.id}','note',this.value)" style="${needNote?'border-bottom-color:var(--amber)':''}"></td>
+      <td><input class="num" value="${fmt(r.mortgage)}" onchange="recEdit('${r.id}','mortgage',this.value)" style="max-width:96px"></td>
+      <td class="num ${r.costs?'neg':'muted'}" title="${esc((r.expenses||[]).map(e=>e.label+' '+fmt(e.amount)).join(' · ')||'no recurring costs')}" style="cursor:${r.costs?'help':'default'}">${r.costs?fmt(r.costs):'—'} <button class="x" onclick="openRentWizard('${r.id}')" title="Edit month">✏️</button></td>
+      <td class="num ${r.net>=0?'pos':'neg'}" data-l="Net P/L">${signed(r.net)}</td><td class="l" data-l="Note">${noteChip(`rental:${r.id}`,r.n)}${histBadge(r)}</td><td><button class="x" onclick="delRec('${r.id}')">✕</button></td></tr>`;}).join('');
+    work=`<div class="panel glass" id="panel_rn_tenants"><div class="ph"><h3>Tenants</h3><span class="sp"></span><span class="muted" style="font-size:11px">${esc(propName(sel))} · ${cur} · carries to new months automatically</span></div>
+      <table class="tbl"><thead><tr><th class="l">Tenant</th><th class="l">Property</th><th>Contract rent (${cur})</th><th>Since</th><th class="l">Note</th><th></th><th></th></tr></thead>
       <tbody>${tRows||'<tr><td colspan="7" class="muted" style="text-align:center;padding:14px">Add a tenant to begin</td></tr>'}</tbody></table></div>`+
-    `<div class="panel glass" id="panel_rn_ledger"><div class="ph"><h3>Monthly ledger</h3><span class="sp"></span><button class="btn sm pri" onclick="openRentWizard()">＋ New month</button></div>
+    `<div class="panel glass" id="panel_rn_ledger"><div class="ph"><h3>Monthly ledger</h3><span class="sp"></span><span class="muted" style="font-size:11px">all figures in ${cur}</span><button class="btn sm pri" onclick="RW_PROP='${sel}';openRentWizard()" style="margin-left:10px">＋ New month</button></div>
       <div style="overflow-x:auto"><table class="tbl"><thead><tr><th>Month</th><th class="l">Tenant</th><th>Rent received</th><th>Contract rent</th><th>Variance</th><th class="l">What it's for</th><th>Mortgage</th><th>Costs</th><th>Net P/L</th><th class="l">Note</th><th></th></tr></thead>
       <tbody>${recRows||'<tr><td colspan="11" class="muted" style="text-align:center;padding:14px">No months logged yet</td></tr>'}</tbody></table></div>
       <div class="muted" style="font-size:11px;margin-top:9px">New month defaults to last tenant, mortgage & contract rent — change only when something changes. A highlighted note means a variance needs an explanation.</div></div>`+
-    recurringPanel()+
-    `</div></div>`;
-
-  const series=rentalSeries(rnView);const cv=$('#rnChartC');if(cv)Charts.line(cv,series,{h:230,zero:true});
-  $('#rnLeg').innerHTML=series.map((s,i)=>`<span><i style="background:${s.color}"></i>${esc(s.label)}</span>`).join('');
+    recurringPanel();
+  }
+  $('#rnWork').innerHTML=`<div class="collapse" id="rnColl">`+secHead('Workbench',all?'Properties side by side':'Tenants & monthly ledger',`<span class="collapse-h btn sm gho" onclick="toggleColl('rnColl')"><span class="arr">▾</span> Collapse</span>`)+`<div class="body">`+
+    pieCard('rn_pie','🥧 Rent received '+yr+' — by '+(all?'property':'tenant')+' · '+cur)+work+`</div></div>`;
+  const per=rnPeriods(rnView);const cv=$('#rnChartC');
+  if(cv){if(per.kind==='line')Charts.line(cv,per.series,{h:230});else Charts.bars(cv,{h:230,labels:per.labels,shorts:per.shorts,series:per.series,fmt:v=>rsigned(v)});}
+  $('#rnLeg').innerHTML=per.kind==='line'&&per.series.length>1?per.series.map(sr=>`<span><i style="background:${sr.color}"></i>${esc(sr.label)}</span>`).join(''):'';
+  const nt=$('#rnNote');if(nt)nt.innerHTML=per.note||'';
+  paintPies();
 }
 function recEdit(id,f,v){const r=DB.rental.records.find(x=>x.id===id);if(!r)return;if(f==='tenantId')r.tenantId=v;else if(f==='note')r.note=v;else{r[f]=parseAmt(v);if(f==='received')stampHist(r,r.received);}r.u=todayStr();persist();}
 async function delRec(id){const r=DB.rental.records.find(x=>x.id===id)||{};
@@ -1544,11 +1989,15 @@ function addRec(){if(!DB.rental.tenants.length){toast('Add a tenant first',true)
   else{month=monthStr();tenantId=DB.rental.tenants[0].id;mortgage=0;}
   const t=tenantById(tenantId);const expected=t?t.contractRent:0;
   DB.rental.records.push({id:uid(),month,tenantId,received:expected,expected,note:'',mortgage,expenses:[],u:todayStr()});persist();toast('Added '+month);}
-function openTenant(t){t=t||{id:uid(),name:'',color:PAL[DB.rental.tenants.length%PAL.length],contractStart:todayStr(),contractRent:0,property:''};
-  $('#modal').innerHTML=`<h3>${DB.rental.tenants.find(x=>x.id===t.id)?'Edit tenant':'New tenant'}</h3><div class="desc">Tenants repeat across months until you switch them.</div>
+function openTenant(t){const isEdit=!!(t&&DB.rental.tenants.find(x=>x.id===t.id));const props=rnProps();const pid0=(t&&t.propertyId)||rnPid()||'__new';
+  t=t||{id:uid(),name:'',color:PAL[DB.rental.tenants.length%PAL.length],contractStart:todayStr(),contractRent:0,propertyId:pid0};
+  const sel=t.propertyId||pid0;const c0=sel==='__new'?'EGP':propCur(sel);
+  $('#modal').innerHTML=`<h3>${isEdit?'Edit tenant':'New tenant'}</h3><div class="desc">Tenants repeat across months until you switch them.</div>
     <label class="fl">Name</label><input class="inp" id="t_name" value="${esc(t.name)}">
-    <label class="fl">Property</label><input class="inp" id="t_prop" value="${esc(t.property||'')}" placeholder="e.g. Apartment Downtown">
-    <div class="grid2"><div><label class="fl">Contract rent (EGP / month)</label><input class="inp num" id="t_rent" value="${fmt(t.contractRent)}"></div>
+    <label class="fl">Property</label><select class="inp" id="t_pid" onchange="tnSync()">${props.map(p=>`<option value="${p.id}" ${p.id===sel?'selected':''}>${esc(p.name)} · ${p.currency}</option>`).join('')}<option value="__new" ${sel==='__new'?'selected':''}>＋ New property…</option></select>
+    <div id="t_newwrap" style="display:${sel==='__new'?'':'none'}"><div class="grid2"><div><label class="fl">Property name</label><input class="inp" id="t_newname" placeholder="e.g. Cairo apartment"></div>
+      <div><label class="fl">Its currency</label><select class="inp" id="t_newcur" onchange="tnSync()">${['EGP','EUR','USD','AED'].map(c=>`<option>${c}</option>`).join('')}</select></div></div></div>
+    <div class="grid2"><div><label class="fl" id="t_rentlbl">Contract rent (${c0} / month)</label><input class="inp num" id="t_rent" value="${fmt(t.contractRent)}"></div>
     <div><label class="fl">Contract start (fiscal anchor)</label><input class="inp" id="t_start" type="date" value="${t.contractStart||todayStr()}"></div></div>
     <label class="fl">Contract end (leave blank if ongoing — a blank end date means this rent is projected forever)</label><input class="inp" id="t_end" type="date" value="${t.contractEnd||''}">
     <label class="fl">Colour</label><input class="inp" id="t_color" type="color" value="${t.color}" style="height:42px;padding:4px">
@@ -1556,8 +2005,13 @@ function openTenant(t){t=t||{id:uid(),name:'',color:PAL[DB.rental.tenants.length
   $('#scrim').classList.add('on');}
 function editTenant(id){openTenant(DB.rental.tenants.find(t=>t.id===id));}
 function saveTenant(id){const name=$('#t_name').value.trim();if(!name){toast('Name required',true);return;}
-  const obj={id,name,property:$('#t_prop').value.trim(),contractRent:parseAmt($('#t_rent').value),contractStart:$('#t_start').value,contractEnd:($('#t_end')||{}).value||'',color:$('#t_color').value,u:todayStr(),h:((DB.rental.tenants.find(x=>x.id===id)||{}).h)||[],n:((DB.rental.tenants.find(x=>x.id===id)||{}).n)||''};stampHist(obj,obj.contractRent);
-  const i=DB.rental.tenants.findIndex(t=>t.id===id);if(i>=0)DB.rental.tenants[i]=obj;else DB.rental.tenants.push(obj);closeModal();persist();toast('Tenant saved');}
+  let pid=$('#t_pid').value;
+  if(pid==='__new'){const pn=String(($('#t_newname')||{}).value||'').trim();if(!pn){toast('Name the new property',true);return;}pid=addProperty(pn,($('#t_newcur')||{}).value||'EGP');}
+  const p=propById(pid);const old=DB.rental.tenants.find(x=>x.id===id)||{};
+  const obj={id,name,propertyId:pid,property:p?p.name:'',contractRent:parseAmt($('#t_rent').value),contractStart:$('#t_start').value,contractEnd:($('#t_end')||{}).value||'',color:$('#t_color').value,u:todayStr(),h:old.h||[],n:old.n||''};
+  stampHist(obj,obj.contractRent);
+  const i=DB.rental.tenants.findIndex(t=>t.id===id);if(i>=0)DB.rental.tenants[i]=obj;else DB.rental.tenants.push(obj);
+  DB.settings.rnProp=pid;closeModal();persist();toast('Tenant saved');}
 async function delTenant(id){if(!await confirmGlass('Delete tenant','Records keep their data but lose this tenant link. Continue?',true))return;snapUndo();
   DB.rental.tenants=DB.rental.tenants.filter(t=>t.id!==id);persist();toastUndo('Tenant removed');}
 
@@ -1594,7 +2048,7 @@ function renderPayments(){
     body+=`<div class="panel glass" id="panel_plan_${p.id}" style="border-left:3px solid ${p.color}">
       <div class="ph"><span class="swatch" style="background:${p.color}"></span><h3>${esc(p.title)}</h3>
         <span class="tag">${PAY_TYPES[p.type]||p.type}</span>${p.linked&&p.linked.kind?`<span class="tag">🔗 ${esc(String(p.linked.ref).split('|').pop())}${lv!=null?' · '+shortN(lv):''}</span>`:''}
-        <span class="sp"></span><button class="btn sm gho" onclick="editPlan('${p.id}')">✏️</button><button class="x" onclick="delPlan('${p.id}')">🗑</button></div>
+        <span class="sp"></span>${REARR?`<button class="x" onclick="movePlan('${p.id}',-1)" title="Move up">↑</button><button class="x" onclick="movePlan('${p.id}',1)" title="Move down">↓</button>`:''}<button class="btn sm gho" onclick="editPlan('${p.id}')">✏️</button><button class="x" onclick="delPlan('${p.id}')">🗑</button></div>
       <div class="row" style="align-items:center;margin-bottom:10px"><div style="flex:1"><div class="bar-track"><div class="bar-fill" style="transform:scaleX(${(pctPaid/100).toFixed(4)});background:${p.color}"></div></div></div>
         <span class="muted num" style="font-size:12px">${fmt(t.paid)} / ${fmt(t.total)} · ${fmt(t.remaining)} left</span></div>
       <table class="tbl"><thead><tr><th>Paid</th><th>Due</th><th>Amount</th><th class="l">What it's for</th><th class="l">Note & history</th><th></th></tr></thead><tbody>${insts||'<tr><td colspan="6" class="muted" style="text-align:center;padding:12px">No installments</td></tr>'}</tbody></table>
@@ -1630,12 +2084,13 @@ function savePlan(id){const title=$('#p_title').value.trim();if(!title){toast('T
 /* ════════════ PLANNER (2-in-1 cashflow) ════════════ */
 function addMonths(d,n){const x=new Date(d);x.setMonth(x.getMonth()+n);return x;}
 function monthlyRentIn(key){key=key||monthStr();
-  return DB.rental.tenants.reduce((s,t)=>{
-    if(t.contractStart&&key<String(t.contractStart).slice(0,7))return s;
-    if(t.contractEnd&&key>String(t.contractEnd).slice(0,7))return s;   /* a tenant who left stops paying */
-    return s+(Number(t.contractRent)||0);},0);}
-function monthlyMortgageOut(){const byT={};DB.rental.records.slice().sort((a,b)=>a.month.localeCompare(b.month)).forEach(r=>{byT[r.tenantId]=Number(r.mortgage)||0;});
-  return Object.values(byT).reduce((s,v)=>s+v,0);}
+  return DB.rental.tenants.reduce((q,t)=>{
+    if(t.contractStart&&key<String(t.contractStart).slice(0,7))return q;
+    if(t.contractEnd&&key>String(t.contractEnd).slice(0,7))return q;   /* a tenant who left stops paying */
+    return q+(Number(t.contractRent)||0)*rate(propCur(t.propertyId||(rnProps()[0]||{}).id));},0);}
+/* a mortgage belongs to the property, not to whoever lives there — and it keeps running while it is vacant */
+function monthlyMortgageOut(){const byP={};DB.rental.records.slice().sort((a,b)=>a.month.localeCompare(b.month)).forEach(r=>{byP[propIdOfRow(r)]=Number(r.mortgage)||0;});
+  return Object.keys(byP).reduce((q,id)=>q+byP[id]*rate(propCur(id)),0);}
 function catIdByRole(role){
   const cs=DB.assets.categories||[];
   const byRole=cs.find(x=>x.role===role);if(byRole)return byRole.id;
@@ -1725,7 +2180,7 @@ function renderOverviewBody(){
       statCard({k:'Liquid cash',v:shortN(assetsTotals().byCat['cash']||0),sub:'EGP equivalent',icon:'💵',goto:'assets'})+
       statCard({k:'Funds value',v:shortN(p.value),sub:signed(p.upl)+' unreal.',scls:p.upl>=0?'pos':'neg',icon:'📈',goto:'funds'})+
       statCard({k:'Real estate',v:shortN(assetsTotals().byCat['realestate']||0),sub:'EGP',icon:'🏠',goto:'assets'})+
-      statCard({k:'Rental net (mo)',v:last?signed(last.net):'—',sub:last?last.month:'',scls:last&&last.net>=0?'pos':'neg',icon:'🏠',goto:'rental'})+
+      rentalCard()+
       statCard({k:'Due in 30 days',v:up30.length?fmt(up30amt):'0',sub:up30.length+' payment'+(up30.length===1?'':'s')+(up30.filter(i=>i.over).length?' · incl. '+up30.filter(i=>i.over).length+' overdue':''),scls:up30.length?'neg':'',icon:'📅',goto:'payments'})+
       statCard({k:'6-mo low point',v:shortN(sLow),sub:sLow<0?'shortfall risk':'stays positive',scls:sLow<0?'neg':'pos',icon:'🧭',goto:'planner'})+
       statCard({k:'Investable NW',v:shortN(inv),sub:'excl. personal & primary residence',icon:'🎯',goto:'assets'})+
@@ -1763,6 +2218,8 @@ function settingsHTML(){return `<h3>⚙️ Settings</h3>
   <div class="msec"><h4>👤 You</h4>
     <label class="fl">Name (used in the assistant's greeting)</label>
     <input class="inp" id="set_name" value="${esc(DB.settings.name||'')}" placeholder="Your name" onchange="DB.settings.name=this.value.trim();save();updateBadges()">
+    <label class="fl">Open the app on</label>
+    <select class="inp" onchange="DB.settings.openTab=this.value;save();toast('Saved')"><option value="overview" ${startTab()==='overview'?'selected':''}>Overview</option><option value="update" ${startTab()==='update'?'selected':''}>Update</option></select>
   </div>
 
   <div class="msec"><h4>💱 Exchange rates</h4>
@@ -2173,11 +2630,7 @@ function smartExtra(text){
       const up=allInstallments().filter(i=>!i.paid&&i.date<=cut).sort((a,b)=>a.date.localeCompare(b.date));
       if(!up.length)return say('Nothing due in the next '+days+' days. Committed overall: '+fmt(totalCommitments())+' EGP.');
       return say(up.length+' payment(s) in the next '+days+' days totalling '+fmt(up.reduce((s,i)=>s+i.amount,0))+' EGP. Next: '+fmt(up[0].amount)+' on '+up[0].date+'.');}
-    if(/rent(al)? (status|this month|update)|^rent$/.test(low)){const rows=rentalRows();if(!rows.length)return say('No rental months logged yet.');
-      const last=rows[rows.length-1];const yr=todayStr().slice(0,4);
-      const ytd=rows.filter(r=>r.month.slice(0,4)===yr).reduce((s,r)=>s+r.net,0);
-      const cur=rows.some(r=>r.month===monthStr());
-      return say('Last logged: '+last.month+' (received '+fmt(last.received)+', net '+signed(last.net)+'). '+yr+' net so far: '+signed(ytd)+'. '+(cur?'This month is logged ✓':'This month is not logged yet — say "log rent" or use the wizard.'));}
+    if(/rent(al)? (status|this month|update)|^rent$/.test(low)){return say(rentSummaryText());}
     if(/xirr|my return|performance/.test(low)){const p=portfolioXIRR();const r=nwReturn();
       let s='Funds portfolio XIRR: '+(p==null?'— (needs transactions with dates)':pct(p))+'. ';
       s+=r.kind==='xirr'?('Whole-net-worth XIRR: '+pct(r.pct)+' since '+r.since+'.'):r.kind==='cagr'?('Net worth growth: '+pct(r.pct)+' since '+r.since+' — log deposits/withdrawals in Planner → Money in & out to make it a true return.'):r.reason;
@@ -2326,9 +2779,10 @@ function saveManualUpdate(){
   toastUndo(n?n+' value'+(n===1?'':'s')+' updated ✓':'Nothing typed — nothing changed');}
 function maybeManualNudge(){
   if(isEmptyDB())return false;
+  if(currentTab==='update')return false; /* you are already looking at the list */
   if(DB.settings.lastManualNudge===todayStr())return false;
   const stale=manualStale();if(!stale.length)return false;
-  setTimeout(()=>{if(!$('#scrim').classList.contains('on'))openManualUpdate(true);},1500);
+  setTimeout(()=>{if(!$('#scrim').classList.contains('on'))nudgeModal(stale.length,stale[0]);},1500);
   return true;}
 function initManualAttn(){ATTN_SOURCES.push(()=>{
   const stale=manualStale();if(!stale.length)return[];
@@ -2336,7 +2790,7 @@ function initManualAttn(){ATTN_SOURCES.push(()=>{
   return[{icon:'💹',level:worst.age>=30?'red':'amber',
     title:stale.length+' holding'+(stale.length===1?'':'s')+' need a value from you',
     detail:'No live feed covers '+(stale.length===1?'it':'them')+'. Oldest: '+worst.label+(worst.u?' — '+worst.age+' days old':' — never updated')+'. One number each and every total is right again.',
-    act:{label:'Update now',fn:()=>openManualUpdate(true)}}];});}
+    act:{label:'Update now',fn:()=>switchTab('update')}}];});}
 /* ── v3.2 emergency key: a long random secret that can unwrap the vault key when the passphrase is gone ── */
 const REC_KEY='wos_rec',REC_ALPHA='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 function genRecovery(){const b=crypto.getRandomValues(new Uint8Array(40));let s='';
@@ -2582,11 +3036,12 @@ function sendChat(){const ta=$('#chatInput');const text=ta.value.trim();if(!text
 </script>
 <script>
 /* ════════════ NAV + BOOT ════════════ */
-const TITLES={overview:['Overview','Everything in one glance'],assets:['Assets','Holdings across every currency'],funds:['Funds','Mutual fund performance'],rental:['Rental','Income, tenants & P/L'],payments:['Payments','Schedules & commitments'],planner:['Planner','Short & long-term cashflow'],attention:['Attention','Everything that needs you, in one place']};
+const TITLES={update:['Update','Where your money lives — one place at a time'],overview:['Overview','Everything in one glance'],assets:['Assets','Holdings across every currency'],funds:['Funds','Mutual fund performance'],rental:['Rental','Income, tenants & P/L'],payments:['Payments','Schedules & commitments'],planner:['Planner','Short & long-term cashflow'],attention:['Attention','Everything that needs you, in one place']};
 function switchTab(name){showChrome(900);currentTab=name;$$('.view').forEach(v=>v.classList.toggle('on',v.dataset.view===name));
   $$('.navbtn').forEach(b=>b.classList.toggle('on',b.dataset.tab===name));$$('.mobtab button').forEach(b=>b.classList.toggle('on',b.dataset.tab===name));
   $('#tbTitle').textContent=TITLES[name][0];$('#tbSub').textContent=TITLES[name][1];$('.scroll').scrollTop=0;renderActive();}
 function renderActive(){switch(currentTab){
+  case 'update':renderUpdate();break;
   case 'overview':buildChatOnce();refreshBrief();renderOverviewBody();break;
   case 'assets':renderAssets();break;case 'funds':renderFunds();break;
   case 'rental':renderRental();break;case 'payments':renderPayments();break;case 'planner':renderPlanner();break;case 'attention':renderAttention();break;}
@@ -2661,7 +3116,7 @@ let rsT;
 function boot(){load();applyTheme();applyPrivacy();initPeek();if(typeof initSecurity==='function'){initSecurity();initIdle();}{const vc=$('#vchip');if(vc)vc.textContent='v'+BUILD.v+' · '+BUILD.ts.slice(0,16).replace('T',' ');}
   if(!DB.snapshots.some(s=>s.date===todayStr())){recordSnapshot();save();}
   $$('.navbtn,.mobtab button').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab)));
-  document.body.dataset.booted='1';applyNavState();initSearch();initAutoHide();updateBadges();switchTab('overview');Sync.init();initB1();initPairLink();checkStorage();refreshUndo();initNumGuard();initEncFlush();initManualAttn();maybeAutoPrices();maybeManualNudge();if(ratesStale())setTimeout(openRatesUpdate,700);
+  document.body.dataset.booted='1';applyNavState();initSearch();initAutoHide();updateBadges();switchTab(startTab());Sync.init();initB1();initPairLink();checkStorage();refreshUndo();initNumGuard();initEncFlush();initManualAttn();maybeAutoPrices();maybeManualNudge();if(ratesStale())setTimeout(openRatesUpdate,700);
   window.addEventListener('resize',()=>{moveSegPills();clearTimeout(rsT);rsT=setTimeout(()=>{if(!document.activeElement||!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName))renderActive();},350);});}
 window.addEventListener('load',boot);
 </script>
@@ -2837,7 +3292,7 @@ function execBrief(){const n=netWorth();const d30=deltaSince(30);const u=upcomin
   if(!spendNow())L.push('Monthly spending is still unset, so every runway number is optimistic.');
   {const f=fxPosition();if(f.hardDebt>0&&f.net<0)L.push('You are net short hard currency by '+shortN(Math.abs(f.net))+' EGP — a 20% devaluation costs about '+shortN(Math.abs(devalImpact(20)))+' EGP.');}
   L.push(u.length?u.length+' payment'+(u.length===1?'':'s')+' due within 14 days — '+fmt(uAmt)+' EGP'+(u.some(x=>x.over)?' (some overdue ⚠)':'')+'.':'No payments due in the next 14 days.');
-  if(last)L.push('Rental '+last.month+': net '+signed(last.net)+' EGP'+(last.variance?', variance '+signed(last.variance)+(last.note?'':' — needs a note'):'')+'.');
+  if(last)L.push('Rental '+last.month+': net '+csigned(last.net,propCur(propIdOfRow(last)))+(propCur(propIdOfRow(last))==='EGP'?' EGP':' (≈ '+fmt(last.net*rate(propCur(propIdOfRow(last))))+' EGP)')+(last.variance?', variance '+signed(last.variance)+(last.note?'':' — needs a note'):'')+'.');
   if(g)L.push(g.text);
   if(ratesStale())L.push('FX rates are stale — tap ↻ Update.');
   return{msgs:[A('Your brief ☕')].concat(L.map(A))};}
@@ -2882,19 +3337,187 @@ function applyNavState(){const st=DB.settings.navOpen||{};
   $$('.navgrp').forEach(g=>g.classList.toggle('closed',st[g.dataset.grp]===false));}
 function navGrp(k){DB.settings.navOpen=DB.settings.navOpen||{};
   DB.settings.navOpen[k]=DB.settings.navOpen[k]===false;save();applyNavState();}
+/* ═══════════ v2.3.0 UPDATE SURFACE ═══════════
+   Two axes, one record: a holding's CATEGORY says what it is (for reports); its INSTITUTION says where
+   it lives (for updating). The Excel was organised by the second — so is this tab. */
+const INST_RULES=[['thndr','Thndr','🟡',/thndr|thnd\b|clouds|^(bmm|bsb|abr|cff|azo|egx30etf)\b/i],
+  ['revolut','Revolut','🔷',/revolut|bold stack/i],['ibkr','IBKR','🟥',/ibkr/i],['degiro','DEGIRO','🔵',/degiro/i],
+  ['etrade','E*TRADE','🟪',/e\*?trade/i],['computershare','Computershare','🟩',/computershare|\bdbx\b/i],['coinbase','Coinbase','🪙',/coinbase/i],
+  ['cib','CIB','🏦',/\bcib\b/i],['aaib','AAIB','🏦',/\baaib\b/i],['nbe','NBE','🏦',/\bnbe\b/i],['banquemisr','Banque Misr','🏦',/banque misr/i],
+  ['aib','AIB','🍀',/\baib\b/i],['ptsb','PTSB','🍀',/ptsb/i],['n26','N26','🍀',/\bn26\b/i],['nawy','Nawy','🏗️',/nawy/i],['home','Home','🏠',/🏠|cash on hand|\bhome\b/i]];
+const INST_VIRTUAL={unassigned:['unassigned','Unassigned','❔'],valuations:['valuations','Valuations','🏛️']};
+function inferInst(text){const t=String(text||'');for(const r of INST_RULES)if(r[3].test(t))return r[0];return null;}
+const ACCT_BY_CAT={cash:'Accounts',certs:'Certificates',stocks:'Stocks',crypto:'Crypto',gold:'Commodities',liabilities:'Credit & loans',funds:'Funds'};
+function inferAcct(inst,catId,desc){const d=String(desc||'');
+  if(inst==='valuations'){if(catId==='realestate')return 'Property';if(catId==='policies')return 'Policies';
+    if(/⌚|watch|rolex|omega|batgirl|wimbel|diver|gmt/i.test(d))return 'Watches';if(/🚗|🚙|🚖|\bcar\b|glc|lynk|sunny|sedan|suv/i.test(d))return 'Vehicles';return 'Personal';}
+  if(inst==='revolut'){if(/bold stack|robo/i.test(d))return 'Robo-Advisor';if(catId==='crypto')return 'Revolut X';if(catId==='gold')return 'Commodities';if(catId==='stocks'||/brokerage/i.test(d))return 'Brokerage';return 'Current';}
+  if(inst==='thndr'){if(catId==='cash')return 'Wallet';if(/clouds/i.test(d))return 'Clouds';if(catId==='funds')return 'Funds';return 'Stocks';}
+  return ACCT_BY_CAT[catId]||'Accounts';}
+/* ═══════════ v2.6.0 — properties: currency belongs to the property, not to the page ═══════════ */
+function migrateV8(d){
+  if((d.v||1)>=8)return d;
+  d.rental=d.rental||{};const R=d.rental;R.tenants=R.tenants||[];R.records=R.records||[];R.recurring=R.recurring||[];
+  R.properties=Array.isArray(R.properties)?R.properties:[];
+  const guess=t=>{const q=String(t||'');return /€|\bEUR\b/i.test(q)?'EUR':/\$|\bUSD\b/i.test(q)?'USD':/\bAED\b/i.test(q)?'AED':(R.currency&&R.currency!=='EGP'?R.currency:'EGP');};
+  const clean=n=>String(n||'').replace(/\s*\((?:all )?figures[^)]*\)\s*$/i,'').replace(/\s+/g,' ').trim()||'My property';
+  const COL=['#5eead4','#60a5fa','#f472b6','#fbbf24','#a78bfa','#34d399'];const byName={};R.properties.forEach(p=>{byName[p.name]=p;});
+  const mk=(nm,cur)=>{const p={id:'prop'+(R.properties.length+1),name:nm,currency:cur,color:COL[R.properties.length%COL.length],u:''};R.properties.push(p);byName[nm]=p;return p;};
+  R.tenants.forEach(t=>{if(t.propertyId&&R.properties.some(p=>p.id===t.propertyId))return;const nm=clean(t.property);const p=byName[nm]||mk(nm,guess(t.property));t.propertyId=p.id;t.property=p.name;});
+  if(!R.properties.length&&(R.records.length||R.recurring.length))mk('My property',guess(''));
+  const first=R.properties[0];R.recurring.forEach(x=>{if(!x.propertyId&&first)x.propertyId=first.id;});
+  d.v=8;return d;}
+function migrateV7(d){
+  if((d.v||1)>=7)return d;
+  const spans={};const seen=[];
+  const mark=(id,cid)=>{(spans[id]=spans[id]||new Set()).add(cid);if(!seen.includes(id))seen.push(id);};
+  (d.assets&&d.assets.categories||[]).forEach(c=>{const cd=(d.assets.data||{})[c.id]||{};
+    Object.keys(cd).forEach(cur=>(cd[cur]||[]).forEach(it=>{if(!it.inst){const id=inferInst(it.desc);if(id)it.inst=id;}if(it.inst)mark(it.inst,c.id);}));});
+  d.funds=d.funds||{};d.funds.inst=d.funds.inst||{};d.funds.acct=d.funds.acct||{};
+  (d.funds.names||[]).forEach(f=>{if(!d.funds.inst[f])d.funds.inst[f]=inferInst(f)||'unassigned';mark(d.funds.inst[f],'funds');});
+  /* a second level only where one institution holds more than one kind of thing */
+  (d.assets&&d.assets.categories||[]).forEach(c=>{const cd=(d.assets.data||{})[c.id]||{};
+    Object.keys(cd).forEach(cur=>(cd[cur]||[]).forEach(it=>{if(it.inst&&!it.acct&&spans[it.inst]&&spans[it.inst].size>1)it.acct=inferAcct(it.inst,c.id,it.desc);}));});
+  (d.funds.names||[]).forEach(f=>{const id=d.funds.inst[f];if(id&&!d.funds.acct[f]&&spans[id]&&spans[id].size>1)d.funds.acct[f]=inferAcct(id,'funds',f);});
+  if(!Array.isArray(d.institutions)){
+    d.institutions=INST_RULES.filter(r=>seen.includes(r[0])).map(r=>({id:r[0],name:r[1],icon:r[2]}));
+    if(seen.includes('unassigned'))d.institutions.push({id:'unassigned',name:'Unassigned',icon:'❔'});}
+  d.v=7;return d;}
+function instList(){const L=(DB.institutions||[]).slice();
+  if(!L.some(x=>x.id==='unassigned'))L.push({id:'unassigned',name:'Unassigned',icon:'❔'});
+  L.push({id:'valuations',name:'Valuations',icon:'🏛️'});return L;}
+function instMeta(id){return instList().find(x=>x.id===id)||{id,name:id,icon:'🏦'};}
+function instOfAsset(it,c){return it.inst||inferInst(it.desc)||(tierOf(c)==='hard'?'valuations':'unassigned');}
+function daysSince(d){if(!d)return 9999;return Math.max(0,Math.round((new Date(todayStr())-new Date(String(d).slice(0,10)))/86400000));}
+function updateRows(){
+  const out=[];const H=holdingsArray();
+  DB.assets.categories.forEach(c=>{const cd=DB.assets.data[c.id]||{};
+    Object.keys(cd).forEach(cur=>(cd[cur]||[]).forEach((it,idx)=>{
+      const q=it.bind?Number(it.bind.qty)||0:0;const age=daysSince(it.u);
+      /* "live" has to be earned: priced by its own source within three days — a bind alone proves nothing */
+      const live=!!(it.bind&&it.bind.src&&q>0&&it.pxSrc===it.bind.src&&age<=3&&srcState(it.bind.src).status!=='blocked');
+      const inst=instOfAsset(it,c);
+      const r={kind:'asset',key:`asset:${c.id}:${cur}:${idx}`,inst,acct:it.acct||(inst==='valuations'?inferAcct('valuations',c.id,it.desc):''),label:it.desc,cat:c.name,catId:c.id,cur,
+        value:Number(it.amt)||0,u:it.u||'',live,units:q>0?q:0,valueOnly:!!(it.bind&&it.bind.src&&!(q>0))};
+      r.price=r.units>0?r.value/r.units:0;r.age=age;r.due=!r.live&&r.age>=staleDaysFor(r);out.push(r);}));});
+  (DB.funds.names||[]).forEach(f=>{const h=H.find(x=>x.fund===f);if(!h||!(h.units>0))return;
+    const last=fundLastPrice(f);const age=last?daysSince(last):9999;const b=(DB.funds.bind||{})[f];
+    const lastE=(DB.funds.priceHistory[f]||[]).find(e=>e.date===last);
+    const live=!!(b&&lastE&&lastE.src===b.src&&age<=3);
+    const r={kind:'fund',key:'fund:'+f,inst:fundInst(f),acct:(DB.funds.acct||{})[f]||'',label:f,cat:'Funds',catId:'funds',cur:'EGP',
+      value:h.currentValue,u:last||'',units:h.units,price:Number(DB.funds.currentPrices[f])||0,live,age};
+    r.due=!r.live&&r.age>=staleDaysFor(r);out.push(r);});
+  return out;}
+function instSummary(){const rows=updateRows();const m={};
+  rows.forEach(r=>{const s=m[r.inst]=m[r.inst]||{id:r.inst,rows:[],total:0,due:0,oldest:0};
+    s.rows.push(r);s.total+=r.value*rate(r.cur);if(r.due)s.due++;if(!r.live)s.oldest=Math.max(s.oldest,r.age);});
+  return instList().filter(x=>m[x.id]).map(x=>Object.assign({},m[x.id],{meta:x}));}
+let UP_SEL=null,UP_SORT='acct',UP_DIR=1,UP_ROWS=[],UP_FOCUS=null;
+const FXM={};
+function fxMark(key,kind){FXM[key]={k:kind,t:Date.now()};}
+function fxClass(key){const f=FXM[key];return (f&&Date.now()-f.t<1700)?'fx-'+f.k:'';}
+function confirmHist(rec,val){if(!rec)return;if(!Array.isArray(rec.h))rec.h=[];const d=todayStr(),v=Number(val),last=rec.h[rec.h.length-1];
+  if(last&&last.d===d)last.v=v;else rec.h.push({d,v});if(rec.h.length>HIST_CAP)rec.h=rec.h.slice(-HIST_CAP);}
+function setUpInst(id){UP_SEL=id;if(currentTab!=='update')switchTab('update');else renderUpdate();}
+function setUpSort(k){if(UP_SORT===k)UP_DIR=-UP_DIR;else{UP_SORT=k;UP_DIR=(k==='value'||k==='age')?-1:1;}renderUpdate();}
+function upMode(){return DB.settings.upMode==='price'?'price':'value';}
+function setUpMode(m){DB.settings.upMode=(m==='price')?'price':'value';save();renderUpdate();}
+function renderUpdate(){
+  const host=$('#upBody');if(!host)return;
+  if(isEmptyDB()){host.innerHTML=secHead('Update','Start here','')+welcomeCard();return;}
+  const S=instSummary();if(!S.length){host.innerHTML='<div class="panel glass muted">Nothing to update yet.</div>';return;}
+  if(!UP_SEL||!S.some(s=>s.id===UP_SEL))UP_SEL=(S.slice().sort((a,b)=>b.due-a.due||b.oldest-a.oldest)[0]||S[0]).id;
+  const cur=S.find(s=>s.id===UP_SEL);const dueTotal=S.reduce((a,s)=>a+s.due,0);const fresh=S.filter(s=>!s.due).length;
+  let rows=cur.rows.slice();const dir=UP_DIR;
+  const cmp={acct:(a,b)=>String(a.acct).localeCompare(String(b.acct))||String(a.label).localeCompare(String(b.label)),
+    name:(a,b)=>String(a.label).localeCompare(String(b.label))*dir,value:(a,b)=>(a.value*rate(a.cur)-b.value*rate(b.cur))*dir,
+    cur:(a,b)=>String(a.cur).localeCompare(String(b.cur))*dir||String(a.label).localeCompare(String(b.label)),age:(a,b)=>(a.age-b.age)*dir};
+  rows.sort(cmp[UP_SORT]||cmp.acct);UP_ROWS=rows;
+  const hasUnits=rows.some(r=>r.units>0&&!r.live);const mode=upMode();
+  const grouped=UP_SORT==='acct'&&rows.some(r=>r.acct);let lastAcct=null;
+  const body=rows.map((r,i)=>{let h='';
+    if(grouped&&r.acct!==lastAcct){lastAcct=r.acct;h+=`<tr class="acchead"><td colspan="6">${esc(r.acct||'Other')} · ${rows.filter(x=>x.acct===r.acct).length}</td></tr>`;}
+    const unitRow=r.units>0;const ageCls=r.live?'pos':r.age>=staleDaysFor(r)*3?'neg':r.due?'':'muted';
+    const ph=(unitRow&&mode==='price')?fmt(r.price):fmt(r.value);
+    h+=`<tr id="up_row_${i}" class="${r.due?'due ':''}${fxClass(r.key)}">
+      <td class="l hl" data-l="Holding">${esc(r.label)}<span class="catchip">${esc(r.cat)}</span>${r.live?'<span class="live">live</span>':''}<small>${unitRow?fmt(r.units)+(r.kind==='fund'?' units':' shares')+' · ':''}${r.valueOnly?`<a href="#" onclick="openDetail('${r.key}');return false">add share count →</a> `:''}${r.inst==='unassigned'?' <a href="#" onclick="openAssign('+i+');return false">assign to an app →</a>':''}</small></td>
+      <td class="num muted" data-l="Last">${fmt(r.value)} <small>${r.cur}</small>${unitRow?`<small class="fine"> @ ${fmt(r.price)}</small>`:''}</td>
+      <td class="num ${ageCls}" data-l="Age">${r.live?'live':r.u?r.age+'d':'never'}</td>
+      <td data-l="Today"><input class="upin num" id="up_${i}" inputmode="decimal" autocomplete="off" placeholder="${ph}" onkeydown="upKey(event,${i})" onchange="upChange(${i})"></td>
+      <td data-l=""><button class="okbtn" onclick="upConfirm(${i})" title="Still right — stamp today">✓</button></td>
+      <td data-l=""><button class="x" onclick="openAssign(${i})" title="Move to another app / account">⋯</button></td></tr>`;return h;}).join('');
+  const nextId=(S.find(s=>s.due&&s.id!==UP_SEL)||{}).id;
+  host.innerHTML=`<div class="panel glass up-top"><div><div class="big">✍️ ${dueTotal?dueTotal+' holding'+(dueTotal===1?'':'s')+' due':'Everything is fresh ✓'}</div>
+      <div class="muted" style="font-size:12px">${fresh} of ${S.length} places up to date · type a value and press <kbd>Enter</kbd>, or <kbd>Enter</kbd> on a blank row to confirm it has not changed</div></div>
+      <span class="sp"></span>${nextId?`<button class="btn pri" onclick="setUpInst('${nextId}')">▶ Next: ${esc(instMeta(nextId).name)}</button>`:''}</div>
+    <div class="up-strip">${S.map(s=>`<button class="up-chip ${s.id===UP_SEL?'on':''}" onclick="setUpInst('${s.id}')"><span class="ic">${s.meta.icon}</span><b>${esc(s.meta.name)}</b><span class="due ${s.due?'':'ok'}">${s.due?s.due:'✓'}</span></button>`).join('')}</div>
+    <div class="panel glass up-panel"><div class="ph"><h3>${cur.meta.icon} ${esc(cur.meta.name)}</h3><span class="sp"></span><span class="muted num">${fmt(cur.total)} EGP</span></div>
+      ${cur.id==='valuations'?'<div class="muted hint" style="margin:0 0 10px;font-size:12px">Valued whole — one number per asset, revisited about every 90 days. Use what you could realistically sell it for, not the asking price.</div>':''}
+      <div class="tools"><div class="seg">${[['acct','Account'],['name','Name'],['value','Amount'],['cur','Currency'],['age','Age']].map(([k,l])=>`<button class="${UP_SORT===k?'on':''}" onclick="setUpSort('${k}')">${l}${UP_SORT===k&&k!=='acct'?(UP_DIR>0?' ↑':' ↓'):''}</button>`).join('')}<span class="pill"></span></div>
+        ${hasUnits?`<span class="muted" style="font-size:11px">I type</span><div class="seg"><button class="${mode==='value'?'on':''}" onclick="setUpMode('value')">Total value</button><button class="${mode==='price'?'on':''}" onclick="setUpMode('price')">Price / unit</button><span class="pill"></span></div>`:''}
+        <span class="sp"></span><button class="btn sm gho" onclick="upConfirmAll()">✓ All unchanged</button>${nextId?`<button class="btn sm" id="upNext" onclick="setUpInst('${nextId}')">Next →</button>`:''}</div>
+      <table class="tbl"><thead><tr><th class="l">Holding</th><th>Last</th><th>Age</th><th>Today${hasUnits?(mode==='price'?' · per unit':' · total'):''}</th><th></th><th></th></tr></thead><tbody>${body}</tbody></table></div>`;
+  if(UP_FOCUS!=null){const n=$('#up_'+UP_FOCUS)||$('#upNext');UP_FOCUS=null;if(n&&n.focus)setTimeout(()=>{try{n.focus();}catch(e){}},0);}}
+function upApply(i,raw){const r=UP_ROWS[i];if(!r)return false;const ok=(raw==='__ok');const v=ok?0:parseAmt(raw);if(!ok&&!isFinite(v))return false;
+  const per=!ok&&r.units>0&&upMode()==='price';
+  if(r.kind==='asset'){const it=getRec(r.key);if(!it)return false;
+    if(ok){confirmHist(it,it.amt);fxMark(r.key,'ok');}
+    else{const amt=per?v*r.units:v;if(Math.abs(amt-(Number(it.amt)||0))<1e-9){confirmHist(it,it.amt);fxMark(r.key,'ok');}else{it.amt=amt;stampHist(it,amt);fxMark(r.key,'upd');}}
+    it.u=todayStr();return true;}
+  const f=r.label;const h=holdingsArray().find(x=>x.fund===f);if(!h||!(h.units>0))return false;
+  const cur=Number(DB.funds.currentPrices[f])||0;const price=ok?cur:(per?v:Math.round(v/h.units*1e6)/1e6);const same=Math.abs(price-cur)<1e-6;
+  DB.funds.currentPrices[f]=price;const arr=DB.funds.priceHistory[f]=DB.funds.priceHistory[f]||[];
+  const k=arr.findIndex(e=>e.date===todayStr());if(k>=0){arr[k].price=price;arr[k].u=todayStr();}else arr.push({date:todayStr(),price,u:todayStr()});
+  fxMark(r.key,same?'ok':'upd');return true;}
+function upKey(e,i){if(e.key!=='Enter'&&!(e.key==='Tab'&&!e.shiftKey))return;
+  const el=$('#up_'+i);const raw=String((el&&el.value)||'').trim();
+  if(e.key==='Tab'&&!raw)return;           /* Tab on a blank row just moves on */
+  e.preventDefault();if(el)el.dataset.done='1';
+  upApply(i,raw===''?'__ok':raw);UP_FOCUS=i+1;persist();}
+function upChange(i){const el=$('#up_'+i);if(!el||el.dataset.done)return;const raw=String(el.value||'').trim();if(!raw)return;
+  el.dataset.done='1';upApply(i,raw);persist();}
+function upConfirm(i){upApply(i,'__ok');persist();}
+function upConfirmAll(){snapUndo('confirm all');let n=0;
+  UP_ROWS.forEach((r,i)=>{const el=$('#up_'+i);const raw=String((el&&el.value)||'').trim();if(r.live&&!raw)return;if(upApply(i,raw||'__ok'))n++;});
+  persist();toast(n+' value'+(n===1?'':'s')+' stamped for today ✓');}
+function asSync(){const v=($('#as_inst')||{}).value,n=$('#as_new');if(n&&n.style)n.style.display=(v==='__new')?'':'none';}
+function openAssign(i){const r=UP_ROWS[i];if(!r)return;const hard=r.inst==='valuations';
+  const opts=instList().map(x=>`<option value="${x.id}" ${x.id===r.inst?'selected':''}>${x.icon} ${esc(x.id==='valuations'?'Held directly — property, vehicles, watches, policies':x.name)}</option>`).join('');
+  $('#modal').innerHTML=`<h3>${hard?'What kind of asset is this?':'Where does this live?'}</h3>
+    <div class="desc">${esc(r.label)}${hard?'<br>These have no app to log into, so they sit under “Held directly”, grouped by type.':''}</div>
+    <label class="fl">${hard?'Held directly, or inside an app':'App / bank'}</label><select class="inp" id="as_inst" onchange="asSync()">${opts}<option value="__new">＋ New app or bank…</option></select>
+    <input class="inp" id="as_new" placeholder="Name of the new app / bank" style="margin-top:8px;display:none">
+    <label class="fl">${hard?'Type':'Account inside it (optional)'}</label><input class="inp" id="as_acct" list="as_sugg" value="${esc(r.acct)}" placeholder="${hard?'Property, Vehicles, Watches, Policies':'e.g. Brokerage, Savings, Wallet'}">
+    <datalist id="as_sugg">${(hard?['Property','Vehicles','Watches','Policies','Personal']:['Brokerage','Savings','Current','Wallet','Funds','Crypto']).map(x=>`<option value="${x}">`).join('')}</datalist>
+    <div class="mfoot"><button class="btn gho" onclick="closeModal()">Cancel</button><button class="btn pri" onclick="saveAssign(${i})">Save</button></div>`;
+  $('#scrim').classList.add('on');}
+function startTab(){return (DB.settings&&DB.settings.openTab==='update')?'update':'overview';}
+function nudgeModal(n,worst){$('#modal').innerHTML=`<h3>💹 ${n} holding${n===1?'':'s'} need${n===1?'s':''} a value</h3><div class="desc">Oldest: ${esc(worst.label)} — ${worst.age} days. The Update tab walks you through them one app at a time.</div>
+  <div class="mfoot"><button class="btn gho" onclick="muRemind()">Later</button><button class="btn pri" onclick="closeModal();switchTab('update')">Start updating</button></div>`;$('#scrim').classList.add('on');}
+function saveAssign(i){const r=UP_ROWS[i];if(!r)return;let id=$('#as_inst').value;const acct=String($('#as_acct').value||'').trim();
+  if(id==='__new'){const nm=String($('#as_new').value||'').trim();if(!nm){toast('Give the new app a name',true);return;}
+    id=nm.toLowerCase().replace(/[^a-z0-9]+/g,'').slice(0,20)||('inst'+Date.now());
+    DB.institutions=DB.institutions||[];if(!DB.institutions.some(x=>x.id===id))DB.institutions.push({id,name:nm,icon:'🏦'});}
+  if(r.kind==='asset'){const it=getRec(r.key);if(it){it.inst=id;it.acct=acct;}}
+  else{DB.funds.inst=DB.funds.inst||{};DB.funds.acct=DB.funds.acct||{};DB.funds.inst[r.label]=id;DB.funds.acct[r.label]=acct;}
+  fxMark(r.key,'upd');closeModal();UP_SEL=id;persist();toast('Moved to '+instMeta(id).name);}
+function assetConfirm(cid,cur,idx){const it=((DB.assets.data[cid]||{})[cur]||[])[idx];if(!it)return;
+  confirmHist(it,it.amt);it.u=todayStr();fxMark(`asset:${cid}:${cur}:${idx}`,'ok');persist();toast('Confirmed — still '+fmt(it.amt)+' '+cur);}
+function assetEnter(cid,cur,idx,raw){const it=((DB.assets.data[cid]||{})[cur]||[])[idx];if(!it)return;const v=parseAmt(raw);
+  if(!isFinite(v))return;if(Math.abs(v-(Number(it.amt)||0))<1e-9)assetConfirm(cid,cur,idx);else assetEdit(cid,cur,idx,'amt',raw);}
 function renderNavSubs(){
+  const U=$('#subs_update');if(U){const S=instSummary();U.innerHTML=S.map(s=>`<button class="subitem" onclick="setUpInst('${s.id}')">${s.meta.icon} ${esc(s.meta.name)}${s.due?` <span class="badge" style="margin-left:auto">${s.due}</span>`:''}</button>`).join('');
+    const b=$('#upBadge');if(b){const n=S.reduce((a,s)=>a+s.due,0);b.textContent=n?String(n):'';}}
   const A=$('#subs_assets');if(A)A.innerHTML=TIERS.map(([k,ic,nm])=>{const cs=DB.assets.categories.filter(c=>tierOf(c)===k);if(!cs.length)return '';
     return `<button class="subhead" onclick="goTier('${k}')" title="Show only ${esc(nm)}">${ic} ${nm}<span class="go">›</span></button>`+cs.map(c=>`<button class="subitem" onclick="navSub('assets','panel_cat_${c.id}')"><i class="sdot" style="background:${c.color||'var(--line)'}"></i>${c.icon} ${esc(c.name)}</button>`).join('');}).join('');
-  const F=$('#subs_funds');if(F)F.innerHTML=DB.funds.names.map(f=>
-    `<button class="subitem" data-f="${esc(f)}" onclick="navSubFund(this.dataset.f)"><i class="sdot" style="background:${curColor('EGP')}"></i>📈 ${esc(f)}</button>`).join('');
+  const F=$('#subs_funds');if(F){const gm={};const act=new Set(holdingsArray().filter(h=>h.units>1e-6).map(h=>h.fund));DB.funds.names.filter(f=>act.has(f)).forEach(f=>{const id=fundInst(f);(gm[id]=gm[id]||[]).push(f);});
+    F.innerHTML=Object.keys(gm).sort((a,b)=>((a==='unassigned')-(b==='unassigned'))||a.localeCompare(b)).map(id=>`<button class="subhead" onclick="fnGoApp('${id}')" title="Jump to ${esc(instMeta(id).name)}">${instMeta(id).icon} ${esc(instMeta(id).name)}<span class="go">›</span></button>`+gm[id].map(f=>`<button class="subitem" data-f="${esc(f)}" onclick="navSubFund(this.dataset.f)"><i class="sdot" style="background:${curColor('EGP')}"></i>📈 ${esc(fundShort(f))}</button>`).join('')).join('');}
   const P=$('#subs_payments');if(P)P.innerHTML=DB.payments.plans.map(p=>
     `<button class="subitem" onclick="navSub('payments','panel_plan_${p.id}')"><i class="sdot" style="background:${p.color}"></i>${esc(p.title)}</button>`).join('');}
 function navSub(tab,anchor){switchTab(tab);flashTarget(anchor);}
 /* a tier in the rail filters the page to that tier and scrolls to it — one tap, not three */
 function goTier(k){AS_FILTER={tier:k,cur:AS_FILTER.cur||''};switchTab('assets');renderAssets();paintPies();flashTarget('tier_'+k);}
-function navSubFund(name){fnChartFund=name;switchTab('funds');flashTarget('panel_funds_prices');}
-
-/* ── jump + flash (2× accent pulse, then clean) ── */
+function navSubFund(f){const ni=DB.funds.names.indexOf(f);switchTab('funds');if(ni>=0)openFundDesk(ni);}
 function flashTarget(id){if(!id)return;showChrome(1800);setTimeout(()=>{const el=document.getElementById(id);if(!el)return;
   if(el.scrollIntoView)el.scrollIntoView({behavior:'smooth',block:'start'});
   el.classList.remove('flash');void el.offsetWidth;el.classList.add('flash');
@@ -2915,10 +3538,9 @@ function attentionItems(fl){const items=[];fl=fl||collectFlags();
     title:'FX rates are stale (last updated '+(DB.settings.ratesUpdated||'never')+')',
     detail:'Every EGP conversion in the app uses these rates — refresh to keep totals honest.',
     act:{label:'Update rates',fn:()=>openRatesUpdate()}});
-  if(DB.rental.tenants.length&&!DB.rental.records.some(r=>r.month===monthStr()))
-    items.push({icon:'🏠',level:'amber',title:'Rent for '+monthStr()+' isn’t logged yet',
+  rentDueProps().forEach(p=>items.push({icon:'🏠',level:'amber',title:'Rent for '+monthStr()+' isn’t logged yet'+(rnProps().length>1?' — '+p.name:''),
       detail:'One tap pre-fills last month’s tenant, contract rent and mortgage — adjust only what changed.',
-      act:{label:'Log month',fn:()=>{switchTab('rental');openRentWizard();}}});
+      act:{label:'Log month',fn:()=>{RW_PROP=p.id;switchTab('rental');openRentWizard();}}}));
   Object.keys(fl.per||{}).forEach(tab=>{const n=fl.per[tab];if(!n)return;const r=(fl.perRed||{})[tab]||0;
     const why=(fl.perWhy||{})[tab]||{},ex=(fl.perEx||{})[tab]||[];
     const reasons=Object.keys(why).sort((a,b)=>why[b]-why[a]).map(k=>why[k]+' '+k).join(' · ');
@@ -3026,25 +3648,24 @@ function perMonth(t){const a=Number(t.amount)||0;return t.freq==='monthly'?a:t.f
 const FREQ_LABEL={monthly:'every month',quarterly:'every 3 months',annual:'once a year'};
 
 /* ── rental recurring costs ── */
-function rentalCostForMonth(key){return (DB.rental.recurring||[]).filter(t=>recurDue(t,key)).reduce((s,t)=>s+(Number(t.amount)||0),0);}
-function suggestedExpenses(key){return (DB.rental.recurring||[]).filter(t=>recurDue(t,key)).map(t=>({id:t.id,label:t.label,amount:Number(t.amount)||0}));}
-function recurringPanel(){
-  const list=DB.rental.recurring||[];
-  const rows=list.length?list.map(t=>`<tr><td class="l">${esc(t.label)}${t.active===false?' <span class="tag">paused</span>':''}<div class="udate">${t.u||'—'}</div></td>
+function rentalCostForMonth(key){return (DB.rental.recurring||[]).filter(t=>recurDue(t,key)).reduce((q,t)=>q+(Number(t.amount)||0)*rate(propCur(t.propertyId||(rnProps()[0]||{}).id)),0);}
+function suggestedExpenses(key,pid){return (DB.rental.recurring||[]).filter(t=>recurDue(t,key)&&(!pid||!t.propertyId||t.propertyId===pid)).map(t=>({id:t.id,label:t.label,amount:Number(t.amount)||0}));}
+function recurringPanel(){const pid=rnPid();const cur=propCur(pid);const all=(DB.rental.recurring||[]).filter(t=>!t.propertyId||t.propertyId===pid);
+  const rows=all.length?all.map(t=>`<tr><td class="l">${esc(t.label)}${t.active===false?' <span class="tag">paused</span>':''}<div class="udate">${t.u||'—'}</div></td>
     <td class="num">${fmt(t.amount)}</td><td class="muted" style="font-size:11px">${FREQ_LABEL[t.freq]||t.freq}</td>
     <td><button class="x" onclick="openRecurring('${t.id}')">✏️</button></td><td><button class="x" onclick="delRecurring('${t.id}')">✕</button></td></tr>`).join('')
     :'<tr><td colspan="5" class="muted" style="text-align:center;padding:12px">No recurring costs yet — add taxes, management fees, maintenance.</td></tr>';
   return `<div class="panel glass" id="panel_rn_recurring"><div class="ph"><h3>Recurring costs</h3><span class="sp"></span><button class="btn sm" onclick="openRecurring()">＋ Recurring cost</button></div>
-    <div class="muted" style="font-size:11.5px;margin-bottom:9px">Remembered line items. Each new month offers them pre-filled — you confirm or adjust, and they reduce that month's net P/L.</div>
-    <table class="tbl"><thead><tr><th class="l">Cost</th><th>Amount (EGP)</th><th>How often</th><th></th><th></th></tr></thead><tbody>${rows}</tbody></table>
-    <div class="muted" style="font-size:11px;margin-top:8px">Estimated ${fmt((DB.rental.recurring||[]).filter(t=>t.active!==false).reduce((s,t)=>s+perMonth(t),0))} EGP / month — the planner subtracts this from future months.</div></div>`;}
+    <div class="muted" style="font-size:11.5px;margin-bottom:9px">Remembered line items for ${esc(propName(pid))}. Each new month offers them pre-filled — you confirm or adjust, and they reduce that month's net P/L.</div>
+    <table class="tbl"><thead><tr><th class="l">Cost</th><th>Amount (${cur})</th><th>How often</th><th></th><th></th></tr></thead><tbody>${rows}</tbody></table>
+    <div class="muted" style="font-size:11px;margin-top:8px">Estimated ${fmt(all.filter(t=>t.active!==false).reduce((q,t)=>q+perMonth(t),0))} ${cur} / month — the planner subtracts this from future months${cur==='EGP'?'':' (converted to EGP)'}.</div></div>`;}
 function openRecurring(id){
   const t=(DB.rental.recurring||[]).find(x=>x.id===id)||{id:'rec_'+uid(),label:'',amount:0,freq:'monthly',anchor:Number(todayStr().slice(5,7)),active:true};
   const isNew=!(DB.rental.recurring||[]).some(x=>x.id===t.id);
   $('#modal').innerHTML=`<h3>${isNew?'New recurring cost':'Edit recurring cost'}</h3>
     <div class="desc">Property taxes, management fees, maintenance retainers — anything that repeats.</div>
     <label class="fl">What is it</label><input class="inp" id="rc_l" value="${esc(t.label)}" placeholder="e.g. Building management fee">
-    <div class="grid2"><div><label class="fl">Amount (EGP)</label><input class="inp num" id="rc_a" value="${fmt(t.amount)}"></div>
+    <div class="grid2"><div><label class="fl">Amount (${propCur(t.propertyId||rnPid())})</label><input class="inp num" id="rc_a" value="${fmt(t.amount)}"></div>
     <div><label class="fl">How often</label><select class="inp" id="rc_f">${['monthly','quarterly','annual'].map(f=>`<option value="${f}" ${t.freq===f?'selected':''}>${FREQ_LABEL[f]}</option>`).join('')}</select></div></div>
     <div class="grid2"><div><label class="fl">Anchor month (for quarterly / annual)</label><input class="inp num" id="rc_m" value="${t.anchor||1}"></div>
     <div><label class="fl">Status</label><select class="inp" id="rc_s"><option value="1" ${t.active!==false?'selected':''}>Active</option><option value="0" ${t.active===false?'selected':''}>Paused</option></select></div></div>
@@ -3052,7 +3673,7 @@ function openRecurring(id){
   $('#scrim').classList.add('on');}
 function saveRecurring(id){
   const label=$('#rc_l').value.trim();if(!label){toast('Give it a name',true);return;}
-  const obj={id,label,amount:parseAmt($('#rc_a').value),freq:$('#rc_f').value,
+  const oldR=(DB.rental.recurring||[]).find(x=>x.id===id)||{};const obj={id,propertyId:oldR.propertyId||rnPid(),label,amount:parseAmt($('#rc_a').value),freq:$('#rc_f').value,
     anchor:Math.min(12,Math.max(1,Math.round(parseAmt($('#rc_m').value)||1))),active:$('#rc_s').value==='1',u:todayStr()};
   DB.rental.recurring=DB.rental.recurring||[];
   const i=DB.rental.recurring.findIndex(x=>x.id===id);
@@ -3069,34 +3690,35 @@ function rentWizardDue(){
   const key=monthStr(),day=Number(todayStr().slice(8,10));
   if(day>7)return false;
   if((DB.settings.rentWizard||{}).snoozedMonth===key)return false;
-  return !DB.rental.records.some(r=>r.month===key);}
+  return rentDueProps().length>0;}
 function rentSnoozed(){const w=DB.settings.rentWizard||{};return w.snoozedMonth&&!DB.rental.records.some(r=>r.month===w.snoozedMonth)?w.snoozedMonth:null;}
 let RW_ID=null,RW_EXPS=[];
 function openRentWizard(id){
   if(!DB.rental.tenants.length){toast('Add a tenant first',true);return;}
   const existing=id?DB.rental.records.find(r=>r.id===id):null;
   RW_ID=existing?existing.id:null;
-  const sorted=DB.rental.records.slice().sort((a,b)=>a.month.localeCompare(b.month));const last=sorted[sorted.length-1];
+  const pid=existing?propIdOfRow(existing):((RW_PROP&&propById(RW_PROP))?RW_PROP:rnPid());RW_PROP=pid;const ptn=DB.rental.tenants.filter(t=>t.propertyId===pid);const pcur=propCur(pid);
+  const sorted=DB.rental.records.filter(r=>propIdOfRow(r)===pid).sort((a,b)=>a.month.localeCompare(b.month));const last=sorted[sorted.length-1];
   let month,tenantId,mortgage,received,expected,note,exps;
   if(existing){month=existing.month;tenantId=existing.tenantId;mortgage=existing.mortgage||0;received=existing.received||0;
     expected=existing.expected||0;note=existing.note||'';exps=(existing.expenses||[]).map(e=>({label:e.label,amount:e.amount,on:true}));}
   else{
     if(last){const d=new Date(last.month+'-01');d.setMonth(d.getMonth()+1);month=monthStr(d);tenantId=last.tenantId;mortgage=Number(last.mortgage)||0;}
-    else{month=monthStr();tenantId=DB.rental.tenants[0].id;mortgage=0;}
-    if(DB.rental.records.some(r=>r.month===month))month=monthStr();
+    else{month=monthStr();tenantId=(ptn[0]||DB.rental.tenants[0]).id;mortgage=0;}
+    if(DB.rental.records.some(r=>r.month===month&&propIdOfRow(r)===pid))month=monthStr();
     const t=tenantById(tenantId);expected=t?Number(t.contractRent)||0:0;received=expected;note='';
-    exps=suggestedExpenses(month).map(e=>({label:e.label,amount:e.amount,on:true}));}
+    exps=suggestedExpenses(month,pid).map(e=>({label:e.label,amount:e.amount,on:true}));}
   RW_EXPS=exps; /* labels live in state, not scraped back out of the DOM */
   const costRows=exps.length?exps.map((e,i)=>`<div class="wizrow"><input type="checkbox" id="rw_e${i}" ${e.on?'checked':''}>
       <span class="wl">${esc(e.label)}</span><input class="inp num" id="rw_ea${i}" value="${fmt(e.amount)}"></div>`).join('')
     :'<div class="muted" style="font-size:11.5px">No recurring costs remembered yet — add them in Rental → Recurring costs.</div>';
-  $('#modal').innerHTML=`<h3>${existing?'Edit '+month:'Log rent — '+month}</h3>
+  $('#modal').innerHTML=`<h3>${existing?'Edit '+month:'Log rent — '+month} <span class="muted" style="font-size:12px">${esc(propName(pid))}</span></h3>
     <div class="desc">${existing?'Adjust what actually happened this month.':'Pre-filled from last month and your contract. Change only what changed.'}</div>
     <div class="grid2"><div><label class="fl">Month</label><input class="inp" id="rw_m" type="month" value="${month}" ${existing?'disabled':''}></div>
-    <div><label class="fl">Tenant</label><select class="inp" id="rw_t">${DB.rental.tenants.map(t=>`<option value="${t.id}" ${t.id===tenantId?'selected':''}>${esc(t.name)}</option>`).join('')}</select></div></div>
-    <div class="grid2"><div><label class="fl">Rent received</label><input class="inp num" id="rw_r" value="${fmt(received)}"></div>
-    <div><label class="fl">Contract rent</label><input class="inp num" id="rw_x" value="${fmt(expected)}"></div></div>
-    <div class="grid2"><div><label class="fl">Mortgage paid</label><input class="inp num" id="rw_g" value="${fmt(mortgage)}"></div>
+    <div><label class="fl">Tenant</label><select class="inp" id="rw_t">${ptn.map(t=>`<option value="${t.id}" ${t.id===tenantId?'selected':''}>${esc(t.name)}</option>`).join('')}</select></div></div>
+    <div class="grid2"><div><label class="fl">Rent received · ${pcur}</label><input class="inp num" id="rw_r" value="${fmt(received)}"></div>
+    <div><label class="fl">Contract rent · ${pcur}</label><input class="inp num" id="rw_x" value="${fmt(expected)}"></div></div>
+    <div class="grid2"><div><label class="fl">Mortgage paid · ${pcur}</label><input class="inp num" id="rw_g" value="${fmt(mortgage)}"></div>
     <div><label class="fl">Note (needed if it differs)</label><input class="inp" id="rw_n" value="${esc(note)}" placeholder="What is this for?"></div></div>
     <label class="fl" style="margin-top:10px">Recurring costs this month</label>${costRows}
     <div class="mfoot">${existing?'':`<button class="btn gho" onclick="rwSnooze()">Remind me later</button>`}<button class="btn gho" onclick="closeModal()">Cancel</button><button class="btn pri" onclick="rwSave(${exps.length})">${existing?'Save changes':'Log month'}</button></div>`;
@@ -3113,7 +3735,7 @@ function rwSave(n){
   const rec={tenantId:$('#rw_t').value,received:parseAmt($('#rw_r').value),expected:parseAmt($('#rw_x').value),
     mortgage:parseAmt($('#rw_g').value),note:$('#rw_n').value.trim(),expenses,u:todayStr()};
   if(RW_ID){const r=DB.rental.records.find(x=>x.id===RW_ID);Object.assign(r,rec);stampHist(r,r.received);}
-  else{if(DB.rental.records.some(r=>r.month===month)){toast(month+' is already logged',true);return;}
+  else{if(DB.rental.records.some(r=>r.month===month&&propIdOfRow(r)===propIdOfTenantId(rec.tenantId))){toast(month+' is already logged for this property',true);return;}
     DB.rental.records.push(stampHist(Object.assign({id:uid(),month},rec),rec.received));}
   if((DB.settings.rentWizard||{}).snoozedMonth===month)DB.settings.rentWizard.snoozedMonth=null;
   RW_ID=null;closeModal();persist();toast('Saved '+month+' ✓');}
@@ -3308,7 +3930,7 @@ ATTN_SOURCES.push(()=>maturityList().filter(m=>m.rag.level!=='green').map(m=>({
 /* ── boot hook ── */
 function initB1(){
   sandboxBanner();
-  if(rentWizardDue())setTimeout(()=>{if(rentWizardDue())openRentWizard();},900);}
+  if(rentWizardDue())setTimeout(()=>{if(rentWizardDue()){RW_PROP=rentDueProps()[0].id;openRentWizard();}},900);}
 
 </script>
 <script>
@@ -3392,6 +4014,7 @@ function instEditor(rec){
 
 /* ── rent backfill: build the months you already lived through ── */
 function bfPlan(){
+  const bfPid=propIdOfTenantId(($('#bf_ten')||{}).value);
   const from=$('#bf_f').value||monthStr(),to=$('#bf_t').value||monthStr();
   const rent=parseAmt($('#bf_r').value),mort=parseAmt($('#bf_m').value),step=Number(parseAmt($('#bf_s').value))||0;
   const withCosts=$('#bf_c')?!!$('#bf_c').checked:false;
@@ -3400,7 +4023,7 @@ function bfPlan(){
   const y0=d.getFullYear();
   while(d<=end){
     const key=monthStr(d);
-    if(!DB.rental.records.some(r=>r.month===key)){
+    if(!DB.rental.records.some(r=>r.month===key&&propIdOfRow(r)===bfPid)){
       const yrs=d.getFullYear()-y0;
       const r=Math.round(rent*Math.pow(1+step/100,yrs)*100)/100;
       out.push({month:key,received:r,expected:r,mortgage:mort,expenses:withCosts?suggestedExpenses(key):[]});}
@@ -3413,15 +4036,15 @@ function bfPreview(){const rows=bfPlan();const el=$('#bf_prev');if(!el)return;
   const t=$('#bf_tot');if(t)t.textContent=rows.length?`${rows.length} months · net ${fmt(net)} EGP (skips months you already logged)`:'Nothing to add — those months are already logged.';}
 function openBackfill(){
   if(!DB.rental.tenants.length){toast('Add a tenant first',true);return;}
-  const t=DB.rental.tenants[0];
+  const pid=rnPid();const ptn=DB.rental.tenants.filter(x=>x.propertyId===pid);const t=ptn[0]||DB.rental.tenants[0];
   const sorted=DB.rental.records.slice().sort((a,b)=>a.month.localeCompare(b.month));
   const from=(t.contractStart||todayStr()).slice(0,7);
   $('#modal').innerHTML=`<h3>Backfill rent history</h3>
     <div class="desc">Generates the months between two dates so your monthly / quarterly / yearly / all-time P&L has real history. Months you already logged are never touched.</div>
     <div class="grid2"><div><label class="fl">From month</label><input class="inp" id="bf_f" type="month" value="${from}" oninput="bfPreview()"></div>
     <div><label class="fl">To month</label><input class="inp" id="bf_t" type="month" value="${monthStr()}" oninput="bfPreview()"></div></div>
-    <div class="grid2"><div><label class="fl">Tenant</label><select class="inp" id="bf_ten">${DB.rental.tenants.map(x=>`<option value="${x.id}">${esc(x.name)}</option>`).join('')}</select></div>
-    <div><label class="fl">Rent received / month</label><input class="inp num" id="bf_r" value="${fmt(t.contractRent||0)}" oninput="bfPreview()"></div></div>
+    <div class="grid2"><div><label class="fl">Tenant</label><select class="inp" id="bf_ten">${ptn.map(x=>`<option value="${x.id}">${esc(x.name)}</option>`).join('')}</select></div>
+    <div><label class="fl">Rent received / month · ${propCur(pid)}</label><input class="inp num" id="bf_r" value="${fmt(t.contractRent||0)}" oninput="bfPreview()"></div></div>
     <div class="grid2"><div><label class="fl">Mortgage / month</label><input class="inp num" id="bf_m" value="${fmt((sorted[sorted.length-1]||{}).mortgage||0)}" oninput="bfPreview()"></div>
     <div><label class="fl">Annual step-up (%)</label><input class="inp num" id="bf_s" value="0" oninput="bfPreview()"></div></div>
     <div class="wizrow"><input type="checkbox" id="bf_c" onchange="bfPreview()"><span class="wl">Also apply remembered recurring costs to each month</span></div>
@@ -3506,7 +4129,7 @@ function addFlow(date,amount,label){
 let CHROME_HOLD=0;
 function showChrome(ms){document.body.classList.remove('chromehide');CHROME_HOLD=Date.now()+(ms||1200);}
 function navAll(open){DB.settings.navOpen=DB.settings.navOpen||{};
-  ['wealth','income','obligations','planning'].forEach(k=>DB.settings.navOpen[k]=!!open);
+  ['update','wealth','income','obligations','planning'].forEach(k=>DB.settings.navOpen[k]=!!open);
   save();applyNavState();}
 function initNumGuard(){const h=e=>{const t=e.target;
   if(t&&t.tagName==='INPUT'&&t.classList&&t.classList.contains('num')){
@@ -3528,10 +4151,13 @@ function pieItems(cid){
       if(AS_FILTER.cur){const arr=((DB.assets.data[c.id]||{})[AS_FILTER.cur])||[];v=arr.reduce((s,x)=>s+(Number(x.amt)||0),0)*rate(AS_FILTER.cur);}
       else v=t.byCat[c.id]||0;
       return{label:c.name,n:c.name,v:Math.max(0,v),color:c.color||PAL[i%PAL.length]};});}
-  if(cid==='fn_pie')return holdingsArray().map((h,i)=>({label:h.fund,n:h.fund,v:h.currentValue,color:PAL[i%PAL.length]}));
-  if(cid==='rn_pie'){const yr=todayStr().slice(0,4),by={};
-    rentalRows().filter(r=>r.month.slice(0,4)===yr).forEach(r=>{const k=(r.tenant&&r.tenant.name)||'—';
-      by[k]=by[k]||{v:0,color:(r.tenant&&r.tenant.color)||PAL[Object.keys(by).length%PAL.length]};by[k].v+=Math.max(0,Number(r.received)||0);});
+  if(cid==='fn_pie'){const H=holdingsArray();if(fnView().group==='app'){const m={};H.forEach(h=>{const id=fundInst(h.fund);m[id]=(m[id]||0)+h.currentValue;});
+    return Object.keys(m).map((id,i)=>({label:instMeta(id).name,n:instMeta(id).name,v:m[id],color:PAL[i%PAL.length]}));}
+    return H.map((h,i)=>({label:h.fund,n:h.fund,v:h.currentValue,color:PAL[i%PAL.length]}));}
+  if(cid==='rn_pie'){const yr=todayStr().slice(0,4),by={};const allv=(rnSel()==='all');
+    rentalRowsV().filter(r=>r.month.slice(0,4)===yr).forEach(r=>{const k=allv?propName(propIdOfRow(r)):((r.tenant&&r.tenant.name)||'—');
+      const col=allv?(propById(propIdOfRow(r))||{}).color:(r.tenant&&r.tenant.color);
+      by[k]=by[k]||{v:0,color:col||PAL[Object.keys(by).length%PAL.length]};by[k].v+=Math.max(0,Number(r.received)||0);});
     return Object.keys(by).map(k=>({label:k,n:k,v:by[k].v,color:by[k].color}));}
   if(cid==='py_pie')return DB.payments.plans.map(p=>({label:p.title,n:p.title,color:p.color,
     v:p.installments.filter(i=>!i.paid).reduce((s,i)=>s+(Number(i.amount)||0),0)}));
@@ -3540,9 +4166,11 @@ function pieItems(cid){
 const PIE_SEL={},PIE_HIDE={};
 function pieVisible(cid){const hide=PIE_HIDE[cid]||{};return pieItems(cid).filter(x=>x.v>0&&!hide[x.label]);}
 function paintPies(){['as_pie','fn_pie','rn_pie','py_pie'].forEach(cid=>{if(!$('#'+cid))return;drawPie(cid);wirePie(cid);legendPie(cid);});}
+function pieCur(cid){return cid==='rn_pie'?rnCur():'EGP';}
+function pieMoney(cid,v,short){const c=pieCur(cid);const sy=c==='EGP'?'':(CUR_SYM[c]!==undefined?CUR_SYM[c]:c+' ');return sy+(short?shortN(v):fmt(v));}
 function legendPie(cid){const lg=$('#'+cid+'_lg');if(!lg)return;const hide=PIE_HIDE[cid]||{};
-  const items=pieItems(cid).filter(x=>x.v>0);
-  lg.innerHTML=items.map(x=>`<span data-pl="${esc(x.label)}" style="cursor:pointer;${hide[x.label]?'opacity:.35;text-decoration:line-through':''}"><i style="background:${x.color}"></i>${esc(x.label)} · <b class="num">${mval(x.v,fmt)}</b></span>`).join('')||'<span class="muted">Nothing to chart yet</span>';
+  const items=pieItems(cid).filter(x=>x.v>0);const eq=(cid==='rn_pie'&&rnCur()!=='EGP');
+  lg.innerHTML=items.map(x=>`<span data-pl="${esc(x.label)}" style="cursor:pointer;${hide[x.label]?'opacity:.35;text-decoration:line-through':''}"><i style="background:${x.color}"></i>${esc(x.label)} · <b class="num">${mval(x.v,v=>pieMoney(cid,v))}</b>${eq?` <span class="fine">≈ ${mval(x.v*rate(rnCur()),fmt)} EGP</span>`:''}</span>`).join('')||'<span class="muted">Nothing to chart yet</span>';
   lg.onclick=e=>{const s=e.target.closest('[data-pl]');if(!s)return;const k=s.getAttribute('data-pl');
     const h=PIE_HIDE[cid]=PIE_HIDE[cid]||{};h[k]=!h[k];PIE_SEL[cid]=-1;drawPie(cid);legendPie(cid);};}
 function drawPie(cid){const cv=$('#'+cid);if(!cv)return;const items=pieVisible(cid);const{x,w,h}=ctxOf(cv,200);
@@ -3555,10 +4183,10 @@ function drawPie(cid){const cv=$('#'+cid);if(!cv)return;const items=pieVisible(c
   x.textAlign='center';
   if(sel>=0&&items[sel]){const it=items[sel];
     x.fillStyle=it.color;x.font='600 18px '+cvar('--mono');x.fillText(MASK()?'•••':(it.v/tot*100).toFixed(1)+'%',cx,cy-12);
-    x.fillStyle=ink;x.font='600 12px '+cvar('--mono');x.fillText(mval(it.v,fmt),cx,cy+6);
+    x.fillStyle=ink;x.font='600 12px '+cvar('--mono');x.fillText(mval(it.v,v=>pieMoney(cid,v)),cx,cy+6);
     x.fillStyle=dim;x.font='500 10px '+cvar('--ui');const nm=it.label.length>18?it.label.slice(0,17)+'…':it.label;x.fillText(nm,cx,cy+21);}
-  else{x.fillStyle=ink;x.font='600 16px '+cvar('--mono');x.fillText(mval(tot,shortN),cx,cy);
-    x.fillStyle=dim;x.font='500 10px '+cvar('--ui');x.fillText('EGP',cx,cy+15);}}
+  else{x.fillStyle=ink;x.font='600 16px '+cvar('--mono');x.fillText(mval(tot,v=>pieMoney(cid,v,true)),cx,cy);
+    x.fillStyle=dim;x.font='500 10px '+cvar('--ui');x.fillText(pieCur(cid),cx,cy+15);}}
 function wirePie(cid){const cv=$('#'+cid);if(!cv||cv.__wired)return;cv.__wired=1;cv.style.cursor='pointer';
   cv.onclick=e=>{const rect=cv.getBoundingClientRect();const px=e.clientX-rect.left,py=e.clientY-rect.top;
     const w=cv.clientWidth||rect.width||300,h=200;const cx=w/2,cy=h/2,R=Math.min(w,h)/2-12,inner=R*0.62;
@@ -3878,7 +4506,7 @@ function openMenu(){
       "setLook(LOOKS[(LOOKS.findIndex(x=>x[0]===currentLook())+1)%LOOKS.length][0]);closeModal();openMenu()",''],
     ['📸','Snapshot',"freeze today's totals","closeModal();recordSnap()",''],
     ['💾','Backup now',backupLine(),"closeModal();exportBackup()",stale?'dang':''],
-    ['✍️','Update values',manualStale().length?manualStale().length+' need a value':'all fresh',"closeModal();openManualUpdate(false)",''],
+    ['✍️','Update values',manualStale().length?manualStale().length+' need a value':'all fresh',"closeModal();switchTab('update')",''],
     ['⚑','Attention',attentionItems().length+' item(s) need you',"closeModal();switchTab('attention')",attentionItems().some(i=>i.level==='red')?'dang':'']];
   $('#modal').innerHTML=`<h3>⌘ Menu</h3><div class="desc">${esc(st)}</div>
     <div class="setlist">${rows.map(([ic,t,s,fn,cls])=>`<button class="setitem ${cls}" onclick="${fn}"><span class="ie">${ic}</span><span class="lbl"><b>${t}</b><small>${esc(s)}</small></span><span class="chev">›</span></button>`).join('')}</div>
